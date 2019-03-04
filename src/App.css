@@ -1,0 +1,249 @@
+html {
+	background-color: rgba(248,248,248,1);
+}
+
+html, header, body, footer {
+	max-width: 100%;
+}
+
+* {
+  text-decoration: none;
+}
+
+ul, li {
+	list-style: none;
+}
+
+/* HEADER STYLING */
+header {
+  width: 100%;
+  height: 35px;
+  text-align: left;
+  padding: 12px;
+  padding-bottom: 20px !important;
+  font-weight: bolder;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(248, 248, 248, 1);
+	position: fixed;
+  top: 0px;
+  left: 0px;
+	background-color: lightcoral;
+}
+
+header .header-index {
+	font-family: 'Roboto', sans-serif;
+  font-size: 35px;
+  color: #111;
+  display: block;
+  text-align: left;
+	float: left;
+	line-height: 27px;
+	padding: 2px;
+  margin: 2.5px;
+	transition: color 0.3s;
+}
+
+header .header-index:hover {
+	color: lightgray;
+}
+
+header nav ul {
+  margin-left: 0px;
+	margin-top: 8px;
+  float: left;
+}
+
+header nav ul li {
+  display: inline-block;
+  float: left;
+  list-style: none;
+  padding: 0 15px;
+}
+
+header nav ul li a {
+  font-family: 'Source Sans Pro', serif;
+  font-size: 20px;
+  color: #111;
+	transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+	color: lightgray;
+}
+
+/* BODY STYLING */
+body {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+body article {
+  display: block;
+	width: 90vw;
+	margin: 3.5em auto;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+p {
+	padding-bottom: 10px;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+/* FOOTER STYLING */
+
+footer {
+	position: absolute;
+	background-color: rgb(48, 48, 48, 48);
+	width: 100%;
+	border-top: 2px solid lightcoral;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+}
+
+.footer-box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0.5%;
+  margin-bottom: -2%;
+}
+
+.footer-box-elem {
+	margin: 3%;
+}
+
+.footer-box-elem h1 {
+	font-weight: bold;
+}
+
+.footer-box-elem a {
+	text-decoration: none;
+	color: gray;
+	transition: color 0.3s;
+}
+
+.footer-box-elem a:hover {
+	color: white;
+}
+
+.footer-box-elem ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+.footer-box-elem ul li {
+	padding: 3px;
+}
+
+.vertical-line {
+	border-left: 2px solid white;
+	margin-right: 70px;
+	height: 175px;
+}
+
+#copyright {
+  text-align: right;
+  margin-right: 2%;
+}
+
+/* INDEX.HTML */
+
+.headline {
+	text-align: center;
+	padding-top: 15px;
+	color: white;
+}
+
+.icons {
+	float: left;
+	margin-left: 50px;
+	margin-bottom: 30px;
+  margin-right: 50px;
+  height: 60px;
+}
+
+.one {
+	width: 100%;
+	height: 700px;
+	background-image: url("img/apartment.jpg"), url("img/staircase.jpg"), url("img/facade.jpg");
+	background-position: left, right top, right bottom;
+	background-repeat: no-repeat;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.two {
+	border-top: 2px solid lightcoral;
+}
+
+.two p {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+/* ABOUT.HTML */
+
+.aboutone {
+	font-weight: lighter;
+	font-size: 30px;
+}
+
+.descript-text p {
+	font-size: 20px;
+	margin-right: 25%;
+}
+
+.about-header {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.prof-text {
+	font-size: 20px;
+}
+
+.leftpic {
+  margin-right: 30px;
+  border-radius: 50%;
+  height: 200px;
+}
+
+.rightpic {
+  float: right;
+  margin-left: 30px;
+  border-radius: 50%;
+  height: 200px;
+}
+
+/* BENEFITS DROPDOWN */
+.dropdown {
+	display: inline-block;
+  display: inline-block;
+	border-bottom: .08px solid currentColor;
+  font-weight: bolder;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 30px;
+  display: block;
+	transition: 0.3s;
+}
+
+.dropdown:hover .dropdown-content {display: block; background-color: lightcoral;}
+.dropdown-content a:hover {color: #ddd; margin-left: 5px;}
