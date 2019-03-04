@@ -28,6 +28,8 @@ class HowItWorks extends React.Component{
 						<img src={money} alt="" class="icons" />
 						<p>Customers are rewarded monetarily or on the BXR points system, which can lead to
 						future BXR rewards!</p>
+						<br/ >
+						<br/ >
 					</article>
 				</section>
 			</div>
