@@ -5,7 +5,6 @@ class About extends React.Component{
 	render(){
 		return(
 			  <div>
-
           <section class="aboutone">
             <article>
               <p class="about-header">Mission and Meaning</p>
