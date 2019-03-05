@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Item extends Component {
   state = {
     count: this.props.value,
-    imageUrl: "https://picsum.photos/200"
+    imageUrl: this.props.image
   };
 
   handleIncrement = () => {
