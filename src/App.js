@@ -16,7 +16,7 @@ class App extends Component {
           <header>
             <Link to="/"> <p class="header-index">bxr</p> </Link>
             <nav>
-              <ul>
+              <ul class="HeaderUl">
                 <li><a class="dropbtn">
                 <div class="dropdown"><a>Benefits</a><div class="dropdown-content">
                     <a href="/">For Brands</a>

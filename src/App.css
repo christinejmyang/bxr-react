@@ -47,20 +47,20 @@ header .header-index:hover {
 	color: lightgray;
 }
 
-header nav ul {
+header nav ul, Router header nav ul {
   margin-left: 0px;
 	margin-top: 8px;
   float: left;
 }
 
-header nav ul li {
+header nav ul li, Router header nav ul li{
   display: inline-block;
   float: left;
   list-style: none;
   padding: 0 15px;
 }
 
-header nav ul li a, .AboutStyle, .HIWStyle {
+header nav ul li a, Router header nav ul li a {
   font-family: 'Source Sans Pro', serif;
   font-size: 20px;
   color: #111;
