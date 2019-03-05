@@ -18,7 +18,7 @@ class Header extends React.Component{
                   </div>
                 </div></a></li>
                 <li> <a href="./../public/about.html"> About </a> </li>
-                <li> <a href="#hiw"> How it Works </a> </li>
+                <li> <a href="/"> How it Works </a> </li>
               </ul>
             </nav>
           </header>

@@ -14,6 +14,10 @@ ul, li {
 	list-style: none;
 }
 
+a {
+	cursor: pointer;
+}
+
 /* HEADER STYLING */
 header {
   width: 100%;
@@ -69,6 +73,11 @@ header nav ul li a, Router header nav ul li a {
 
 header nav ul li a:hover, .AboutStyle:hover, .HIWStyle:hover {
 	color: lightgray;
+}
+
+.HeaderLink {
+	margin-top: -6.5%;
+	margin-bottom: -6.5%;
 }
 
 /* BODY STYLING */
@@ -217,6 +226,7 @@ footer {
   margin-right: 30px;
   border-radius: 50%;
   height: 200px;
+	float:left;
 }
 
 .rightpic {
@@ -226,13 +236,22 @@ footer {
   height: 200px;
 }
 
+.profile {
+	margin-top: -3%;
+}
+
+#bold {
+	color: lightcoral;
+}
+
 /* BENEFITS DROPDOWN */
 .dropdown {
 	display: inline-block;
   display: inline-block;
-	border-bottom: .08px solid currentColor;
+	border-bottom: 0px solid currentColor;
   font-weight: bolder;
 }
+
 .dropdown-content {
 	display: none;
 	position: absolute;
