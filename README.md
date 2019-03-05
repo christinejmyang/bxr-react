@@ -1,7 +1,7 @@
 # BXR React App
 
 ### User story template: ###
-As a <<type of user>>, I can <<some goal>> so that <<some reason>>
+As a (type of user), I can (some goal) so that (some reason)
 
 #### Business ####
 As a business owner, I can seek out various methods and spaces to promote my products so that I can receive informative, powerful user data and consumer insights for a cheaper price than current data analysis methods.
