@@ -198,7 +198,9 @@ footer {
 }
 
 .descript-text p {
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 20px;
+	font-weight: lighter;
 	margin-right: 25%;
 }
 

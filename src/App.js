@@ -30,7 +30,9 @@ class App extends Component {
             </nav>
           </header>
         </div>
-        <Route path="/" component={MainPic} />
+        <Switch>
+          <Route exact path="/" component={MainPic} />
+        </Switch>
         <Switch>
           <Route exact path="/" component={HowItWorks} />
           <Route path="/about" component={About} />
