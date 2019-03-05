@@ -60,14 +60,14 @@ header nav ul li {
   padding: 0 15px;
 }
 
-header nav ul li a {
+header nav ul li a, .AboutStyle, .HIWStyle {
   font-family: 'Source Sans Pro', serif;
   font-size: 20px;
   color: #111;
 	transition: color 0.3s;
 }
 
-header nav ul li a:hover {
+header nav ul li a:hover, .AboutStyle:hover, .HIWStyle:hover {
 	color: lightgray;
 }
 

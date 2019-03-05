@@ -6,7 +6,6 @@ import MainPic from './Components/mainpic.js';
 import HowItWorks from './Components/hiw.js';
 import About from './Components/about.js';
 import Footer from './Components/footer.js';
-import AboutMain from './AboutMain';
 
 class App extends Component {
   render() {
@@ -15,26 +14,28 @@ class App extends Component {
       <div className="App">
         <div>
           <header>
-            <a class="header-index" href="index.html">bxr</a>
+            <Link to="/"> <p class="header-index">bxr</p> </Link>
             <nav>
               <ul>
-                <li> <a class="dropbtn">
+                <li><a class="dropbtn">
                 <div class="dropdown"><a>Benefits</a><div class="dropdown-content">
-                    <a href="">For Brands</a>
-                    <a href="">For Owners</a>
-                    <a href="">For Renters</a>
+                    <a href="/">For Brands</a>
+                    <a href="/">For Owners</a>
+                    <a href="/">For Renters</a>
                   </div>
                 </div></a></li>
-                <li> <Link to="/about"> <p> About </p> </Link> </li>
-                <li> <a href="#hiw"> How it Works </a> </li>
+                <li class="HeaderLink"> <Link to="/about"> <p class="AboutStyle"> About </p> </Link> </li>
+                <li class="HeaderLink"> <Link to="/"> <p class="HIWStyle"> How it Works </p> </Link> </li>
               </ul>
             </nav>
           </header>
         </div>
-        <MainPic />
-        <HowItWorks />
-        <Footer />
-        <Route path='/about' component={AboutMain}></Route>
+        <Route path="/" component={MainPic} />
+        <Switch>
+          <Route exact path="/" component={HowItWorks} />
+          <Route path="/about" component={About} />
+        </Switch>
+        <Route path="/" component={Footer}></Route>
       </div>
       </Router>
     );

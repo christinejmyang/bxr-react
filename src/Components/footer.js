@@ -10,8 +10,8 @@ class Footer extends React.Component{
             <div class="footer-box-elem">
               <h1>BXR</h1>
               <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
               </ul>
             </div>
             <div class="footer-box-elem">

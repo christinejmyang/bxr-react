@@ -17,14 +17,14 @@ class About extends React.Component{
             </article>
             <article class="profile">
               <p class="about-header">Meet the Team</p>
-              <img src="img/profile1.png" alt="" class="leftpic" />
+              <img src="./../img/profile1.png" alt="" class="leftpic" />
               <h1 class="prof-header">Sean Yoon, Co-founder and CEO</h1>
               <p class="prof-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat.</p>
             </article>
             <article class="profile">
-              <img src="img/profile1.png" alt="" class="rightpic" />
+              <img src="./../img/profile1.png" alt="" class="rightpic" />
               <h1 class="prof-header">Nishant Kumar, Co-founder and CTO</h1>
               <p class="prof-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
