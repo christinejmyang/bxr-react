@@ -4,19 +4,19 @@ import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
 
-const DesktopProducts = styled.div`
+const MobileProducts = styled.div`
 `;
 
-const MobileProducts = styled.div`
+const DesktopProducts = styled.h4`
 `;
 
 class Products extends Component {
   state = {
     counters: [
-      {name: "blender",   id: 1, value: 0, img: "https://picsum.photos/200"},
-      {name: "mattress",  id: 2, value: 0, img: "https://picsum.photos/200"},
+      {name: "Blender",   id: 1, value: 0, img: "https://picsum.photos/200"},
+      {name: "Mattress",  id: 2, value: 0, img: "https://picsum.photos/200"},
       {name: "iHome",     id: 3, value: 0, img: "https://picsum.photos/200"},
-      {name: "smartTV",   id: 4, value: 0, img: "https://picsum.photos/200"},
+      {name: "SmartTV",   id: 4, value: 0, img: "https://picsum.photos/200"},
     ]
   };
   render () {
