@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Header from './Components/header.js';
 import MainPic from './Components/mainpic.js';
 import HowItWorks from './Components/hiw.js';
 import About from './Components/about.js';
 import Footer from './Components/footer.js';
+import Products from './Components/products.jsx';
 
 class App extends Component {
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
                 <div class="dropdown"><a>Benefits</a><div class="dropdown-content">
                     <a href="/">For Brands</a>
                     <a href="/">For Owners</a>
-                    <a href="/">For Renters</a>
+                    <Link to="/renters">For Renters</Link>
                   </div>
                 </div></a></li>
                 <li class="HeaderLink"> <Link to="/about"> <p class="AboutStyle"> About </p> </Link> </li>
@@ -36,8 +36,9 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HowItWorks} />
           <Route path="/about" component={About} />
+          <Route path="/renters" component={Products} />
         </Switch>
-        <Route path="/" component={Footer}></Route>
+        <Route component={Footer}></Route>
       </div>
       </Router>
     );
