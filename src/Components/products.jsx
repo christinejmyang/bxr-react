@@ -39,6 +39,7 @@ class Products extends Component {
     });
   }
 
+// Old hard-coded data
 /*
   state = {
     counters: [
@@ -48,8 +49,7 @@ class Products extends Component {
       {name: "SmartTV",   id: 4, value: 0, img: "https://picsum.photos/200"},
     ]
   };
-
-  */
+*/
 
   render () {
     const bookshelfDesktop = (
