@@ -6,6 +6,7 @@ import HowItWorks from './Components/hiw.js';
 import About from './Components/about.js';
 import Footer from './Components/footer.js';
 import Products from './Components/products.jsx';
+import firebase from './index.js';
 
 class App extends Component {
   render() {
