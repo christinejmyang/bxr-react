@@ -8,7 +8,7 @@ import firebase from './../firebase.js';
 const MobileProducts = styled.div`
 `;
 
-const DesktopProducts = styled.h4`
+const DesktopProducts = styled.div`
 `;
 
 class Products extends Component {
@@ -21,22 +21,28 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    const itemsRef = firebase.database().ref('products');
-    itemsRef.on('value', (snapshot) => {
+    const productsRef = firebase.database().ref('products');
+    productsRef.on('value', (snapshot) => {
       let products = snapshot.val();
       let newState = [];
-      for (let item in products) {
+      for (let product in products) {
         newState.push({
-          description: products[item].description,
-          name: products[item].name,
-          price: products[item].price,
-          saved: products[item].saved
+          id: product,
+          description: products[product].description,
+          name: products[product].name,
+          price: products[product].price,
+          saved: products[product].saved
         });
       }
       this.setState({
         products: newState
       });
     });
+  }
+
+  removeItem(itemId) {
+    const itemRef = firebase.database().ref(`/products/${itemId}`);
+    itemRef.remove();
   }
 
 // Old hard-coded data
@@ -54,17 +60,19 @@ class Products extends Component {
   render () {
     const bookshelfDesktop = (
       <DesktopProducts>
-        {this.state.products.map(item =>
-          <Item key={1} value={item.price} image={"https://picsum.photos/200"}>
-            <h4>{item.name}</h4>
+        {this.state.products.map(product =>
+          <Item key={1} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
+            <h4>{product.name}</h4>
+            <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
           </Item>)}
       </DesktopProducts>
     );
     const bookshelfMobile = (
       <MobileProducts>
-        {this.state.products.map(item =>
-          <Item key={2} value={item.price} image={"https://picsum.photos/200"}>
-            <h4>{item.name}</h4>
+        {this.state.products.map(product =>
+          <Item key={2} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
+            <h4>{product.name}</h4>
+            <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
           </Item>)}
       </MobileProducts>
     );

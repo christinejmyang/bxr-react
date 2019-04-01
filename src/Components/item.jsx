@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
+import firebase from './../firebase.js';
 
 const DesktopItem = styled.div`
   text-align: center;
@@ -20,9 +21,10 @@ const FilledHeart = styled.div`
 `;
 
 class Item extends Component {
+
   state = {
     imageUrl: this.props.image,
-    liked: false
+    liked: false,
   };
 
   handleHeart = () => {
@@ -70,6 +72,7 @@ class Item extends Component {
     );
     return this.state.liked === false ? unlikedHeart : likedHeart;
   }
+
 }
 
 export default Item;

@@ -9,10 +9,9 @@ class HowItWorks extends React.Component{
 	render(){
 		var text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec tincidunt ipsum augue. In faucibus vehicula magna pulvinar aliquam. Cras aliquam feugiat lorem non auctor. Quisque sed lorem egestas mauris venenatis commodo eu id nibh. Ut porta libero sed semper faucibus ";
 		return(
-			<div>
-				<section class="two" id="hiw">
-					<article class="">
-						 <br /><h1>How it Works</h1>
+				<div class="two">
+					<article>
+						 <h1>How it Works</h1>
 					</article>
 					<article class="descript-text">
 						<img src={product} alt="" class="icons" />
@@ -28,11 +27,8 @@ class HowItWorks extends React.Component{
 						<img src={money} alt="" class="icons" />
 						<p>Customers are rewarded monetarily or on the BXR points system, which can lead to
 						future BXR rewards!</p>
-						<br/ >
-						<br/ >
 					</article>
-				</section>
-			</div>
+				</div>
 		);
 	}
 }
