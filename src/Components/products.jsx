@@ -3,7 +3,7 @@ import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import firebase from './../firebase.js';
+import firebase, {auth, provider} from './../firebase.js';
 
 const MobileProducts = styled.div`
 `;
@@ -11,16 +11,50 @@ const MobileProducts = styled.div`
 const DesktopProducts = styled.div`
 `;
 
+const MobileSignUp = styled.div`
+`;
+
+const DesktopSignUp = styled.div`
+`;
+
 class Products extends Component {
 
   constructor() {
     super();
     this.state = {
-      products: []
+      username: '',
+      products: [],
+      user: null
     }
+    this.login = this.login.bind(this); // <-- add this line
+    this.logout = this.logout.bind(this); // <-- add this line
+  }
+
+  login() {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
   }
 
   componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
     const productsRef = firebase.database().ref('products');
     productsRef.on('value', (snapshot) => {
       let products = snapshot.val();
@@ -45,36 +79,58 @@ class Products extends Component {
     itemRef.remove();
   }
 
-// Old hard-coded data
-/*
-  state = {
-    counters: [
-      {name: "Blender",   id: 1, value: 0, img: "https://picsum.photos/200"},
-      {name: "Mattress",  id: 2, value: 0, img: "https://picsum.photos/200"},
-      {name: "iHome",     id: 3, value: 0, img: "https://picsum.photos/200"},
-      {name: "SmartTV",   id: 4, value: 0, img: "https://picsum.photos/200"},
-    ]
-  };
-*/
-
   render () {
     const bookshelfDesktop = (
-      <DesktopProducts>
-        {this.state.products.map(product =>
-          <Item key={1} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
-            <h4>{product.name}</h4>
-            <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
-          </Item>)}
-      </DesktopProducts>
+      <DesktopSignUp>
+         <div>
+           {this.state.user ?
+             <button onClick={this.logout}>Log Out</button>
+             :
+             <button onClick={this.login}>Log In</button>
+           }
+         </div>
+         {this.state.user ?
+         <div>
+           <div className='user-profile'>
+             <img src={this.state.user.photoURL} />
+           </div>
+           {this.state.products.map(product =>
+             <Item key={1} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
+               <h4>{product.name}</h4>
+               <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
+             </Item>)}
+         </div>
+         :
+         <div className='wrapper'>
+           <p>You must be logged in to view BXR's featured products.</p>
+         </div> }
+      </DesktopSignUp>
     );
     const bookshelfMobile = (
-      <MobileProducts>
-        {this.state.products.map(product =>
-          <Item key={2} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
-            <h4>{product.name}</h4>
-            <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
-          </Item>)}
-      </MobileProducts>
+       <MobileSignUp>
+       <div>
+         {this.state.user ?
+           <button onClick={this.logout}>Log Out</button>
+           :
+           <button onClick={this.login}>Log In</button>
+         }
+       </div>
+       {this.state.user ?
+       <div>
+         <div className='user-profile'>
+           <img src={this.state.user.photoURL} />
+         </div>
+         {this.state.products.map(product =>
+           <Item key={2} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
+             <h4>{product.name}</h4>
+             <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
+           </Item>)}
+       </div>
+       :
+       <div className='wrapper'>
+         <p>You must be logged in to view BXR's featured products.</p>
+       </div> }
+      </MobileSignUp>
     );
     return(
       <Section title="">
