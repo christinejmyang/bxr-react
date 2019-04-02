@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import firebase from './../firebase.js';
 
 const DesktopItem = styled.div`
-  text-align: center;
+  display: flex;
 `;
 
 const MobileItem = styled.div`
@@ -20,10 +20,15 @@ const FilledHeart = styled.div`
   font-size: 40px;
 `;
 
-class Item extends Component {
+const textStyle = {
+  marginLeft:'10px',
+};
 
+class Item extends Component {
   state = {
     imageUrl: this.props.image,
+    name: this.props.name,
+    price: this.props.price,
     liked: false,
   };
 
@@ -42,6 +47,7 @@ class Item extends Component {
         <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
         <button onClick={this.handleHeart}> {this.formatLike()} </button>
+        <h4 style={textStyle}>{this.state.name}, ${this.state.price}</h4>
       </DesktopItem>
     );
 
@@ -50,6 +56,7 @@ class Item extends Component {
         <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
         <button onClick={this.handleHeart}> {this.formatLike()} </button>
+        <h4 style={textStyle}>{this.state.name}, {this.state.price}</h4>
       </MobileItem>
     );
 

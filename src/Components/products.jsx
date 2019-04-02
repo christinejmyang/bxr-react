@@ -5,17 +5,17 @@ import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
 import firebase, {auth, provider} from './../firebase.js';
 
-const MobileProducts = styled.div`
-`;
-
-const DesktopProducts = styled.div`
-`;
-
 const MobileSignUp = styled.div`
 `;
 
 const DesktopSignUp = styled.div`
 `;
+
+const profPicStyle = {
+  width: '75px',
+  borderRadius: '15em',
+  float: 'right',
+};
 
 class Products extends Component {
 
@@ -83,20 +83,19 @@ class Products extends Component {
     const bookshelfDesktop = (
       <DesktopSignUp>
          <div>
-           {this.state.user ?
-             <button onClick={this.logout}>Log Out</button>
-             :
-             <button onClick={this.login}>Log In</button>
-           }
+         {this.state.user ?
+           <div style={{marginBottom: 100 + 'px'}}>
+            <button onClick={this.logout}>Sign Out</button>
+            <img src={this.state.user.photoURL} style={profPicStyle}/>
+           </div>
+            :
+            <button onClick={this.login}>Sign In</button>
+         }
          </div>
          {this.state.user ?
          <div>
-           <div className='user-profile'>
-             <img src={this.state.user.photoURL} />
-           </div>
            {this.state.products.map(product =>
-             <Item key={1} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
-               <h4>{product.name}</h4>
+             <Item key={1} price={product.price} name={product.name} image={"https://picsum.photos/200"}>
                <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
              </Item>)}
          </div>
@@ -110,9 +109,9 @@ class Products extends Component {
        <MobileSignUp>
        <div>
          {this.state.user ?
-           <button onClick={this.logout}>Log Out</button>
+           <button onClick={this.logout}>Sign Out</button>
            :
-           <button onClick={this.login}>Log In</button>
+           <button onClick={this.login}>Sign In</button>
          }
        </div>
        {this.state.user ?
@@ -121,8 +120,7 @@ class Products extends Component {
            <img src={this.state.user.photoURL} />
          </div>
          {this.state.products.map(product =>
-           <Item key={2} value={product.price} name={product.id} image={"https://picsum.photos/200"}>
-             <h4>{product.name}</h4>
+           <Item key={2} price={product.price} name={product.name} image={"https://picsum.photos/200"}>
              <button onClick={() => this.removeItem(product.id)}>Remove Item</button>
            </Item>)}
        </div>
