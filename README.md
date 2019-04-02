@@ -12,4 +12,5 @@ As a customer, I can use renter-curated products for free during my stay at an A
 
 # E3 README
 * Instructions to Run:
-...Make sure you have React and Firebase installed
+
+   Make sure you have React and Firebase installed
