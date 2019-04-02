@@ -16,6 +16,8 @@ As a customer, I can use renter-curated products for free during my stay at an A
    Make sure you have React and Firebase installed. This can be done using npm. Run the code by typing the normal `<npm  start>`
    
 * Screen Recording
+
+   https://youtu.be/nLlPGOOlA6g
    
 * Features Implemented
    1. Created a Firebase database to store user product and brand information and user information
