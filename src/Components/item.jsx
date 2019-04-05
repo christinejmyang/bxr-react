@@ -1,46 +1,85 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react'
+import Media from 'react-media'
+import { Section, bodyTextStyle } from './Section.js'
+import styled from '@emotion/styled';
+import firebase from './../firebase.js';
+
+const DesktopItem = styled.div`
+  display: flex;
+`;
+
+const MobileItem = styled.div`
+  text-align: center;
+`;
+
+const UnfilledHeart = styled.div`
+  font-size: 40px;
+`;
+
+const FilledHeart = styled.div`
+  font-size: 40px;
+`;
+
+const textStyle = {
+  marginLeft:'10px',
+};
 
 class Item extends Component {
   state = {
-    count: this.props.value,
-    imageUrl: this.props.image
+    imageUrl: this.props.image,
+    name: this.props.name,
+    price: this.props.price,
+    liked: false,
   };
 
-  handleIncrement = () => {
-    this.setState({count: this.state.count + 1});
+  handleHeart = () => {
+    this.setState({liked: !this.state.liked});
   }
 
-  handleReduction = () => {
-    this.setState({count: this.state.count - 1});
-  }
-
-  // styles = {
-  //   fontSize: 10,
-  //   fontWeight: "bold"
-  // };
+  styles = {
+    fontSize: 100,
+    fontWeight: "bold"
+  };
 
   render() {
-    return (
-      <div>
-        <img style={{padding: 10}} src={this.state.imageUrl} alt="" />
+    const itemDesktop = (
+      <DesktopItem>
+        <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button onClick={this.handleIncrement} className={"btn btn-secondary btn-sm m-2"}> + </button>
-        <button onClick={this.handleReduction} className={"btn btn-secondary btn-sm m-2"}> - </button>
-      </div>
+        <button onClick={this.handleHeart}> {this.formatLike()} </button>
+        <h4 style={textStyle}>{this.state.name}, ${this.state.price}</h4>
+      </DesktopItem>
+    );
+
+    const itemMobile = (
+      <MobileItem>
+        <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
+        {this.props.children}
+        <button onClick={this.handleHeart}> {this.formatLike()} </button>
+        <h4 style={textStyle}>{this.state.name}, {this.state.price}</h4>
+      </MobileItem>
+    );
+
+    return(
+      <Section title="">
+        <Media query={{ minWidth: 500 }}>
+          {matches => (matches ? itemDesktop : itemMobile)}
+        </Media>
+      </Section>
     );
   }
 
-  getBadgeClasses() {
-    let classes = "badge m-2 badge-";
-    classes += (this.state.count === 0) ? "warning" : "primary";
-    return classes;
+  formatLike() {
+    const likedHeart = (
+      <FilledHeart> &hearts; </FilledHeart>
+    );
+
+    const unlikedHeart = (
+      <UnfilledHeart> &#9825; </UnfilledHeart>
+    );
+    return this.state.liked === false ? unlikedHeart : likedHeart;
   }
 
-  formatCount() {
-    const { count } = this.state;
-    return count === 0 ? "Zero" : count;
-  }
 }
 
 export default Item;

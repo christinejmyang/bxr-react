@@ -12,7 +12,7 @@ class About extends React.Component{
           <section class="aboutone">
             <article>
               <p class="about-header">Mission and Meaning</p>
-              <p class="prof-text">BXR (<span id="bold">B</span>rand E<span id="bold">X</span>perience <span id="bold">R</span>ating) is
+              <p class="prof-text">BXR (<span id="bold">B</span>rand E<span id="bold">X</span>perience <span id="bold">R</span>oom) is
               a platform that focuses on brand-to-customer relationships. By utilizing a unique model that focuses exclusively on the
               product and customer, BXR delivers to both parties involved: brands get quality data at a cheap price, and
               consumers are rewarded for testing the products they love. What could be better?</p>
