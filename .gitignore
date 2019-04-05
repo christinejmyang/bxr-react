@@ -16,14 +16,6 @@
 .env.development.local
 .env.test.local
 .env.production.local
-package-lock.json
-package.json
-.firebaserc
-database.rules.json
-firebase.json
-firestore.indexes.json
-firestore.rules
-webpack.js
 
 
 npm-debug.log*
