@@ -71,13 +71,13 @@ header nav ul li a, Router header nav ul li a {
 	transition: color 0.3s;
 }
 
-header nav ul li a:hover, .AboutStyle:hover, .HIWStyle:hover {
+header nav ul li a:hover {
 	color: lightgray;
 }
 
 .HeaderLink {
-	margin-top: -6.5%;
-	margin-bottom: -6.5%;
+	margin-top: -5%;
+	margin-bottom: -5%;
 }
 
 /* BODY STYLING */
@@ -109,12 +109,6 @@ h1 {
 
 /* FOOTER STYLING */
 
-
-.vertical-line {
-	border-left: 2px solid white;
-	margin-right: 70px;
-	height: 175px;
-}
 
 #copyright {
   text-align: right;
@@ -203,8 +197,8 @@ h1 {
 
 /* BENEFITS DROPDOWN */
 .dropdown {
+	margin-top: 5%;
 	display: inline-block;
-  display: inline-block;
 	border-bottom: 0px solid currentColor;
   font-weight: bolder;
 }

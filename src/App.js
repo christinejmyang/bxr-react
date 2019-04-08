@@ -6,8 +6,10 @@ import HowItWorks from './Components/hiw.js';
 import About from './Components/about.js';
 import Footer from './Components/footer.jsx';
 import Products from './Components/products.jsx';
+import firebase from './index.js';
 
 class App extends Component {
+ 
   render() {
     return (
       <Router>
@@ -17,15 +19,16 @@ class App extends Component {
             <Link to="/"> <p class="header-index">bxr</p> </Link>
             <nav>
               <ul class="HeaderUl">
-                <li><a class="dropbtn">
+                <li class="HeaderLink"><p>
                 <div class="dropdown"><a>Benefits</a><div class="dropdown-content">
-                    <a href="/">For Brands</a>
-                    <a href="/">For Owners</a>
-                    <Link to="/renters">For Renters</Link>
+                    <Link to="/">For Brands</Link>
+                    <Link to="/">For Owners</Link>
+                    <Link to="/">For Renters</Link>
                   </div>
-                </div></a></li>
-                <li class="HeaderLink"> <Link to="/about"> <p class="AboutStyle"> About </p> </Link> </li>
-                <li class="HeaderLink"> <Link to="/"> <p class="HIWStyle"> How it Works </p> </Link> </li>
+                </div></p></li>
+                <li class="HeaderLink"> <Link to="/about"> <p> About </p> </Link> </li>
+                <li class="HeaderLink"> <Link to="/"> <p> How it Works </p> </Link> </li>
+                <li class="HeaderLink"> <Link to="/signin"> <p> Sign In </p> </Link> </li>
               </ul>
             </nav>
           </header>
@@ -36,7 +39,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HowItWorks} />
           <Route path="/about" component={About} />
-          <Route path="/renters" component={Products} />
+          <Route path="/signin" component={Products} />
         </Switch>
         <Route component={Footer}></Route>
       </div>

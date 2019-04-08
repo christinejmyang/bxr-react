@@ -8,7 +8,8 @@ import './../App.css';
 const DesktopFooter = styled.div`
 	position: absolute;
 	background-color: rgb(48, 48, 48, 48);
-	width: 100%;
+	width: 102%;
+    margin-left: -17%;
 	border-top: 2px solid lightcoral;
 	font-family: 'Source Sans Pro', sans-serif;
 	color: white;
@@ -18,7 +19,7 @@ const DesktopFooterBox = styled.div`
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: 0.5%;
-	margin-bottom: -2%;
+	margin-bottom: 1%;
 `;
 const DesktopFooterBoxElement = styled.div`
 	margin: 3%;
