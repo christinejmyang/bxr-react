@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import MainPic from './Components/mainpic.js';
 import HowItWorks from './Components/hiw.js';
 import About from './Components/about.js';
-import Footer from './Components/footer.js';
+import Footer from './Components/footer.jsx';
 import Products from './Components/products.jsx';
 
 class App extends Component {

@@ -109,49 +109,6 @@ h1 {
 
 /* FOOTER STYLING */
 
-footer {
-	position: absolute;
-	background-color: rgb(48, 48, 48, 48);
-	width: 100%;
-	border-top: 2px solid lightcoral;
-	font-family: 'Source Sans Pro', sans-serif;
-	color: white;
-}
-
-.footer-box {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin: 0.5%;
-  margin-bottom: -2%;
-}
-
-.footer-box-elem {
-	margin: 3%;
-}
-
-.footer-box-elem h1 {
-	font-weight: bold;
-}
-
-.footer-box-elem a {
-	text-decoration: none;
-	color: gray;
-	transition: color 0.3s;
-}
-
-.footer-box-elem a:hover {
-	color: white;
-}
-
-.footer-box-elem ul {
-	padding: 0;
-	list-style-type: none;
-}
-
-.footer-box-elem ul li {
-	padding: 3px;
-}
 
 .vertical-line {
 	border-left: 2px solid white;
