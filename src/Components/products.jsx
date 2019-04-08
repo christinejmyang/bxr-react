@@ -94,14 +94,14 @@ class Products extends Component {
     const bookshelfDesktop = (
       <DesktopSignUp>
          <div>
-             {this.state.user ?
-               <div style={{marginBottom: 100 + 'px'}}>
-                <button onClick={this.logout}>Sign Out</button>
-                <img src={this.state.user.photoURL} style={profPicStyle}/>
-               </div>
-                :
-                <button onClick={this.login}>Sign In</button>
-             }
+         {this.state.user ?
+           <div style={{marginBottom: 100 + 'px'}}>
+            <button onClick={this.logout} class="signOutButton">Sign Out</button>
+            <img src={this.state.user.photoURL} style={profPicStyle}/>
+           </div>
+            :
+            <button onClick={this.login} class="signInButton">Sign In</button>
+         }
          </div>
          {this.state.user ?
          <div>
@@ -125,15 +125,15 @@ class Products extends Component {
        <MobileSignUp>
        <div>
          {this.state.user ?
-           <button onClick={this.logout}>Sign Out</button>
+           <button onClick={this.logout} class="signOutButton">Sign Out</button>
            :
-           <button onClick={this.login}>Sign In</button>
+           <button onClick={this.login} class="signInButton">Sign In</button>
          }
        </div>
        {this.state.user ?
        <div>
          <div className='user-profile'>
-           <img src={this.state.user.photoURL} />
+           <img src={this.state.user.photoURL} style={profPicStyle}/>
          </div>
          {this.state.products.map(product =>
            <Item key={2} price={product.price} name={product.name} image={"https://picsum.photos/200"}>

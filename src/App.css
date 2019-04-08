@@ -217,5 +217,19 @@ h1 {
 	transition: 0.3s;
 }
 
+.signInButton, .signOutButton {
+	color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.signInButton {
+	background: rgb(28, 184, 65); /* this is a green */
+}
+
+.signOutButton {
+	background: rgb(202, 60, 60); /* this is a maroon */
+}
+
 .dropdown:hover .dropdown-content {display: block; background-color: lightcoral;}
 .dropdown-content a:hover {color: #ddd; margin-left: 5px;}
