@@ -4,15 +4,19 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import MainPic from './Components/mainpic.js';
 import HowItWorks from './Components/hiw.js';
 import About from './Components/about.js';
-import Footer from './Components/footer.js';
+import Footer from './Components/footer.jsx';
 import Products from './Components/products.jsx';
 import SignIn from './Components/signin.js';
 import Nav from './Components/nav.js';
 import firebase from './index.js';
 
 class App extends Component {
+
+
   render() {
-    return (
+    const user = firebase.auth().currentUser;
+
+    const desktopHeader = (
       <Router>
         <div className="App">
           <Nav />
@@ -28,7 +32,8 @@ class App extends Component {
         </div>
       </Router>
     );
-  }
-}
+
+  } //render
+} //extends
 
 export default App;

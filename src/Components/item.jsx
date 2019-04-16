@@ -5,19 +5,10 @@ import styled from '@emotion/styled';
 import firebase from './../firebase.js';
 
 const DesktopItem = styled.div`
-  display: flex;
 `;
 
 const MobileItem = styled.div`
   text-align: center;
-`;
-
-const UnfilledHeart = styled.div`
-  font-size: 40px;
-`;
-
-const FilledHeart = styled.div`
-  font-size: 40px;
 `;
 
 const textStyle = {
@@ -29,12 +20,7 @@ class Item extends Component {
     imageUrl: this.props.image,
     name: this.props.name,
     price: this.props.price,
-    liked: false,
   };
-
-  handleHeart = () => {
-    this.setState({liked: !this.state.liked});
-  }
 
   styles = {
     fontSize: 100,
@@ -44,10 +30,10 @@ class Item extends Component {
   render() {
     const itemDesktop = (
       <DesktopItem>
+        <h4 style={textStyle}>{this.state.name}, ${this.state.price}</h4>
         <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
-        <button onClick={this.handleHeart}> {this.formatLike()} </button>
-        <h4 style={textStyle}>{this.state.name}, ${this.state.price}</h4>
+        <br/>
       </DesktopItem>
     );
 
@@ -55,7 +41,6 @@ class Item extends Component {
       <MobileItem>
         <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
-        <button onClick={this.handleHeart}> {this.formatLike()} </button>
         <h4 style={textStyle}>{this.state.name}, {this.state.price}</h4>
       </MobileItem>
     );
@@ -67,17 +52,6 @@ class Item extends Component {
         </Media>
       </Section>
     );
-  }
-
-  formatLike() {
-    const likedHeart = (
-      <FilledHeart> &hearts; </FilledHeart>
-    );
-
-    const unlikedHeart = (
-      <UnfilledHeart> &#9825; </UnfilledHeart>
-    );
-    return this.state.liked === false ? unlikedHeart : likedHeart;
   }
 
 }
