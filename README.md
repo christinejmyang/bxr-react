@@ -2,17 +2,17 @@
 
 # Setup
 * Necessary Installations
-  `<npm install react>`
-  `<npm install react-router>`
-  `<npm install react-router-dom>`
-  `<npm install react-media>`
-  `<npm install firebase>`
-  `<sudo npm install firebase-tools>`
-  `<npm install @emotion/styled>`
-  `<npm install @emotion/core>`
-  `<npm install redux react-redux>`
+  `npm install react`
+  `npm install react-router`
+  `npm install react-router-dom`
+  `npm install react-media`
+  `npm install firebase`
+  `sudo npm install firebase-tools`
+  `npm install @emotion/styled`
+  `npm install @emotion/core`
+  `npm install redux react-redux`
 
-* To run the application, enter `<npm start>` on the command line
+* To run the application, enter `npm start` on the command line
 
 # E2 README
 ### User story template: ###
@@ -27,7 +27,7 @@ As a customer, I can use renter-curated products for free during my stay at an A
 # E3 README
 * Instructions to Run
 
-   Make sure you have React and Firebase installed. This can be done using npm. Run the code by typing the normal `<npm  start>`
+   Make sure you have React and Firebase installed. This can be done using npm. Run the code by typing the normal `npm  start`
 
 * Screen Recording
 
