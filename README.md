@@ -1,5 +1,19 @@
 # BXR React App
 
+# Setup
+* Necessary Installations
+  `<npm install react>`
+  `<npm install react-router>`
+  `<npm install react-router-dom>`
+  `<npm install react-media>`
+  `<npm install firebase>`
+  `<sudo npm install firebase-tools>`
+  `<npm install @emotion/styled>`
+  `<npm install @emotion/core>`
+  `<npm install redux react-redux>`
+
+* To run the application, enter `<npm start>` on the command line
+
 # E2 README
 ### User story template: ###
 As a (type of user), I can (some goal) so that (some reason)
@@ -14,11 +28,11 @@ As a customer, I can use renter-curated products for free during my stay at an A
 * Instructions to Run
 
    Make sure you have React and Firebase installed. This can be done using npm. Run the code by typing the normal `<npm  start>`
-   
+
 * Screen Recording
 
    https://youtu.be/nLlPGOOlA6g
-   
+
 * Features Implemented
    1. Created a Firebase database to store user product and brand information and user information
    2. Connected product and brand information to our web app through JavaScript backend code
@@ -29,9 +43,7 @@ As a customer, I can use renter-curated products for free during my stay at an A
 * Estimated Time to Complete
 
    This project took around 5 hours excluding admistrativa-related stuff (repo management, AG350, screen recording, etc)
-   
+
 * Issues We Couldn't Solve
    1. Beautiful styling
    2. You have to refresh the page after you login to show the products. I was trying to figure this out for the longest time and couldn't ;(
-
-
