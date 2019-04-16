@@ -2,17 +2,16 @@ import React, {Component} from 'react'
 import Media from 'react-media'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Section, bodyTextStyle } from './Section.js'
-import styled from '@emotion/styled'
-import SignUp from './signup.js'
-import firebase, {auth, provider} from './../firebase.js'
+import styled from '@emotion/styled';
+import firebase, {auth, provider} from './../firebase.js';
 
-const MobileSignIn = styled.div`
+const MobileSignUp = styled.div`
 `;
 
-const DesktopSignIn = styled.div`
+const DesktopSignUp = styled.div`
 `;
 
-class SignIn extends Component {
+class SignUp extends Component {
   state = {
     email:'',
     password:''
@@ -30,8 +29,8 @@ class SignIn extends Component {
   }
 
   render () {
-    const signInDesktop = (
-      <DesktopSignIn>
+    const desktop = (
+      <DesktopSignUp>
         <div className="container">
           <form onSubmit={this.handleSubmit} className="white">
             <h5 className="grey-text text-darken-3">Sign In</h5>
@@ -44,19 +43,27 @@ class SignIn extends Component {
               <input type="password" id="password" onChange={this.handleChange}/>
             </div>
             <div className="input-field">
-              <button className="btn pink lighten-1 z-depth-0">Login</button>
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" id='firstName' onChange={this.handleChange}/>
             </div>
             <div className="input-field">
-              <p> Don't have an account? </p>
-              <Link to="/signup"> <button className="btn pink lighten-1 z-depth-0">Sign Up</button> </Link>
+              <label htmlFor="lastName">Last Name</label>
+              <input type="text" id='lastName' onChange={this.handleChange}/>
+            </div>
+            <div className="input-field">
+              <button className="btn pink lighten-1 z-depth-0">Sign Up</button>
+            </div>
+            <div className="input-field">
+              <p> Have an account? </p>
+              <Link to="/signin"> <button className="btn pink lighten-1 z-depth-0">Sign In</button> </Link>
             </div>
           </form>
         </div>
-      </DesktopSignIn>
+      </DesktopSignUp>
     );
 
-    const signInMobile = (
-    <MobileSignIn>
+    const mobile = (
+    <MobileSignUp>
        <div className="container">
          <form onSubmit={this.handleSubmit} className="white">
            <h5 className="grey-text text-darken-3">Sign In</h5>
@@ -69,25 +76,33 @@ class SignIn extends Component {
              <input type="password" id="password" onChange={this.handleChange}/>
            </div>
            <div className="input-field">
-             <button className="btn pink lighten-1 z-depth-0">Login</button>
-           </div>
-           <div className="input-field">
-             <p> Don't have an account? </p>
-             <Link to="/signup"> <button className="btn pink lighten-1 z-depth-0">Sign Up</button> </Link>
-           </div>
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" id='firstName' onChange={this.handleChange}/>
+            </div>
+            <div className="input-field">
+              <label htmlFor="lastName">Last Name</label>
+              <input type="text" id='lastName' onChange={this.handleChange}/>
+            </div>
+            <div className="input-field">
+              <button className="btn pink lighten-1 z-depth-0">Sign Up</button>
+            </div>
+            <div className="input-field">
+              <p> Have an account? </p>
+              <Link to="/signin"> <button className="btn pink lighten-1 z-depth-0">Sign In</button> </Link>
+            </div>
          </form>
        </div>
-    </MobileSignIn>
+    </MobileSignUp>
     );
 
     return(
       <Section title="">
         <Media query={{ minWidth: 500 }}>
-          {matches => (matches ? signInDesktop : signInMobile)}
+          {matches => (matches ? desktop : mobile)}
         </Media>
       </Section>
     );
   }
-};
+}
 
-export default SignIn;
+export default SignUp
