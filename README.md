@@ -1,5 +1,3 @@
-# BXR React App
-
 # Setup
 * Necessary Installations
   `npm install react`
