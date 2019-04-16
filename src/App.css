@@ -75,10 +75,18 @@ header nav ul li a:hover {
 	color: lightgray;
 }
 
+.hamburger {
+}
+
 .HeaderLink {
 	margin-top: -5%;
 	margin-bottom: -5%;
 }
+
+.HeaderLinkBurger {
+	margin-top: -27%;
+}
+
 
 /* BODY STYLING */
 body {
@@ -109,49 +117,6 @@ h1 {
 
 /* FOOTER STYLING */
 
-footer {
-	position: absolute;
-	background-color: rgb(48, 48, 48, 48);
-	width: 100%;
-	border-top: 2px solid lightcoral;
-	font-family: 'Source Sans Pro', sans-serif;
-	color: white;
-}
-
-.footer-box {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin: 0.5%;
-  margin-bottom: -2%;
-}
-
-.footer-box-elem {
-	margin: 3%;
-}
-
-.footer-box-elem h1 {
-	font-weight: bold;
-}
-
-.footer-box-elem a {
-	text-decoration: none;
-	color: gray;
-	transition: color 0.3s;
-}
-
-.footer-box-elem a:hover {
-	color: white;
-}
-
-.footer-box-elem ul {
-	padding: 0;
-	list-style-type: none;
-}
-
-.footer-box-elem ul li {
-	padding: 3px;
-}
 
 #copyright {
   text-align: right;
@@ -246,7 +211,29 @@ footer {
   font-weight: bolder;
 }
 
+.hamburger {
+	margin-left: 10px;
+	margin-bottom: 30px;
+	display: inline-block;
+	border-bottom: 0px solid currentColor;
+  font-weight: bolder;
+}
+
+.dropdown2 {
+	margin-top: 5%;
+	display: inline-block;
+	border-bottom: 0px solid currentColor;
+  font-weight: bolder;
+}
+
 .dropdown-content {
+	display: none;
+	position: absolute;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content2 {
 	display: none;
 	position: absolute;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -260,5 +247,28 @@ footer {
 	transition: 0.3s;
 }
 
+.signInButton, .signOutButton {
+	font-family: 'Source Sans Pro', serif;
+	color: white;
+  border-radius: 5px;
+	width: 70px;
+	height: 40px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.signInButton {
+	background: rgb(28, 184, 65); /* this is a green */
+}
+
+.signOutButton {
+	background: rgb(202, 60, 60); /* this is a maroon */
+}
+
 .dropdown:hover .dropdown-content {display: block; background-color: lightcoral;}
+.dropdown-content a:hover {color: #ddd; margin-left: 5px;}
+
+.dropdown2:hover .dropdown-content2 {display: block; background-color: lightcoral;}
+.dropdown-content2 a:hover {color: #ddd; margin-left: 5px;}
+
+.hamburger:hover .dropdown-content {display: block; background-color: lightcoral;}
 .dropdown-content a:hover {color: #ddd; margin-left: 5px;}
