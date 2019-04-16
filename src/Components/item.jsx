@@ -11,18 +11,6 @@ const MobileItem = styled.div`
   text-align: center;
 `;
 
-const UnfilledHeart = styled.div`
-  font-size: 12px;
-    border: none;
-    background-color: transparent;
-`;
-
-const FilledHeart = styled.div`
-  font-size: 12px;
-    border: none;
-    background-color: transparent;
-`;
-
 const textStyle = {
   marginLeft:'10px',
 };
@@ -32,12 +20,7 @@ class Item extends Component {
     imageUrl: this.props.image,
     name: this.props.name,
     price: this.props.price,
-    liked: false,
   };
-
-  handleHeart = () => {
-    this.setState({liked: !this.state.liked});
-  }
 
   styles = {
     fontSize: 100,
@@ -51,7 +34,6 @@ class Item extends Component {
         <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
         <br/>
-        <button onClick={this.handleHeart}> {this.formatLike()} </button>
       </DesktopItem>
     );
 
@@ -59,7 +41,6 @@ class Item extends Component {
       <MobileItem>
         <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
-        <button onClick={this.handleHeart}> {this.formatLike()} </button>
         <h4 style={textStyle}>{this.state.name}, {this.state.price}</h4>
       </MobileItem>
     );
@@ -71,17 +52,6 @@ class Item extends Component {
         </Media>
       </Section>
     );
-  }
-
-  formatLike() {
-    const likedHeart = (
-      <FilledHeart> &hearts; </FilledHeart>
-    );
-
-    const unlikedHeart = (
-      <UnfilledHeart> &#9825; </UnfilledHeart>
-    );
-    return this.state.liked === false ? unlikedHeart : likedHeart;
   }
 
 }

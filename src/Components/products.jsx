@@ -5,6 +5,18 @@ import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
 import firebase, {auth, provider} from './../firebase.js';
 
+const UnfilledHeart = styled.div`
+  font-size: 12px;
+    border: none;
+    background-color: transparent;
+`;
+
+const FilledHeart = styled.div`
+  font-size: 12px;
+    border: none;
+    background-color: transparent;
+`;
+
 const MobileSignUp = styled.div`
 `;
 
@@ -76,6 +88,7 @@ class Products extends Component {
           description: products[product].description,
           name: products[product].name,
           price: products[product].price,
+          favorite: products[product].favorite,
           saved: products[product].saved
         });
       }
@@ -90,6 +103,22 @@ class Products extends Component {
     itemRef.remove();
   }
 
+  handleHeart(itemId) {
+    // const itemRef = firebase.database().ref(`/products/${itemId}`);
+    this.setState({liked: !this.state.liked});
+  }
+
+  formatLike() {
+    const likedHeart = (
+      <FilledHeart> &hearts; </FilledHeart>
+    );
+
+    const unlikedHeart = (
+      <UnfilledHeart> &#9825; </UnfilledHeart>
+    );
+    return this.state.liked === false ? unlikedHeart : likedHeart;
+  }
+
   render () {
     const bookshelfDesktop = (
       <DesktopSignUp>
@@ -100,18 +129,19 @@ class Products extends Component {
             <img src={this.state.user.photoURL} style={profPicStyle}/>
            </div>
             :
-            <button onClick={this.login} class="signInButton">Sign In</button>
+            <button onClick={this.login} class="signInButton">Sign In With Google</button>
          }
          </div>
          {this.state.user ?
          <div>
            {this.state.products.map(product =>
              <DesktopItem>
-                    <Item key={1} price={product.price} name={product.name} image={"https://picsum.photos/200"}>
+                    <Item key={1} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
                     <br/>
                     <DesktopItemRemove>
                         <button onClick={() => this.removeItem(product.id)}>X</button>
                     </DesktopItemRemove>
+                    <button onClick={() => this.handleHeart(product.id)}> {this.formatLike()} </button>
                     </Item>
             </DesktopItem>)}
          </div>
@@ -121,13 +151,14 @@ class Products extends Component {
          </div> }
       </DesktopSignUp>
     );
+
     const bookshelfMobile = (
        <MobileSignUp>
        <div>
          {this.state.user ?
            <button onClick={this.logout} class="signOutButton">Sign Out</button>
            :
-           <button onClick={this.login} class="signInButton">Sign In</button>
+           <button onClick={this.login} class="signInButton">Sign In With Google</button>
          }
        </div>
        {this.state.user ?
@@ -146,9 +177,10 @@ class Products extends Component {
        </div> }
       </MobileSignUp>
     );
+
     return(
       <Section title="">
-        <Media query={{ minWidth: 500 }}>
+        <Media query={{ minWidth: 800 }}>
           {matches => (matches ? bookshelfDesktop : bookshelfMobile)}
         </Media>
       </Section>
