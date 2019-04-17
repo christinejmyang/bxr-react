@@ -89,7 +89,8 @@ class Products extends Component {
           name: products[product].name,
           price: products[product].price,
           favorite: products[product].favorite,
-          saved: products[product].saved
+          saved: products[product].saved,
+          link: products[product].link
         });
       }
       this.setState({
@@ -119,6 +120,7 @@ class Products extends Component {
     return this.state.liked === false ? unlikedHeart : likedHeart;
   }
 
+
   render () {
     const bookshelfDesktop = (
       <DesktopSignUp>
@@ -136,7 +138,7 @@ class Products extends Component {
          <div>
            {this.state.products.map(product =>
              <DesktopItem>
-                    <Item key={1} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
+                    <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
                     <br/>
                     <DesktopItemRemove>
                         <button onClick={() => this.removeItem(product.id)}>X</button>
