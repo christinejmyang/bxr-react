@@ -19,7 +19,7 @@ class SignedOutLinks extends Component {
           </div></p></li>
           <li class="HeaderLink"> <Link to="/about"> <p> About </p> </Link> </li>
           <li class="HeaderLink"> <Link to="/"> <p> How it Works </p> </Link> </li>
-          <li class="HeaderLink"> <Link to="/signin"> <p> Sign In </p> </Link> </li>
+          <li class="HeaderLink"> <Link to="/products"> <p> Sign In </p> </Link> </li>
         </ul>
       </nav>
     );
