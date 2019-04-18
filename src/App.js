@@ -8,6 +8,7 @@ import Footer from './Components/footer.jsx'
 import Products from './Components/products.jsx'
 import SignIn from './Components/signin.js'
 import SignUp from './Components/signup.js'
+import Profile from './Components/profile.jsx'
 import Nav from './Components/nav.js'
 import firebase, {auth, user} from './firebase.js'
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/profile" component={Profile} />
           </Switch>
           <Route component={Footer}></Route>
         </div>

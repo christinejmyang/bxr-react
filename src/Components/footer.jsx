@@ -8,7 +8,7 @@ import './../App.css';
 const DesktopFooter = styled.div`
 	position: absolute;
 	background-color: rgb(48, 48, 48, 48);
-	width: 102%;
+	width: 101%;
     margin-left: -17%;
 	border-top: 2px solid lightcoral;
 	font-family: 'Source Sans Pro', sans-serif;
