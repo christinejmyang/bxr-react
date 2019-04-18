@@ -3,6 +3,7 @@ import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
 import firebase from './../firebase.js';
+import Popup from './popup.js'
 
 const DesktopItem = styled.div`
 `;
@@ -20,6 +21,7 @@ class Item extends Component {
     imageUrl: this.props.image,
     name: this.props.name,
     price: this.props.price,
+    showPopup: this.false
   };
 
   styles = {
@@ -27,12 +29,29 @@ class Item extends Component {
     fontWeight: "bold"
   };
 
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+
   render() {
     const itemDesktop = (
       <DesktopItem>
         <h4 style={textStyle}>{this.state.name}, ${this.state.price}</h4>
-        <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
+        <img onClick={this.togglePopup.bind(this)} style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
+        {this.state.showPopup ?
+          <Popup
+            text={this.props.name}
+            price={this.props.price}
+            closePopup={this.togglePopup.bind(this)}
+            popupImage={this.props.imageUrl}
+            description={this.props.description}
+            link={this.props.link}
+          />
+          : null
+        }
         <br/>
       </DesktopItem>
     );
