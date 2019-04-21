@@ -5,17 +5,14 @@ import MainPic from './Components/mainpic.js'
 import HowItWorks from './Components/hiw.js'
 import About from './Components/about.js'
 import Footer from './Components/footer.jsx'
-import Products from './Components/products.jsx'
+//import Products from './Components/products.jsx'
 import SignIn from './Components/signin.js'
 import SignUp from './Components/signup.js'
 import Profile from './Components/profile.jsx'
 import Nav from './Components/nav.js'
-import firebase, {auth, user} from './firebase.js'
 
 class App extends Component {
   render() {
-    const user = firebase.auth().currentUser;
-
     return (
       <Router>
         <div className="App">
@@ -26,12 +23,13 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HowItWorks} />
             <Route path="/about" component={About} />
-            <Route path="/products" component={Products} />
+            <Route path="/products" component={About} />
+            <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
           </Switch>
           <Switch>
-            <Route path="/" component={Footer}></Route>
+            <Route path="/" component={Footer} />
           </Switch>
         </div>
       </Router>

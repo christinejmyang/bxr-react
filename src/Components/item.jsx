@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import firebase from './../firebase.js';
 import Popup from './popup.js'
 
 const DesktopItem = styled.div`

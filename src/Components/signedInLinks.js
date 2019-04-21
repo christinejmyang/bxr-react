@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './../App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Media from 'react-media';
-import firebase, {auth, provider} from './../firebase.js';
 import { Section, bodyTextStyle } from './Section.js'
 
 class SignedInLinks extends Component {

@@ -3,7 +3,7 @@ import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import firebase, {auth, provider} from './../firebase.js';
+import Firebase, {provider} from './../firebase.js';
 
 const UnfilledHeart = styled.div`
   font-size: 12px;
@@ -54,7 +54,7 @@ class Products extends Component {
   }
 
   login() {
-    auth.signInWithPopup(provider)
+    Firebase.auth.signInWithPopup(provider)
       .then((result) => {
         const user = result.user;
         this.setState({
@@ -64,7 +64,7 @@ class Products extends Component {
   }
 
   logout() {
-    auth.signOut()
+    Firebase.auth.signOut()
       .then(() => {
         this.setState({
           user: null
@@ -73,12 +73,12 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged((user) => {
+    Firebase.auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
       }
     });
-    const productsRef = firebase.database().ref('products');
+    const productsRef = Firebase.database().ref('products');
     productsRef.on('value', (snapshot) => {
       let products = snapshot.val();
       let newState = [];
@@ -100,7 +100,7 @@ class Products extends Component {
   }
 
   removeItem(itemId) {
-    const itemRef = firebase.database().ref(`/products/${itemId}`);
+    const itemRef = Firebase.database().ref(`/products/${itemId}`);
     itemRef.remove();
   }
 
