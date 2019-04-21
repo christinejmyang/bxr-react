@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './../App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Media from 'react-media';
-import firebase, {auth, provider} from './../firebase.js';
 import { Section, bodyTextStyle } from './Section.js'
 
 class SignedOutLinks extends Component {
@@ -19,7 +18,7 @@ class SignedOutLinks extends Component {
           </div></p></li>
           <li class="HeaderLink"> <Link to="/about"> <p> About </p> </Link> </li>
           <li class="HeaderLink"> <Link to="/"> <p> How it Works </p> </Link> </li>
-          <li class="HeaderLink"> <Link to="/products"> <p> Sign In </p> </Link> </li>
+          <li class="HeaderLink"> <Link to="/signin"> <p> Sign In </p> </Link> </li>
         </ul>
       </nav>
     );

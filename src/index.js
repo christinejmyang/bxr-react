@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Router, Route, hashHistory } from 'react-router'
 import './index.css'
 import App from './App'
-import About from './Components/about.js'
+import Firebase, { FirebaseContext } from './Firebase'
 import * as serviceWorker from './serviceWorker'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './Reducers/index.js'
@@ -12,9 +12,9 @@ import store from './store';
 import thunk from 'redux-thunk'
 
 ReactDOM.render(
-  <Provider store={store}>
+  <FirebaseContext.Provider value={new Firebase()}>
     <App />
-  </Provider>,
+  </FirebaseContext.Provider>,
   document.getElementById('root')
 );
 

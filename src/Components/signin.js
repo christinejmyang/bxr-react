@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import Media from 'react-media'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled'
 import SignUp from './signup.js'
-import firebase, {auth, provider} from './../firebase.js'
+import { withFirebase } from '../Firebase'
+import { compose } from 'recompose'
 
 const MobileSignIn = styled.div`
 `;
@@ -12,82 +13,106 @@ const MobileSignIn = styled.div`
 const DesktopSignIn = styled.div`
 `;
 
-class SignIn extends Component {
-  state = {
-    email:'',
-    password:''
+const SignIn = () => (
+  <SignInForm />
+);
+
+const INITIAL_STATE = {
+  email: '',
+  password: '',
+  error: null,
+};
+
+class SignInFormBase extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...INITIAL_STATE };
   }
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
+  onSubmit = event => {
+    const { email, password } = this.state;
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state);
-  }
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
 
-  render () {
-    const signInDesktop = (
+    event.preventDefault();
+  };
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  render() {
+    const { email, password, error } = this.state;
+
+    const SignInPageDesktop = (
       <DesktopSignIn>
-        <div className="container">
-          <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Sign In</h5>
-            <div className="input-field">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" onChange={this.handleChange}/>
-            </div>
-            <div className="input-field">
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" onChange={this.handleChange}/>
-            </div>
-            <div className="input-field">
-              <button className="btn pink lighten-1 z-depth-0">Login</button>
-            </div>
-            <div className="input-field">
-              <p> Don't have an account? </p>
-              <Link to="/signup"> <button className="btn pink lighten-1 z-depth-0">Sign Up</button> </Link>
-            </div>
-          </form>
-        </div>
+        <form onSubmit={this.onSubmit}>
+          <h5>Sign In</h5>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input name="email" value={email} onChange={this.onChange} type="email"/>
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input name="password" value={password} onChange={this.onChange} type="password"/>
+          </div>
+          <div>
+            <button type="submit">Login</button>
+          </div>
+          <div>
+            <p> Don't have an account? </p>
+            <Link to="/signup"> <button>Sign Up</button> </Link>
+          </div>
+        </form>
       </DesktopSignIn>
     );
 
-    const signInMobile = (
-    <MobileSignIn>
-       <div className="container">
-         <form onSubmit={this.handleSubmit} className="white">
-           <h5 className="grey-text text-darken-3">Sign In</h5>
-           <div className="input-field">
-             <label htmlFor="email">Email</label>
-             <input type="email" id="email" onChange={this.handleChange}/>
-           </div>
-           <div className="input-field">
-             <label htmlFor="password">Password</label>
-             <input type="password" id="password" onChange={this.handleChange}/>
-           </div>
-           <div className="input-field">
-             <button className="btn pink lighten-1 z-depth-0">Login</button>
-           </div>
-           <div className="input-field">
-             <p> Don't have an account? </p>
-             <Link to="/signup"> <button className="btn pink lighten-1 z-depth-0">Sign Up</button> </Link>
-           </div>
-         </form>
-       </div>
-    </MobileSignIn>
+    const SignInPageMobile = (
+      <MobileSignIn>
+        <form onSubmit={this.onSubmit}>
+          <h5>Sign In</h5>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input name="email" value={email} onChange={this.onChange} type="email"/>
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input name="password" value={password} onChange={this.onChange} type="password"/>
+          </div>
+          <div>
+            <button type="submit">Login</button>
+          </div>
+          <div>
+            <p> Don't have an account? </p>
+            <Link to="/signup"> <button>Sign Up</button> </Link>
+          </div>
+        </form>
+      </MobileSignIn>
     );
 
-    return(
+    return (
       <Section title="">
         <Media query={{ minWidth: 500 }}>
-          {matches => (matches ? signInDesktop : signInMobile)}
+          {matches => (matches ? SignInPageDesktop : SignInPageMobile)}
         </Media>
       </Section>
     );
   }
-};
+}
+
+const SignInForm = compose(
+  withRouter,
+  withFirebase,
+)(SignInFormBase);
 
 export default SignIn;
+
+export { SignInForm };

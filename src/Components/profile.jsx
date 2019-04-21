@@ -3,7 +3,7 @@ import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import firebase, {auth, provider} from './../firebase.js';
+import { withFirebase } from '../Firebase'
 
 const MobileProfile = styled.div`
 `;
@@ -57,7 +57,7 @@ class Profile extends Component {
 
         const profileMobile = (
             <MobileProfile>
-       
+
             </MobileProfile>
     );
 

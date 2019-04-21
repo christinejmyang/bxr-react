@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
-import styled from '@emotion/styled';
-import firebase, {auth, provider} from './../firebase.js';
+import styled from '@emotion/styled'
 
 class Popup extends Component {
   render() {
