@@ -14,7 +14,7 @@ class SignedOutLinks extends Component {
           <div class="dropdown"><a>Benefits</a><div class="dropdown-content">
               <Link to="/">For Brands</Link>
               <Link to="/">For Owners</Link>
-              <Link to="/">For Renters</Link>
+              <Link to="/profile">For Renters</Link>
             </div>
           </div></p></li>
           <li class="HeaderLink"> <Link to="/about"> <p> About </p> </Link> </li>

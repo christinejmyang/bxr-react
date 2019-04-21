@@ -1,14 +1,16 @@
 # Setup
 * Necessary Installations
-  `npm install react`
-  `npm install react-router`
-  `npm install react-router-dom`
-  `npm install react-media`
-  `npm install firebase`
-  `sudo npm install firebase-tools`
-  `npm install @emotion/styled`
-  `npm install @emotion/core`
-  `npm install redux react-redux`
+  * `npm install react`
+  * `npm install react-router`
+  * `npm install react-router-dom`
+  * `npm install react-media`
+  * `npm install firebase`
+  * `sudo npm install firebase-tools`
+  * `npm install @emotion/styled`
+  * `npm install @emotion/core`
+  * `npm install redux react-redux`
+  * `npm install react-redux-firebase`
+  * `npm install redux-thunk`
 
 * To run the application, enter `npm start` on the command line
 
