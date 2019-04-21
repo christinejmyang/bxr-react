@@ -5,11 +5,10 @@ import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
 import './../App.css';
 
-const DesktopFooter = styled.div`
-	position: absolute;
+const DesktopFooter = styled.footer`
 	background-color: rgb(48, 48, 48, 48);
-	width: 101%;
-    margin-left: -17%;
+	width: 100%;
+	left: 0;
 	border-top: 2px solid lightcoral;
 	font-family: 'Source Sans Pro', sans-serif;
 	color: white;

@@ -30,7 +30,9 @@ class App extends Component {
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
           </Switch>
-          <Route component={Footer}></Route>
+          <Switch>
+            <Route path="/" component={Footer}></Route>
+          </Switch>
         </div>
       </Router>
     );
