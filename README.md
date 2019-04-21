@@ -11,6 +11,7 @@
   * `npm install redux react-redux`
   * `npm install react-redux-firebase`
   * `npm install redux-thunk`
+  * `npm install recompose`
 
 * To run the application, enter `npm start` on the command line
 
