@@ -59,9 +59,9 @@ const MobileInput = styled.input`
 const DesktopButton = styled.div`
     display: inline-block;
     background-color: lightcoral;
-    width: 40%;
+    width: 38.5%;
     text-align: center;
-    padding: 1%;
+    padding: 1.5%;
     margin-right: 2%;
     color: white;
     font-weight: bold;
@@ -158,8 +158,6 @@ const MobileLine = styled.hr`
         color: #818078;
         background-color: white;
       }
-`;
-const MobileSignUp = styled.div`
 `;
 
 const SignUp = () => (
