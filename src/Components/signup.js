@@ -7,10 +7,9 @@ import SignIn from './signin.js'
 import { withFirebase } from '../Firebase'
 import { compose } from 'recompose';
 
-const MobileSignUp = styled.div`
-`;
-
 const DesktopSignUp = styled.div`
+`;
+const MobileSignUp = styled.div`
 `;
 
 const SignUp = () => (
@@ -38,7 +37,7 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push("/");
+        this.props.history.push("/profile");
       })
       .catch(error => {
         this.setState({ error });

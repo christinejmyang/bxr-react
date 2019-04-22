@@ -10,6 +10,8 @@ import SignIn from './Components/signin.js'
 import SignUp from './Components/signup.js'
 import Profile from './Components/profile.jsx'
 import Nav from './Components/nav.js'
+import Hosts from './Components/hosts.js'
+import Brands from './Components/brands.js'
 
 class App extends Component {
   render() {
@@ -27,6 +29,8 @@ class App extends Component {
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
+            <Route path="/hosts" component={Hosts} />
+            <Route path="/brands" component={Brands} />
           </Switch>
           <Switch>
             <Route path="/" component={Footer} />
