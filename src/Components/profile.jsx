@@ -7,10 +7,6 @@ import { withFirebase } from '../Firebase'
 
 const DesktopProfile = styled.div`
     font-family: 'Avenir Next', sans-serif;
-    background-color: white;
-    width: 110%;
-    margin-left: -10%;
-    padding: 5%;
 `;
 const DesktopButton = styled.button`
     display: inline-block;
@@ -24,7 +20,7 @@ const DesktopButton = styled.button`
     border-radius: 25px 25px 25px 25px;
 `;
 const MobileProfile = styled.div`
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Avenir Next', sans-serif;
 `;
 const MobileButton = styled.button`
     display: inline-block;
