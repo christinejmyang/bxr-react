@@ -19,6 +19,7 @@ class SignedInLinks extends Component {
           <li class="HeaderLink"> <Link to="/about"> <p> About </p> </Link> </li>
           <li class="HeaderLink"> <Link to="/"> <p> How it Works </p> </Link> </li>
           <li class="HeaderLink"> <Link to="/"> <p> My Products </p> </Link> </li>
+          <li class="HeaderLink"> <Link to="/"> <p> Sign Out </p> </Link> </li>
         </ul>
       </nav>
     );
@@ -34,6 +35,7 @@ class SignedInLinks extends Component {
                   <Link to="/about">About</Link>
                   <Link to="/">How It Works</Link>
                   <Link to="/">My Products</Link>
+                  <Link to="/">Sign Out</Link>
                   <div class="dropdown2">
                     <a>Benefits</a>
                     <div class="dropdown-content2">

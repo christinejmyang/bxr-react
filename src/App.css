@@ -24,7 +24,7 @@ header {
   height: 35px;
   text-align: left;
   padding: 12px;
-  padding-bottom: 20px !important;
+  padding-bottom: 20px;
   font-weight: bolder;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   background-color: rgba(248, 248, 248, 1);
@@ -116,7 +116,6 @@ h1 {
 }
 
 /* FOOTER STYLING */
-
 
 #copyright {
   text-align: right;
@@ -305,7 +304,6 @@ h1 {
 a:link {
 	color: lightblue;
 	font-weight: bold;
-	text-decoration: underline;
 }
 a:hover {
 	color: blue;
