@@ -8,8 +8,156 @@ import { withFirebase } from '../Firebase'
 import { compose } from 'recompose';
 
 const DesktopSignUp = styled.div`
+    font-family: 'Avenir Next', sans-serif;
+    background-color: white;
+    width: 110%;
+    margin-left: -10%;
+    padding: 5%;
+    display: grid;
+    grid-template-areas: 
+        "header header header header"
+        "main main . sidebar"
 `;
+
+const DesktopMain = styled.div`
+    grid-area: main;
+`;
+
+const DesktopSidebar = styled.div`
+    grid-area: sidebar;
+`;
+
 const MobileSignUp = styled.div`
+    font-family: 'Avenir Next', sans-serif;
+    background-color: white;
+    width: 110%;
+    margin-left: -10%;
+    padding: 5%;
+`;
+
+const DesktopInput = styled.input`
+    padding: 1%;
+    margin-right: 2%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 40%;
+    font-size: 1em;
+    border: 1px solid lightgrey;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileInput = styled.input`
+    padding: 3%;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 90%;
+    font-size: 1em;
+    border: 1px solid lightgrey;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const DesktopButton = styled.div`
+    display: inline-block;
+    background-color: lightcoral;
+    width: 38.5%;
+    text-align: center;
+    padding: 1.5%;
+    margin-right: 2%;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileButton = styled.div`
+    display: inline-block;
+    background-color: lightcoral;
+    width: 90%;
+    text-align: center;
+    padding: 3%;
+    margin-right: 2%;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const DesktopFacebook = styled.div`
+    display: inline-block;
+    background-color: #4567b2;
+    width: 95%;
+    text-align: center;
+    padding: 3%;
+    margin-left: -15%;
+    color: white;
+    font-weight: 600;
+    border: 2px solid #4567b2;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileFacebook = styled.div`
+    display: inline-block;
+    background-color: #4567b2;
+    width: 90%;
+    text-align: center;
+    padding: 3%;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #4567b2;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const DesktopGoogle = styled.div`
+    display: inline-block;
+    width: 95%;
+    text-align: center;
+    padding: 3%;
+    margin-left: -15%;
+    color: black;
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileGoogle = styled.div`
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+    padding: 3%;
+    margin-top: 2%;
+    color: black;
+    font-weight: 500;
+    border: 2px solid black;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileLine = styled.hr`
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+    &:before {
+        content: '';
+        background: darkgrey;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 95%;
+        height: 1px;
+    }
+    &:after {
+        content: attr(data-content);
+        position: relative;
+        display: inline-block;
+        color: black;
+
+        padding: 0 .5em;
+        line-height: 1.5em;
+        color: #818078;
+        background-color: white;
+      }
 `;
 
 const SignUp = () => (
@@ -21,6 +169,7 @@ const INITIAL_STATE = {
   password: '',
   firstname: '',
   lastname: '',
+  birthday: '',
   error: null,
 };
 
@@ -51,65 +200,56 @@ class SignUpFormBase extends Component {
   };
 
   render() {
-    const { email, password, firstname, lastname, error } = this.state;
+    const { email, password, firstname, lastname, birthday, error } = this.state;
 
     const SignUpPageDesktop = (
-      <DesktopSignUp>
-        <form onSubmit={this.onSubmit}>
-          <h5>Sign Up</h5>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input name="email" value={email} onChange={this.onChange} type="email"/>
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input name="password" value={password} onChange={this.onChange} type="password"/>
-          </div>
-          <div>
-            <label htmlFor="firstname">First Name</label>
-            <input name="firstname" value={firstname} onChange={this.onChange} type="text"/>
-          </div>
-          <div>
-            <label htmlFor="lastname">Last Name</label>
-            <input name="lastname" value={lastname} onChange={this.onChange} type="text"/>
-          </div>
-          <button type="submit">Sign Up</button>
-          <p> Already have an account? </p>
-          <Link to="/signin"> <button>Sign In</button> </Link>
-          {error && <p>{error.message}</p>}
-        </form>
-      </DesktopSignUp>
+        <DesktopSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
+            <DesktopMain>
+                <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/>
+                <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
+
+                <DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/>    
+                <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/>
+
+                <h3>Birthday</h3>
+                To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
+                <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
+
+                We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
+                <DesktopButton type="submit">Sign Up</DesktopButton>
+                Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
+            </DesktopMain>
+            <DesktopSidebar>
+                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
+                <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+            </DesktopSidebar>
+        {error && <p>{error.message}</p>}
+        </DesktopSignUp>
     );
 
     const SignUpPageMobile = (
-      <MobileSignUp>
-        <form onSubmit={this.onSubmit}>
-          <h5>Sign Up</h5>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input name="email" value={email} onChange={this.onChange} type="email"/>
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input name="password" value={password} onChange={this.onChange} type="password"/>
-          </div>
-          <div>
-            <label htmlFor="firstname">First Name</label>
-            <input name="firstname" value={firstname} onChange={this.onChange} type="text"/>
-          </div>
-          <div>
-            <label htmlFor="lastname">Last Name</label>
-            <input name="lastname" value={lastname} onChange={this.onChange} type="text"/>
-          </div>
-          <div>
-            <button type="submit">Sign Up</button>
-          </div>
-          <div>
-            <p> Already have an account? </p>
-            <Link to="/signin"> <button>Sign In</button> </Link>
-          </div>
-        </form>
-      </MobileSignUp>
+        <MobileSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
+        
+                <MobileFacebook>Sign up with Facebook</MobileFacebook><br/>
+                <MobileGoogle>Sign up with Google</MobileGoogle><br/><br/>
+                <MobileLine data-content="or"/><br/>
+        
+                <MobileInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/><br/>
+                <MobileInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
+
+                <MobileInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/><br/>
+                <MobileInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/><br/><br/>
+
+                <h3>Birthday</h3>
+                To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
+                <MobileInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
+
+                We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
+                <MobileButton type="submit">Sign Up</MobileButton><br/><br/>
+                Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
+
+        {error && <p>{error.message}</p>}
+        </MobileSignUp>
     );
 
     return (
