@@ -3,7 +3,7 @@ import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import Firebase, {provider} from './../firebase.js';
+import Firebase, {provider} from './../Firebase/firebase.js';
 
 const UnfilledHeart = styled.div`
   font-size: 12px;

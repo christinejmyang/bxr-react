@@ -9,7 +9,7 @@ const MobileProfile = styled.div`
 `;
 
 const DesktopProfile = styled.div`
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Avenir Next', sans-serif;
     background-color: white;
     width: 110%;
     margin-left: -10%;
