@@ -10,7 +10,7 @@ const DesktopFooter = styled.footer`
 	width: 100%;
 	left: 0;
 	border-top: 2px solid lightcoral;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	color: white;
 `;
 const DesktopFooterBox = styled.div`

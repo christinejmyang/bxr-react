@@ -7,15 +7,11 @@ import SignedInLinks from './signedInLinks.js'
 import SignedOutLinks from './signedOutLinks.js'
 
 
-
 class Nav extends Component {
   render() {
     return (
       <div>
-        <header>
-          <Link to="/"> <p class="header-index">bxr</p> </Link>
           <SignedOutLinks />
-        </header>
       </div>
     );
   }

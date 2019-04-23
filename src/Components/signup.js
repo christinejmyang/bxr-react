@@ -10,13 +10,15 @@ import { compose } from 'recompose';
 const DesktopSignUp = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
-    width: 110%;
-    margin-left: -10%;
+    width: 80%;
+    margin-left: 5%;
+    margin-top: -8%;
     padding: 5%;
     display: grid;
     grid-template-areas: 
         "header header header header"
-        "main main . sidebar"
+        "main main main sidebar"
+        "footer footer footer footer"
 `;
 
 const DesktopMain = styled.div`
@@ -25,6 +27,10 @@ const DesktopMain = styled.div`
 
 const DesktopSidebar = styled.div`
     grid-area: sidebar;
+`;
+
+const DesktopFooter = styled.div`
+    grid-area: footer;
 `;
 
 const MobileSignUp = styled.div`
@@ -39,7 +45,7 @@ const DesktopInput = styled.input`
     padding: 1%;
     margin-right: 2%;
     font-family: 'Avenir Next', sans-serif;
-    width: 40%;
+    width: 42%;
     font-size: 1em;
     border: 1px solid lightgrey;
     border-radius: 5px 5px 5px 5px;
@@ -68,6 +74,16 @@ const DesktopButton = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
+const DesktopLink = styled.a`
+    color: lightcoral;
+    font-weight: 600;
+    margin-left: 1%;
+    cursor: pointer;
+    &:hover {
+        color: grey;
+    }
+`;
+
 const MobileButton = styled.div`
     display: inline-block;
     background-color: lightcoral;
@@ -83,10 +99,10 @@ const MobileButton = styled.div`
 const DesktopFacebook = styled.div`
     display: inline-block;
     background-color: #4567b2;
-    width: 95%;
+    width: 90%;
     text-align: center;
-    padding: 3%;
-    margin-left: -15%;
+    padding: 4%;
+    margin-left: -2%;
     color: white;
     font-weight: 600;
     border: 2px solid #4567b2;
@@ -107,10 +123,11 @@ const MobileFacebook = styled.div`
 
 const DesktopGoogle = styled.div`
     display: inline-block;
-    width: 95%;
+    width: 90%;
     text-align: center;
-    padding: 3%;
-    margin-left: -15%;
+    padding: 4%;
+    margin-left: -2%;
+    margin-top: -8%;
     color: black;
     font-weight: 600;
     border: 2px solid black;
@@ -210,19 +227,20 @@ class SignUpFormBase extends Component {
 
                 <DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/>    
                 <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/>
-
+            </DesktopMain>
+            <DesktopSidebar>
+                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
+                <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+            </DesktopSidebar>
+            <DesktopFooter>
                 <h3>Birthday</h3>
                 To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
                 <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
 
                 We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
                 <DesktopButton type="submit">Sign Up</DesktopButton>
-                Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
-            </DesktopMain>
-            <DesktopSidebar>
-                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-                <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
-            </DesktopSidebar>
+                Already have an account?<DesktopLink onClick={this.closePopup}>Sign In</DesktopLink><br/><br/>
+            </DesktopFooter>
         {error && <p>{error.message}</p>}
         </DesktopSignUp>
     );
@@ -246,7 +264,7 @@ class SignUpFormBase extends Component {
 
                 We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
                 <MobileButton type="submit">Sign Up</MobileButton><br/><br/>
-                Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
+                Already have an account? <DesktopLink onClick={this.closePopup}>Sign In</DesktopLink><br/><br/>
 
         {error && <p>{error.message}</p>}
         </MobileSignUp>

@@ -17,7 +17,6 @@ class SignedInLinks extends Component {
             </div>
           </div></p></li>
           <li class="HeaderLink"> <Link to="/about"> <p> About </p> </Link> </li>
-          <li class="HeaderLink"> <Link to="/"> <p> How it Works </p> </Link> </li>
           <li class="HeaderLink"> <Link to="/"> <p> My Products </p> </Link> </li>
         </ul>
       </nav>
@@ -32,7 +31,6 @@ class SignedInLinks extends Component {
                 <a> &#9776; </a>
                 <div class="dropdown-content">
                   <Link to="/about">About</Link>
-                  <Link to="/">How It Works</Link>
                   <Link to="/">My Products</Link>
                   <div class="dropdown2">
                     <a>Benefits</a>
