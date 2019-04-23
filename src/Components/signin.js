@@ -140,7 +140,7 @@ class SignInFormBase extends Component {
               <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
               Don't have an account? <Link to="/signup">Sign Up</Link><br/><br/>
             </form>
-            {error && <p>{error.message}</p>}
+            <i>{error && <p>{error.message}</p>}</i>
           </DesktopMain>
           <DesktopSidebar>
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
@@ -162,8 +162,9 @@ class SignInFormBase extends Component {
             <input name="password" value={password} onChange={this.onChange} type="password"/>
           </div>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit">Log In</button>
           </div>
+          <i>{error && <p>{error.message}</p>}</i>
           <div>
             <p> Don't have an account? </p>
             <Link to="/signup"> <button>Sign Up</button> </Link>

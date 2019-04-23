@@ -225,7 +225,7 @@ class SignUpFormBase extends Component {
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
               <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
-      {error && <p>{error.message}</p>}
+          <i>{error && <p>{error.message}</p>}</i>
         </DesktopSignUp>
     );
 
@@ -250,7 +250,7 @@ class SignUpFormBase extends Component {
           </form>
           Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
 
-        {error && <p>{error.message}</p>}
+          <i>{error && <p>{error.message}</p>}</i>
         </MobileSignUp>
     );
 
