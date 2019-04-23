@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
-import Item from './item'
 import Media from 'react-media'
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom'
 import { Section, bodyTextStyle } from './Section.js'
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
+import SignIn from './signin.js'
 import { withFirebase } from '../Firebase'
+import { compose } from 'recompose';
 
-const DesktopProfile = styled.div`
+const DesktopSurvey = styled.div`
     font-family: 'Avenir Next', sans-serif;
 `;
-const DesktopProfileComponent = styled.div`
-`;
-
 const DesktopButton = styled.button`
     display: inline-block;
     float: right;
@@ -22,7 +21,7 @@ const DesktopButton = styled.button`
     font-weight: bold;
     border-radius: 25px 25px 25px 25px;
 `;
-const MobileProfile = styled.div`
+const MobileSurvey = styled.div`
   font-family: 'Avenir Next', sans-serif;
 `;
 const MobileButton = styled.button`
@@ -37,11 +36,11 @@ const MobileButton = styled.button`
     border-radius: 25px 25px 25px 25px;
 `;
 
-class Profile extends Component {
+class Survey extends Component {
 
     render () {
-        const profileDesktop = (
-            <DesktopProfile>
+        const desktop = (
+            <DesktopSurvey>
               <img src="./../img/christine.jpg"/>
               Welcome, name!
               <DesktopButton>
@@ -57,11 +56,11 @@ class Profile extends Component {
               <img></img>
               <img></img>
               See more
-            </DesktopProfile>
+          </DesktopSurvey>
     );
 
-        const profileMobile = (
-            <MobileProfile>
+        const mobile = (
+            <MobileSurvey>
               <img src="./../img/christine.jpg"/>
               Welcome, name!
               <MobileButton>
@@ -72,22 +71,22 @@ class Profile extends Component {
               I'm originally from Seoul, South Korea, and now live in central Florida. At Duke, I'm a junior studying Computer Science, VMS, and Psychology. I love dancing and trying new food, and can fit my arm in a vending machine!<br/><br/>
               <h2>Interests</h2>
               Dancing, designing, listening to music, watching TV, trying new restaurants<br/><br/>
-              <h2>Favorites</h2>
+            <h2>Favorites</h2>
               <img></img>
               <img></img>
               <img></img>
               See more
-            </MobileProfile>
+            </MobileSurvey>
     );
 
     return(
       <Section title="">
         <Media query={{ minWidth: 800 }}>
-          {matches => (matches ? profileDesktop : profileMobile)}
+          {matches => (matches ? desktop : mobile)}
         </Media>
       </Section>
     );
   }
 };
 
-export default Profile;
+export default Survey;

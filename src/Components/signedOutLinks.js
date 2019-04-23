@@ -13,7 +13,7 @@ class SignedOutLinks extends Component {
           <div class="dropdown"><a>Benefits</a><div class="dropdown-content">
               <Link to="/brands">For Brands</Link>
               <Link to="/hosts">For Hosts</Link>
-              <Link to="/profile">For Renters</Link>
+              <Link to="/products">For Renters</Link>
             </div>
           </div></p></li>
           <li class="HeaderLink"> <Link to="/about"> <p> About </p> </Link> </li>
@@ -39,7 +39,7 @@ class SignedOutLinks extends Component {
                     <div class="dropdown-content2">
                       <Link to="/brands">For Brands</Link>
                       <Link to="/hosts">For Hosts</Link>
-                      <Link to="/profile">For Renters</Link>
+                      <Link to="/products">For Renters</Link>
                     </div>
                   </div>
                 </div>

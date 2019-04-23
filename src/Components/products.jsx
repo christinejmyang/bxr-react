@@ -3,7 +3,7 @@ import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import Firebase, {provider} from './../Firebase/firebase.js';
+import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 
 const UnfilledHeart = styled.div`
   font-size: 12px;
@@ -40,21 +40,26 @@ const profPicStyle = {
   float: 'right',
 };
 
+const ProductsPage = () => (
+  <ProductsView />
+)
+
 class Products extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: '',
       products: [],
       user: null
-    }
+    };
     this.login = this.login.bind(this); // <-- add this line
     this.logout = this.logout.bind(this); // <-- add this line
   }
 
   login() {
-    Firebase.auth.signInWithPopup(provider)
+    this.props.firebase
+      .doSignInWithPopup(this.provider)
       .then((result) => {
         const user = result.user;
         this.setState({
@@ -64,7 +69,8 @@ class Products extends Component {
   }
 
   logout() {
-    Firebase.auth.signOut()
+    this.props.firebase
+      .doSignOut()
       .then(() => {
         this.setState({
           user: null
@@ -73,12 +79,13 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    Firebase.auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
-      }
-    });
-    const productsRef = Firebase.database().ref('products');
+    this.props.firebase
+      .doOnAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ user });
+        }
+      });
+    const productsRef = this.props.firebase.showDatabase('products');
     productsRef.on('value', (snapshot) => {
       let products = snapshot.val();
       let newState = [];
@@ -100,7 +107,7 @@ class Products extends Component {
   }
 
   removeItem(itemId) {
-    const itemRef = Firebase.database().ref(`/products/${itemId}`);
+    const itemRef = this.props.firebase.showDatabase(`/products/${itemId}`);
     itemRef.remove();
   }
 
@@ -190,4 +197,7 @@ class Products extends Component {
   }
 };
 
-export default Products;
+const ProductsView = withFirebase(Products);
+
+export default ProductsPage;
+export { ProductsView };

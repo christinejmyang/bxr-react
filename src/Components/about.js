@@ -62,7 +62,6 @@ class About extends React.Component{
 				</section>
 			</DesktopAbout>
 		);
-
 		const mobile = (
 			<MobileAbout>
 				<section class="aboutone">
@@ -110,7 +109,6 @@ class About extends React.Component{
 				</section>
 			</MobileAbout>
 		);
-
 		return(
       <Section title="">
         <Media query={{ minWidth: 800 }}>
