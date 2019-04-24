@@ -11,7 +11,6 @@ const DesktopSignUp = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
     width: 110%;
-    margin-left: -10%;
     padding: 5%;
     display: grid;
     grid-template-areas:

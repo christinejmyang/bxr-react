@@ -10,6 +10,7 @@ import christine from './../img/christine.jpg';
 
 const DesktopAbout = styled.div`
 `;
+
 const MobileAbout = styled.div`
 `;
 
@@ -110,11 +111,9 @@ class About extends React.Component{
 			</MobileAbout>
 		);
 		return(
-      <Section title="">
-        <Media query={{ minWidth: 800 }}>
-          {matches => (matches ? desktop : mobile)}
-        </Media>
-      </Section>
+      <Media query={{ minWidth: 800 }}>
+        {matches => (matches ? desktop : mobile)}
+      </Media>
     );
 	}
 }
