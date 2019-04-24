@@ -15,7 +15,7 @@ const DesktopSignIn = styled.div`
     margin-left: 5%;
     padding: 5%;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "header header header header"
         "main main . sidebar"
 `;
@@ -39,7 +39,7 @@ const DesktopInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopButton = styled.div`
+const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
     width: 97%;
@@ -87,7 +87,7 @@ const MobileFacebook = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopGoogle = styled.div`
+const DesktopGoogle = styled.button`
     display: inline-block;
     width: 100%;
     text-align: center;

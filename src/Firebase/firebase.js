@@ -1,3 +1,4 @@
+import firebase from "firebase"
 import app from 'firebase/app'
 import 'firebase/auth'
 
@@ -14,7 +15,7 @@ var config = {
 class Firebase {
   constructor() {
     app.initializeApp(config);
-
+    this.provider = new app.auth.GoogleAuthProvider();
     this.auth = app.auth();
   }
 
@@ -24,12 +25,23 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-  doSignOut = () => this.auth.signOut();
+  doSignInWithPopup = (provider) =>
+    this.auth.signInWithPopup(this.provider);
 
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+  doSignOut = () =>
+    this.auth.signOut();
+
+  doPasswordReset = email =>
+    this.auth.sendPasswordResetEmail(email);
 
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
+
+  showDatabase = (id) =>
+    app.database().ref(id);
+
+  doOnAuthStateChanged = (user) =>
+    this.auth.onAuthStateChanged(user);
 }
 
 export default Firebase;

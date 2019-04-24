@@ -151,6 +151,7 @@ class SignedOutLinks extends Component {
                           <Link to="/profile">For Renters</Link>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </p>
