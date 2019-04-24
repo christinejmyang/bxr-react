@@ -120,6 +120,17 @@ class SignInFormBase extends Component {
         this.state = { isOpen: false };
     }
 
+    loginWithGoogle() {
+      this.props.firebase
+        .doSignInWithPopup()
+        .then((result) => {
+          const user = result.user;
+          this.setState({
+            user
+          });
+        });
+    }
+
     onSubmit = event => {
         const { email, password } = this.state;
 
@@ -169,7 +180,7 @@ class SignInFormBase extends Component {
           </DesktopMain>
           <DesktopSidebar>
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-              <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+              <DesktopGoogle onClick={this.loginWithGoogle}>Sign up with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
       </DesktopSignIn>
     );

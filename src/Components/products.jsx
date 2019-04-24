@@ -109,7 +109,7 @@ class Products extends Component {
 
   render () {
     const bookshelfDesktop = (
-      <DesktopSignUp>
+      <DesktopProducts>
          {this.state.user ?
              <Row gutter={40}>
                {this.state.products.map(product =>
