@@ -12,6 +12,7 @@
   * `npm install react-redux-firebase`
   * `npm install redux-thunk`
   * `npm install recompose`
+  * `npm i -S react-simple-flex-grid`
 
 * To run the application, enter `npm start` on the command line
 
