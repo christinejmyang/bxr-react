@@ -58,7 +58,6 @@ class Hosts extends Component {
                   - Daniel, VRBO Host
                 </Right>
                 <br />
-                <br />
                 <Left>
                   <DesktopPicture src={stars} />
                 </Left>
@@ -97,7 +96,7 @@ class Hosts extends Component {
                   - Daniel, VRBO Host
                 </div>
                 <br />
-                <br />
+  
                 <div>
                   <DesktopPicture src={stars} />
                 </div>

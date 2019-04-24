@@ -57,7 +57,7 @@ class Brands extends Component {
                   - Jessica, Product Manager at BoostedPogo
                 </Right>
                 <br />
-                <br />
+                
                 <Left>
                   <DesktopPicture src={tag} />
                 </Left>
@@ -95,7 +95,7 @@ class Brands extends Component {
                   - Jessica, Product Manager at BoostedPogo
                 </div>
                 <br />
-                <br />
+
                 <div>
                   <DesktopPicture src={tag} />
                 </div>
