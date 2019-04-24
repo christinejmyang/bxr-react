@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled'
 import SignUp from './signup.js'
+import Popup from './signoutpopup.js'
 import { withFirebase } from '../Firebase'
 import { compose } from 'recompose'
 
@@ -11,7 +12,7 @@ const DesktopSignIn = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
     width: 80%;
-    margin-left: 10%;
+    margin-left: 5%;
     padding: 5%;
     display: grid;
     grid-template-areas:
@@ -32,7 +33,7 @@ const DesktopInput = styled.input`
     margin-right: 2%;
     margin-top: 2%;
     font-family: 'Avenir Next', sans-serif;
-    width: 80%;
+    width: 100%;
     font-size: 1em;
     border: 1px solid lightgrey;
     border-radius: 5px 5px 5px 5px;
@@ -41,23 +42,33 @@ const DesktopInput = styled.input`
 const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
-    width: 78%;
+    width: 97%;
     text-align: center;
-    padding: 2%;
+    padding: 3%;
     margin-right: 2%;
     color: white;
     font-weight: bold;
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopFacebook = styled.button`
+const DesktopLink = styled.a`
+    color: lightcoral;
+    font-weight: 600;
+    margin-left: 1%;
+    cursor: pointer;
+    &:hover {
+        color: grey;
+    }
+`;
+
+const DesktopFacebook = styled.div`
     display: inline-block;
     background-color: #4567b2;
-    width: 95%;
+    width: 100%;
     text-align: center;
-    padding: 3%;
+    padding: 4%;
     margin-left: -10%;
-    margin-top: 2%;
+    margin-top: 3%;
     color: white;
     font-weight: 600;
     border: 2px solid #4567b2;
@@ -78,11 +89,11 @@ const MobileFacebook = styled.div`
 
 const DesktopGoogle = styled.button`
     display: inline-block;
-    width: 95%;
+    width: 100%;
     text-align: center;
-    padding: 3%;
+    padding: 4%;
     margin-left: -10%;
-    margin-top: -3%;
+    margin-top: -8%;
     color: black;
     font-weight: 600;
     border: 2px solid black;
@@ -103,49 +114,65 @@ const INITIAL_STATE = {
 };
 
 class SignInFormBase extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...INITIAL_STATE };
-  }
+    constructor(props) {
+        super(props);
+        this.state = { ...INITIAL_STATE };
+        this.state = { isOpen: false };
+    }
 
-  onSubmit = event => {
-    const { email, password } = this.state;
+    onSubmit = event => {
+        const { email, password } = this.state;
 
-    this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push("/profile");
-      })
-      .catch(error => {
-        this.setState({ error });
-      });
+        this.props.firebase
+          .doSignInWithEmailAndPassword(email, password)
+          .then(() => {
+            this.setState({ ...INITIAL_STATE });
+            this.props.history.push("/profile");
+          })
+          .catch(error => {
+            this.setState({ error });
+          });
 
-    event.preventDefault();
-  };
+        event.preventDefault();
+    };
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
+
+    openPopup = () => {
+        this.setState({
+            isOpen: true
+        });
+    };
+
+    closePopup = () => {
+        this.setState({
+            isOpen: false
+        });
+    };
 
   render() {
     const { email, password, error } = this.state;
+    const { isOpen } = this.state;
 
     const SignInPageDesktop = (
-        <DesktopSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
-          <DesktopMain>
-            <form onSubmit={this.onSubmit}>
-              <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
-              <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
-              <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-              Don't have an account? <Link to="/signup">Sign Up</Link><br/><br/>
-            </form>
-            {error && <p>{error.message}</p>}
-          </DesktopMain>
-          <DesktopSidebar>
-              <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-              <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
-          </DesktopSidebar>
+        <DesktopSignIn show={this.state.signingIn} onSubmit={this.onSubmit}><h2>Sign In</h2>
+            <DesktopMain>
+                <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
+                <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
+        
+                <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
+                Don't have an account?<DesktopLink onClick={this.openPopup}>Sign Up</DesktopLink>
+                <Popup show={this.state.isOpen} onClose={this.closePopup}>
+                    <SignUp></SignUp>
+                </Popup>
+                <br/><br/>
+            </DesktopMain>
+            <DesktopSidebar>
+                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
+                <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+            </DesktopSidebar>
       </DesktopSignIn>
     );
 

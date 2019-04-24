@@ -7,7 +7,7 @@ class MainPic extends React.Component{
 			  <div>
 			    <section class="one">
 			      <article class="headline">
-			        <h1>Get authentic market insights better, faster, cheaper.</h1>
+			        <br/>Get authentic market insights better, faster, cheaper.
 			      </article>
 			    </section>
 			  </div>
