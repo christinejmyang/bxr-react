@@ -51,7 +51,6 @@ class Item extends Component {
           />
           : null
         }
-        <br/>
       </DesktopItem>
     );
 

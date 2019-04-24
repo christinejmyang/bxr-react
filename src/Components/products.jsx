@@ -4,6 +4,8 @@ import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
 import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
+import { Row, Col } from 'react-simple-flex-grid';
+import "react-simple-flex-grid/lib/main.css";
 
 const UnfilledHeart = styled.div`
   font-size: 12px;
@@ -107,30 +109,23 @@ class Products extends Component {
 
   render () {
     const bookshelfDesktop = (
-      <DesktopProducts>
-         <div>
+      <DesktopSignUp>
          {this.state.user ?
-           <div style={{marginBottom: 100 + 'px'}}>
-            <img src={this.state.user.photoURL} style={profPicStyle}/>
-            <h2>Welcome, {this.state.user.name}</h2>
-           </div>
-            :
-          <div></div>
-         }
-         </div>
-         {this.state.user ?
-         <div>
-           {this.state.products.map(product =>
-             <DesktopItem>
-                    <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
-                    <br/>
-                    <DesktopItemRemove>
-                        <button onClick={() => this.removeItem(product.id)}>X</button>
-                    </DesktopItemRemove>
-                    <button onClick={() => this.handleHeart(product.id)}> {this.formatLike()} </button>
-                    </Item>
-            </DesktopItem>)}
-         </div>
+             <Row gutter={40}>
+               {this.state.products.map(product =>
+                 <Col span={3}>
+                   <DesktopItem>
+                        <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
+                        <br/>
+                        <DesktopItemRemove>
+                            <button onClick={() => this.removeItem(product.id)}>X</button>
+                        </DesktopItemRemove>
+                        <button onClick={() => this.handleHeart(product.id)}> {this.formatLike()} </button>
+                        </Item>
+                  </DesktopItem>
+                </Col>
+             )}
+             </Row>
          :
          <div className='wrapper'>
            <p>You must be logged in to view BXR's featured products.</p>
