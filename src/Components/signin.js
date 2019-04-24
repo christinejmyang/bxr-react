@@ -61,7 +61,7 @@ const DesktopLink = styled.a`
     }
 `;
 
-const DesktopFacebook = styled.div`
+const DesktopFacebook = styled.button`
     display: inline-block;
     background-color: #4567b2;
     width: 100%;
@@ -75,7 +75,7 @@ const DesktopFacebook = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const MobileFacebook = styled.div`
+const MobileFacebook = styled.button`
     display: inline-block;
     background-color: #4567b2;
     width: 90%;
@@ -157,7 +157,6 @@ class SignInFormBase extends Component {
     const { isOpen } = this.state;
 
     const SignInPageDesktop = (
-<<<<<<< HEAD
         <DesktopSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
           <DesktopMain>
             <form onSubmit={this.onSubmit}>
@@ -172,24 +171,6 @@ class SignInFormBase extends Component {
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
               <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
-=======
-        <DesktopSignIn show={this.state.signingIn} onSubmit={this.onSubmit}><h2>Sign In</h2>
-            <DesktopMain>
-                <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
-                <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
-        
-                <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-                Don't have an account?<DesktopLink onClick={this.openPopup}>Sign Up</DesktopLink>
-                <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                    <SignUp></SignUp>
-                </Popup>
-                <br/><br/>
-            </DesktopMain>
-            <DesktopSidebar>
-                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-                <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
-            </DesktopSidebar>
->>>>>>> 1e38405d02fed082afcc7e800e33000ce00bda07
       </DesktopSignIn>
     );
 
