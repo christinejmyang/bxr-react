@@ -6,10 +6,11 @@ import { Section, bodyTextStyle } from './Section.js'
 import product from './../img/product.svg'
 import data from './../img/data.svg'
 import money from './../img/money.svg'
+import arrow from './../img/down-arrow2.svg'
 
 
 const DesktopHIW = styled.div`
-    font-family: 'Avenir Next', sans-serif;
+  font-family: 'Avenir Next', sans-serif;
 `;
 const MobileHIW = styled.div`
   font-family: 'Avenir Next', sans-serif;
@@ -21,6 +22,7 @@ const DesktopPicture = styled.img`
   width: 100px;
 `;
 const Collection = styled.div`
+	margin-bottom: 150px;
 `;
 const Left = styled.div`
   float: left;
@@ -28,6 +30,14 @@ const Left = styled.div`
 const Right = styled.div`
   margin-left: 15%;
   padding-top: 50px;
+`;
+const Arrow = styled.div`
+	text-align: center;
+	align-content: center;
+	padding-left: 50%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	width: 100px;
 `;
 
 class HowItWorks extends Component{
@@ -47,6 +57,9 @@ class HowItWorks extends Component{
 						</Right>
 						<br />
 						<br />
+						<Arrow>
+							<img src={arrow} />
+						</Arrow>
 						<Left>
 							<DesktopPicture src={data} />
 						</Left>
@@ -57,6 +70,9 @@ class HowItWorks extends Component{
 						<br />
 						<br />
 						<br />
+						<Arrow>
+							<img src={arrow} />
+						</Arrow>
 						<Left>
 							<DesktopPicture src={money} />
 						</Left>
