@@ -35,8 +35,8 @@ const Arrow = styled.div`
 	text-align: center;
 	align-content: center;
 	padding-left: 50%;
-	padding-top: 5%;
-	padding-bottom: 5%;
+	padding-top: 2.5%;
+	padding-bottom: 2.5%;
 	width: 100px;
 `;
 
