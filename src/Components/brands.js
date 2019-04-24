@@ -9,7 +9,7 @@ import clock from './../img/clock.svg'
 import tag from './../img/tag.svg'
 
 const DesktopBrands = styled.div`
-    font-family: 'Avenir Next', sans-serif;
+  font-family: 'Avenir Next', sans-serif;
 `;
 const MobileBrands = styled.div`
   font-family: 'Avenir Next', sans-serif;
@@ -57,7 +57,7 @@ class Brands extends Component {
                   - Jessica, Product Manager at BoostedPogo
                 </Right>
                 <br />
-                
+
                 <Left>
                   <DesktopPicture src={tag} />
                 </Left>
