@@ -9,6 +9,8 @@ import styled, { css } from '@emotion/styled'
 
 const DesktopNav = styled.nav`
     font-family: 'Avenir Next', sans-serif;
+    z-index: 1;
+    position: fixed;
 `;
 
 const DesktopLogo = styled.a`
@@ -81,13 +83,13 @@ const DesktopDropdownLink = styled.a`
 `;
 
 class SignedOutLinks extends Component {
-    
+
     handleOpenCloseDropdown() {
         this.setState({
             hidden: !this.state.hidden,
         });
     };
-    
+
     openPopup = () => {
         this.setState({
             isOpen: true
@@ -99,7 +101,7 @@ class SignedOutLinks extends Component {
             isOpen: false
         });
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -107,7 +109,7 @@ class SignedOutLinks extends Component {
             isOpen: false
         };
     };
-    
+
     render() {
         const { hidden } = this.state;
         const { isOpen } = this.state;
@@ -115,15 +117,15 @@ class SignedOutLinks extends Component {
             <DesktopNav>
                 <DesktopHeader>
                     <DesktopLogo href="/">bxr</DesktopLogo>
-                    
+
                     <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}>Benefits
                         <DesktopDropdown hidden={hidden}>
                             <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                            <DesktopDropdownLink href="/products">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
-                    
+
                     <DesktopNavLink href="/about">About</DesktopNavLink>
                     <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
                         <Popup show={this.state.isOpen} onClose={this.closePopup}>
