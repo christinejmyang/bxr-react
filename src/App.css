@@ -6,81 +6,7 @@ html, header, body, footer {
 	max-width: 100%;
 }
 
-* {
-  text-decoration: none;
-}
-
-ul, li {
-	list-style: none;
-}
-
-a {
-	cursor: pointer;
-}
-
-/* HEADER STYLING */
-header {
-  width: 100%;
-  height: 35px;
-  text-align: left;
-  padding: 12px;
-  padding-bottom: 20px;
-  font-weight: bolder;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: rgba(248, 248, 248, 1);
-	position: fixed;
-  top: 0px;
-  left: 0px;
-	background-color: lightcoral;
-}
-
-header .header-index {
-	font-family: 'Roboto', sans-serif;
-  font-size: 35px;
-  color: #111;
-  display: block;
-  text-align: left;
-	float: left;
-	line-height: 27px;
-	padding: 2px;
-  margin: 2.5px;
-	transition: color 0.3s;
-}
-
-header .header-index:hover {
-	color: lightgray;
-}
-
-header nav ul, Router header nav ul {
-  margin-left: 0px;
-	margin-top: 8px;
-  float: left;
-}
-
-header nav ul li, Router header nav ul li{
-  display: inline-block;
-  float: left;
-  list-style: none;
-  padding: 0 15px;
-}
-
-header nav ul li a, Router header nav ul li a {
-  font-family: 'Source Sans Pro', serif;
-  font-size: 20px;
-  color: #111;
-	transition: color 0.3s;
-}
-
-header nav ul li a:hover {
-	color: lightgray;
-}
-
 .hamburger {
-}
-
-.HeaderLink {
-	margin-top: -5%;
-	margin-bottom: -5%;
 }
 
 .HeaderLinkBurger {
@@ -103,7 +29,7 @@ body article {
 	margin: 3.5em auto;
 	font-size: 1.2em;
 	line-height: 1.5em;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 }
 
 p {
@@ -126,7 +52,10 @@ h1 {
 
 .headline {
 	text-align: center;
-	padding-top: 15px;
+	padding-top: 1%;
+    font-size: 1.5em;
+    font-weight: 500;
+    font-style: italic;
 	color: white;
 }
 
@@ -140,16 +69,16 @@ h1 {
 
 .one {
 	width: 100%;
-	height: 700px;
+    margin-top: -2%;
 	background-image: url("img/apartment.jpg"), url("img/staircase.jpg"), url("img/facade.jpg");
 	background-position: left, right top, right bottom;
 	background-repeat: no-repeat;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 }
 
 
 .two p {
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: bold;
 	font-size: 30px;
 }
@@ -158,29 +87,29 @@ h1 {
 
 .aboutone {
 	font-weight: lighter;
-	font-size: 30px;
+	font-size: 14px;
 }
 
 .descript-text p {
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px;
+	font-family: 'Avenir Next', sans-serif;
+	font-size: 14px;
 	font-weight: lighter;
 	margin-right: 25%;
 }
 
 .about-header {
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
 .prof-text {
-	font-size: 20px;
+	font-size: 14px;
 }
 
 .leftpic {
   margin-right: 30px;
   border-radius: 50%;
-  height: 200px;
+  height: 100px;
 	float:left;
 }
 
@@ -188,7 +117,7 @@ h1 {
   float: right;
   margin-left: 30px;
   border-radius: 50%;
-  height: 200px;
+  height: 100px;
 }
 
 .profile {
@@ -200,12 +129,6 @@ h1 {
 }
 
 /* BENEFITS DROPDOWN */
-.dropdown {
-	margin-top: 5%;
-	display: inline-block;
-	border-bottom: 0px solid currentColor;
-  font-weight: bolder;
-}
 
 .hamburger {
 	margin-left: 10px;
@@ -222,13 +145,6 @@ h1 {
   font-weight: bolder;
 }
 
-.dropdown-content {
-	display: none;
-	position: absolute;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
 .dropdown-content2 {
 	display: none;
 	position: absolute;
@@ -236,32 +152,6 @@ h1 {
   z-index: 1;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 30px;
-  display: block;
-	transition: 0.3s;
-}
-
-.signInButton, .signOutButton {
-	font-family: 'Source Sans Pro', serif;
-	color: white;
-  border-radius: 5px;
-	width: 70px;
-	height: 40px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.signInButton {
-	background: rgb(28, 184, 65); /* this is a green */
-}
-
-.signOutButton {
-	background: rgb(202, 60, 60); /* this is a maroon */
-}
-
-.dropdown:hover .dropdown-content {display: block; background-color: lightcoral;}
-.dropdown-content a:hover {color: #ddd; margin-left: 5px;}
 
 .dropdown2:hover .dropdown-content2 {display: block; background-color: lightcoral;}
 .dropdown-content2 a:hover {color: #ddd; margin-left: 5px;}
@@ -291,17 +181,28 @@ h1 {
 	text-align: center;
 }
 
+.signin-popup-close {
+    font-size: 1.5em;
+    color: dimgrey;
+    margin-left: 77.5%;
+    margin-top: 9.5%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.signout-popup-close {
+    font-size: 1.5em;
+    color: dimgrey;
+    margin-left: 77.5%;
+    margin-top: 4.5%;
+    position: absolute;
+    cursor: pointer;
+}
+
 .closePopButton {
 	position: absolute;
 	bottom: 10px;
 	margin: auto;
   background: white;
 	text-align: center;
-}
-a:link {
-	color: lightblue;
-	font-weight: bold;
-}
-a:hover {
-	color: blue;
 }
