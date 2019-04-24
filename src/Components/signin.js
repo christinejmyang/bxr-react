@@ -61,7 +61,7 @@ const DesktopLink = styled.a`
     }
 `;
 
-const DesktopFacebook = styled.div`
+const DesktopFacebook = styled.button`
     display: inline-block;
     background-color: #4567b2;
     width: 100%;
@@ -75,7 +75,7 @@ const DesktopFacebook = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const MobileFacebook = styled.div`
+const MobileFacebook = styled.button`
     display: inline-block;
     background-color: #4567b2;
     width: 90%;
@@ -157,22 +157,20 @@ class SignInFormBase extends Component {
     const { isOpen } = this.state;
 
     const SignInPageDesktop = (
-        <DesktopSignIn show={this.state.signingIn} onSubmit={this.onSubmit}><h2>Sign In</h2>
-            <DesktopMain>
-                <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
-                <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
-        
-                <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-                Don't have an account?<DesktopLink onClick={this.openPopup}>Sign Up</DesktopLink>
-                <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                    <SignUp></SignUp>
-                </Popup>
-                <br/><br/>
-            </DesktopMain>
-            <DesktopSidebar>
-                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-                <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
-            </DesktopSidebar>
+        <DesktopSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
+          <DesktopMain>
+            <form onSubmit={this.onSubmit}>
+              <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
+              <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
+              <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
+              Don't have an account? <Link to="/signup">Sign Up</Link><br/><br/>
+            </form>
+            <i>{error && <p>{error.message}</p>}</i>
+          </DesktopMain>
+          <DesktopSidebar>
+              <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
+              <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+          </DesktopSidebar>
       </DesktopSignIn>
     );
 
@@ -189,8 +187,9 @@ class SignInFormBase extends Component {
             <input name="password" value={password} onChange={this.onChange} type="password"/>
           </div>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit">Log In</button>
           </div>
+          <i>{error && <p>{error.message}</p>}</i>
           <div>
             <p> Don't have an account? </p>
             <Link to="/signup"> <button>Sign Up</button> </Link>

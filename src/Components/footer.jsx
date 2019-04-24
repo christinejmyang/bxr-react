@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import './../App.css';
 
 const DesktopFooter = styled.footer`
+	position: absolute;
 	background-color: rgb(48, 48, 48, 48);
 	width: 100%;
 	left: 0;
@@ -84,11 +85,9 @@ class Footer extends Component {
 			</DesktopFooter>
 		 );
 		 return (
-       <Section title="">
-         <Media query={{ minWidth: 500 }}>
-           {matches => (matches ? footerDesktop : footerDesktop)}
-         </Media>
-       </Section>
+       <Media query={{ minWidth: 500 }}>
+         {matches => (matches ? footerDesktop : footerDesktop)}
+       </Media>
      );
 	 }
 };

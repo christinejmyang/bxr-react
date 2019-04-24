@@ -17,10 +17,10 @@ const FilledHeart = styled.div`
     background-color: transparent;
 `;
 
-const MobileSignUp = styled.div`
+const MobileProducts = styled.div`
 `;
 
-const DesktopSignUp = styled.div`
+const DesktopProducts = styled.div`
     font-family: 'Source Sans Pro', sans-serif;
 `;
 
@@ -37,7 +37,7 @@ const DesktopItemRemove = styled.button`
 const profPicStyle = {
   width: '75px',
   borderRadius: '15em',
-  float: 'right',
+  float: 'center',
 };
 
 const ProductsPage = () => (
@@ -53,29 +53,6 @@ class Products extends Component {
       products: [],
       user: null
     };
-    this.login = this.login.bind(this); // <-- add this line
-    this.logout = this.logout.bind(this); // <-- add this line
-  }
-
-  login() {
-    this.props.firebase
-      .doSignInWithPopup(this.provider)
-      .then((result) => {
-        const user = result.user;
-        this.setState({
-          user
-        });
-      });
-  }
-
-  logout() {
-    this.props.firebase
-      .doSignOut()
-      .then(() => {
-        this.setState({
-          user: null
-        });
-      });
   }
 
   componentDidMount() {
@@ -130,15 +107,15 @@ class Products extends Component {
 
   render () {
     const bookshelfDesktop = (
-      <DesktopSignUp>
+      <DesktopProducts>
          <div>
          {this.state.user ?
            <div style={{marginBottom: 100 + 'px'}}>
-            <button onClick={this.logout} class="signOutButton">Sign Out</button>
             <img src={this.state.user.photoURL} style={profPicStyle}/>
+            <h2>Welcome, {this.state.user.name}</h2>
            </div>
             :
-            <button onClick={this.login} class="signInButton">Sign In With Google</button>
+          <div></div>
          }
          </div>
          {this.state.user ?
@@ -158,33 +135,33 @@ class Products extends Component {
          <div className='wrapper'>
            <p>You must be logged in to view BXR's featured products.</p>
          </div> }
-      </DesktopSignUp>
+      </DesktopProducts>
     );
 
     const bookshelfMobile = (
-       <MobileSignUp>
-       <div>
-         {this.state.user ?
-           <button onClick={this.logout} class="signOutButton">Sign Out</button>
-           :
-           <button onClick={this.login} class="signInButton">Sign In With Google</button>
-         }
-       </div>
-       {this.state.user ?
-       <div>
-         <div className='user-profile'>
-           <img src={this.state.user.photoURL} style={profPicStyle}/>
+       <MobileProducts>
+         <div>
+           {this.state.user ?
+             <div style={{marginBottom: 100 + 'px'}}>
+              <img src={this.state.user.photoURL} style={profPicStyle}/>
+              <h2>Welcome, {this.state.user.name}</h2>
+             </div>
+             :
+             <div></div>
+           }
          </div>
-         {this.state.products.map(product =>
-           <Item key={2} price={product.price} name={product.name} image={"https://picsum.photos/200"}>
-             <button onClick={() => this.removeItem(product.id)}>X</button>
-           </Item>)}
-       </div>
-       :
-       <div className='wrapper'>
-         <p>You must be logged in to view BXR's featured products.</p>
-       </div> }
-      </MobileSignUp>
+         {this.state.user ?
+         <div>
+           {this.state.products.map(product =>
+             <Item key={2} price={product.price} name={product.name} image={"https://picsum.photos/200"}>
+               <button onClick={() => this.removeItem(product.id)}>X</button>
+             </Item>)}
+         </div>
+         :
+         <div className='wrapper'>
+           <p>You must be logged in to view BXR's featured products.</p>
+         </div> }
+      </MobileProducts>
     );
 
     return(

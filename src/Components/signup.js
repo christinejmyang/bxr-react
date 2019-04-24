@@ -10,9 +10,7 @@ import { compose } from 'recompose';
 const DesktopSignUp = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
-    width: 80%;
-    margin-left: 5%;
-    margin-top: -8%;
+    width: 110%;
     padding: 5%;
     display: grid;
     grid-template-areas:
@@ -242,16 +240,7 @@ class SignUpFormBase extends Component {
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
               <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
-          <DesktopFooter>
-              <h3>Birthday</h3>
-              To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
-              <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
-
-              We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
-              <DesktopButton type="submit">Sign Up</DesktopButton>
-              Already have an account?<DesktopLink onClick={this.closePopup}>Sign In</DesktopLink><br/><br/>
-          </DesktopFooter>
-      {error && <p>{error.message}</p>}
+          <i>{error && <p>{error.message}</p>}</i>
         </DesktopSignUp>
     );
 
@@ -275,7 +264,8 @@ class SignUpFormBase extends Component {
             <MobileButton type="submit">Sign Up</MobileButton><br/><br/>
           </form>
           Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
-        {error && <p>{error.message}</p>}
+
+          <i>{error && <p>{error.message}</p>}</i>
         </MobileSignUp>
     );
 
