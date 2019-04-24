@@ -10,6 +10,8 @@ import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 
 const DesktopNav = styled.nav`
     font-family: 'Avenir Next', sans-serif;
+    z-index: 1;
+    position: fixed;
 `;
 
 const DesktopLogo = styled.a`

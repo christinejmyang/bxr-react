@@ -14,7 +14,7 @@ const UnfilledHeart = styled.div`
 `;
 
 const FilledHeart = styled.div`
-  font-size: 12px;
+    font-size: 12px;
     border: none;
     background-color: transparent;
 `;
@@ -76,7 +76,8 @@ class Products extends Component {
           price: products[product].price,
           favorite: products[product].favorite,
           saved: products[product].saved,
-          link: products[product].link
+          link: products[product].link,
+          liked: products[product].liked
         });
       }
       this.setState({
@@ -91,8 +92,8 @@ class Products extends Component {
   }
 
   handleHeart(itemId) {
-    // const itemRef = firebase.database().ref(`/products/${itemId}`);
-    this.setState({liked: !this.state.liked});
+    const itemRef = this.props.firebase.showDatabase('products');
+
   }
 
   formatLike() {
@@ -103,20 +104,19 @@ class Products extends Component {
     const unlikedHeart = (
       <UnfilledHeart> &#9825; </UnfilledHeart>
     );
-    return this.state.liked === false ? unlikedHeart : likedHeart;
+    return this.props.liked === false ? unlikedHeart : likedHeart;
   }
 
 
   render () {
     const bookshelfDesktop = (
-      <DesktopSignUp>
+      <DesktopProducts>
          {this.state.user ?
              <Row gutter={40}>
                {this.state.products.map(product =>
                  <Col span={3}>
                    <DesktopItem>
-                        <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
-                        <br/>
+                        <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={"https://picsum.photos/200"}>
                         <DesktopItemRemove>
                             <button onClick={() => this.removeItem(product.id)}>X</button>
                         </DesktopItemRemove>
