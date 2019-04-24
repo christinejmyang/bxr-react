@@ -11,11 +11,10 @@ import christine from './../img/christine.jpg';
 const DesktopAbout = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
-    width: 110%;
-    margin-left: -10%;
     padding: 5%;
     font-size: 0.8em;
 `;
+
 const MobileAbout = styled.div`
 `;
 
@@ -43,7 +42,7 @@ class About extends React.Component{
 						<p class="prof-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
 							ex ea commodo consequat.</p><br/>
-					
+
 						<img src={daniel} alt="" class="leftpic" />
 						<h2 class="prof-header">Daniel Berlin, Software Development Team</h2>
 						<p class="prof-text">Daniel is originally from Cleveland, Ohio and now studies Computer Science and Finance at Duke University.
@@ -108,11 +107,9 @@ class About extends React.Component{
 			</MobileAbout>
 		);
 		return(
-      <Section title="">
-        <Media query={{ minWidth: 800 }}>
-          {matches => (matches ? desktop : mobile)}
-        </Media>
-      </Section>
+      <Media query={{ minWidth: 800 }}>
+        {matches => (matches ? desktop : mobile)}
+      </Media>
     );
 	}
 }
