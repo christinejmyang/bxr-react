@@ -67,7 +67,7 @@ const DesktopDropdown = styled.div`
     text-align: center;
     background-color: #eeeeee;
     opacity: 0.9;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 `;
 
@@ -121,8 +121,8 @@ class SignedOutLinks extends Component {
                     <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}>Benefits
                         <DesktopDropdown hidden={hidden}>
                             <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/products">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/>
+                            <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                            <DesktopDropdownLink href="/products">For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
 

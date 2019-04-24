@@ -194,6 +194,17 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
+  loginWithGoogle() {
+    this.props.firebase
+      .doSignInWithPopup()
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
+  }
+
   onSubmit = event => {
     const { username, email, password } = this.state;
 
@@ -238,7 +249,7 @@ class SignUpFormBase extends Component {
           </DesktopMain>
           <DesktopSidebar>
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-              <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+              <DesktopGoogle onClick={this.loginWithGoogle}>Sign up with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
           <i>{error && <p>{error.message}</p>}</i>
         </DesktopSignUp>
@@ -247,7 +258,7 @@ class SignUpFormBase extends Component {
     const SignUpPageMobile = (
         <MobileSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
           <MobileFacebook>Sign up with Facebook</MobileFacebook><br/>
-          <MobileGoogle>Sign up with Google</MobileGoogle><br/><br/>
+          <MobileGoogle onClick={this.loginWithGoogle}>Sign up with Google</MobileGoogle><br/><br/>
           <MobileLine data-content="or"/><br/>
           <form onSubmit={this.onSubmit}>
             <MobileInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/><br/>

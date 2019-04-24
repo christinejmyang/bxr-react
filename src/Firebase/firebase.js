@@ -25,7 +25,7 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-  doSignInWithPopup = (provider) =>
+  doSignInWithPopup = () =>
     this.auth.signInWithPopup(this.provider);
 
   doSignOut = () =>
