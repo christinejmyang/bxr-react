@@ -9,13 +9,17 @@ import will from './../img/will.jpg';
 import christine from './../img/christine.jpg';
 
 const DesktopAbout = styled.div`
-    font-family: 'Avenir Next', sans-serif;
-    background-color: white;
-    padding: 5%;
-    font-size: 0.8em;
+  font-family: 'Avenir Next', sans-serif;
+  background-color: white;
+  padding: 5%;
+  font-size: 0.8em;
 `;
 
 const MobileAbout = styled.div`
+  font-family: 'Avenir Next', sans-serif;
+  background-color: white;
+  padding: 5%;
+  font-size: 0.8em;
 `;
 
 class About extends React.Component{

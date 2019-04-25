@@ -8,15 +8,15 @@ import { withFirebase } from '../Firebase'
 import { compose } from 'recompose';
 
 const DesktopSignUp = styled.div`
-    font-family: 'Avenir Next', sans-serif;
-    background-color: white;
-    width: 110%;
-    padding: 5%;
-    display: grid;
-    grid-template-areas:
-        "header header header header"
-        "main main main sidebar"
-        "footer footer footer footer"
+  font-family: 'Avenir Next', sans-serif;
+  background-color: white;
+  width: 80%;
+  margin-left: 5%;
+  padding: 5%;
+  display: grid;
+  grid-template-areas:
+      "header header header header"
+      "main main . sidebar"
 `;
 
 const DesktopMain = styled.div`
@@ -203,7 +203,7 @@ class SignUpFormBase extends Component {
         this.setState({
           user
         });
-        this.props.history.push("/profile")
+        this.props.history.push("/info")
       });
   };
 
@@ -214,7 +214,7 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push("/profile");
+        this.props.history.push("/info");
       })
       .catch(error => {
         this.setState({ error });
