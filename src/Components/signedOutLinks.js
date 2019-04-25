@@ -7,6 +7,7 @@ import Media from 'react-media';
 import { Section, bodyTextStyle } from './Section.js'
 import styled, { css } from '@emotion/styled'
 import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
+import menu from './../img/menu.svg'
 
 const DesktopNav = styled.nav`
     font-family: 'Avenir Next', sans-serif;
@@ -19,7 +20,6 @@ const DesktopLogo = styled.a`
     font-size: 2em;
     color: black;
     float: left;
-    margin-top: -0.5%;
     margin-left: 0.5%;
     margin-right: 2%;
     &:hover {
@@ -30,15 +30,16 @@ const DesktopLogo = styled.a`
 const DesktopHeader = styled.header`
     width: 100%;
     height: 4%;
-    padding: 1.5%;
+    position: fixed;
     background-color: lightcoral;
 `;
 
 const DesktopNavLink = styled.a`
     color: black;
-    font-weight: 600;
     font-size: 1.2em;
+    float: left;
     margin-left: 3%;
+    margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -48,10 +49,10 @@ const DesktopNavLink = styled.a`
 
 const DesktopSignInLink = styled.a`
     color: black;
-    font-weight: 600;
     font-size: 1.2em;
     float: right;
     margin-right: 4%;
+    margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -81,6 +82,10 @@ const DesktopDropdownLink = styled.a`
         cursor: pointer;
         font-style: italic;
     }
+`;
+
+const HamburgerMenu = styled.img`
+  width: 20px;
 `;
 
 class SignedOutLinks extends Component {
@@ -114,7 +119,7 @@ class SignedOutLinks extends Component {
     render() {
         const { hidden } = this.state;
         const { isOpen } = this.state;
-        const SignedInHeaderDesktop = (
+        const SignedOutHeaderDesktop = (
             <DesktopNav>
                 <DesktopHeader>
                     <DesktopLogo href="/">bxr</DesktopLogo>
@@ -123,7 +128,7 @@ class SignedOutLinks extends Component {
                         <DesktopDropdown hidden={hidden}>
                             <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/products">For Renters</DesktopDropdownLink><br/>
+                            <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
 
@@ -136,36 +141,30 @@ class SignedOutLinks extends Component {
             </DesktopNav>
             );
 
-        const SignedInHeaderMobile = (
-          <nav>
-            <ul class="HeaderUl">
-              <li class="HeaderLinkBurger">
-                <p>
-                  <div class="hamburger">
-                    <a> &#9776; </a>
-                    <div class="dropdown-content">
-                      <Link to="/about">About</Link>
-                      <Link to="/signin">Sign In</Link>
-                      <div class="dropdown2">
-                        <a>Benefits</a>
-                        <div class="dropdown-content2">
-                          <Link to="/brands">For Brands</Link>
-                          <Link to="/hosts">For Hosts</Link>
-                          <Link to="/profile">For Renters</Link>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </p>
-              </li>
-            </ul>
-          </nav>
+        const SignedOutHeaderMobile = (
+          <DesktopNav>
+              <DesktopHeader>
+                  <DesktopLogo href="/">bxr</DesktopLogo>
+                  <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}><HamburgerMenu src={menu} />
+                      <DesktopDropdown hidden={hidden}>
+                          <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                      </DesktopDropdown>
+                  </DesktopNavLink>
+                  <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
+                      <Popup show={this.state.isOpen} onClose={this.closePopup}>
+                          <SignIn></SignIn>
+                      </Popup>
+              </DesktopHeader>
+          </DesktopNav>
         );
 
         return (
             <Media query={{ minWidth: 500 }}>
-              {matches => (matches ? SignedInHeaderDesktop : SignedInHeaderMobile)}
+              {matches => (matches ? SignedOutHeaderDesktop : SignedOutHeaderMobile)}
             </Media>
         );
     }
