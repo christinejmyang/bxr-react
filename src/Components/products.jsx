@@ -8,17 +8,19 @@ import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
 const UnfilledHeart = styled.button`
-    font-size: 25px;
+    font-size: 40px;
     border: none;
     background-color: transparent;
     cursor: pointer;
+    color: none;
 `;
 
 const FilledHeart = styled.button`
-    font-size: 25px;
+    font-size: 40px;
     border: none;
     background-color: transparent;
     cursor: pointer;
+    color: red;
 `;
 
 const MobileProducts = styled.div`
@@ -55,7 +57,8 @@ class Products extends Component {
     this.state = {
       username: '',
       products: [],
-      user: null
+      user: null,
+      edit: this.false
     };
   }
 
@@ -107,24 +110,25 @@ class Products extends Component {
     const bookshelfDesktop = (
       <DesktopProducts>
          {this.state.user ?
-             <Row gutter={40}>
+             <Row gutter={0}>
                {this.state.products.map(product =>
                  <Col span={3}>
-                   <DesktopItem>
-                        <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={"https://picsum.photos/200"}>
-                        <DesktopItemRemove>
-                            <button onClick={() => this.removeItem(product.id)}>X</button>
-                        </DesktopItemRemove>
+                        <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={"https://picsum.photos/200"}>
+                          <DesktopItemRemove>
+                              <button onClick={() => this.removeItem(product.id)}>X</button>
+                          </DesktopItemRemove>
                           {product.liked === false ?
-                            (<UnfilledHeart
-                              onClick={() =>
-                                this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
-                                 &#9825; </UnfilledHeart>)
-                            :
-                            (<FilledHeart onClick={() =>
-                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}> &hearts; </FilledHeart>)}
+                              <UnfilledHeart
+                                onClick={() =>
+                                  this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
+                                &hearts; </UnfilledHeart>
+                              :
+                              <FilledHeart
+                                onClick={() =>
+                                  this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
+                                &hearts; </FilledHeart>
+                            }
                         </Item>
-                  </DesktopItem>
                 </Col>
              )}
              </Row>
@@ -137,23 +141,27 @@ class Products extends Component {
 
     const bookshelfMobile = (
        <MobileProducts>
-         <div>
-           {this.state.user ?
-             <div style={{marginBottom: 100 + 'px'}}>
-              <img src={this.state.user.photoURL} style={profPicStyle}/>
-              <h2>Welcome, {this.state.user.name}</h2>
-             </div>
-             :
-             <div></div>
-           }
-         </div>
          {this.state.user ?
-         <div>
-           {this.state.products.map(product =>
-             <Item key={2} price={product.price} name={product.name} image={"https://picsum.photos/200"}>
-               <button onClick={() => this.removeItem(product.id)}>X</button>
-             </Item>)}
-         </div>
+           <div>
+               {this.state.products.map(product =>
+                  <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={"https://picsum.photos/200"}>
+                    <DesktopItemRemove>
+                        <button onClick={() => this.removeItem(product.id)}>X</button>
+                    </DesktopItemRemove>
+                    {product.liked === false ?
+                        <UnfilledHeart
+                          onClick={() =>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
+                          &hearts; </UnfilledHeart>
+                        :
+                        <FilledHeart
+                          onClick={() =>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
+                          &hearts; </FilledHeart>
+                      }
+                  </Item>
+             )}
+           </div>
          :
          <div className='wrapper'>
            <p>You must be logged in to view BXR's featured products.</p>
