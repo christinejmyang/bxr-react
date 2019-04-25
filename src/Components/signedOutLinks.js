@@ -60,6 +60,19 @@ const DesktopSignInLink = styled.a`
     }
 `;
 
+const MobileSignInLink = styled.a`
+    color: black;
+    font-size: 1.2em;
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover{
+        color: grey;
+    }
+`;
+
 const DesktopDropdown = styled.div`
     position: fixed;
     float: left;
@@ -134,10 +147,7 @@ class SignedOutLinks extends Component {
                     </DesktopNavLink>
 
                     <DesktopNavLink href="/about">About</DesktopNavLink>
-                    <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
-                        <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                            <SignIn></SignIn>
-                        </Popup>
+                    <DesktopSignInLink href="/signin">Sign In</DesktopSignInLink>
                 </DesktopHeader>
             </DesktopNav>
             );
@@ -155,16 +165,13 @@ class SignedOutLinks extends Component {
                           <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><br/>
                       </DesktopDropdown>
                   </DesktopNavLink>
-                  <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
-                      <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                          <SignIn></SignIn>
-                      </Popup>
+                  <MobileSignInLink href="/signin">Sign In</MobileSignInLink>
               </DesktopHeader>
           </DesktopNav>
         );
 
         return (
-            <Media query={{ minWidth: 500 }}>
+            <Media query={{ minWidth: 800 }}>
               {matches => (matches ? SignedOutHeaderDesktop : SignedOutHeaderMobile)}
             </Media>
         );

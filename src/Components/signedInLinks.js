@@ -153,7 +153,6 @@ class SignedOutLinks extends Component {
                             <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
-
                     <DesktopNavLink href="/about">About</DesktopNavLink>
                     <DesktopNavLink href="/products">My Products</DesktopNavLink>
                     <DesktopSignInLink onClick={this.logout}>Sign Out</DesktopSignInLink>

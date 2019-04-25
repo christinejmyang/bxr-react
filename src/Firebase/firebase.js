@@ -17,6 +17,7 @@ class Firebase {
     app.initializeApp(config);
     this.provider = new app.auth.GoogleAuthProvider();
     this.auth = app.auth();
+    this.database = app.database();
   }
 
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -42,6 +43,13 @@ class Firebase {
 
   doOnAuthStateChanged = (user) =>
     this.auth.onAuthStateChanged(user);
+
+  doCreateNewUser = (aboutyou, interests, username) =>
+    app.database().ref('users/' + username).set({
+      aboutyou: aboutyou,
+      interests: interests
+    });
+
 }
 
 export default Firebase;

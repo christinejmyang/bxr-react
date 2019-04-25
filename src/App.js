@@ -14,6 +14,8 @@ import Nav from './Components/nav.js'
 import Hosts from './Components/hosts.js'
 import Brands from './Components/brands.js'
 import Survey from './Components/survey.js'
+import Info from './Components/info.js'
+
 
 
 class App extends Component {
@@ -57,6 +59,7 @@ class App extends Component {
             <Route path="/hosts" component={Hosts} />
             <Route path="/brands" component={Brands} />
             <Route path="/survey" component={Survey} />
+            <Route path="/info" component={Info} />
           </Switch>
           <Switch>
             <Route path="/" component={Footer} />
