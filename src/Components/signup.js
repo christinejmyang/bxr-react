@@ -192,9 +192,10 @@ class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
+    this.state = { isOpen: false };
   }
 
-  loginWithGoogle() {
+  loginWithGoogle = () => {
     this.props.firebase
       .doSignInWithPopup()
       .then((result) => {
@@ -202,8 +203,9 @@ class SignUpFormBase extends Component {
         this.setState({
           user
         });
+        this.props.history.push("/profile")
       });
-  }
+  };
 
   onSubmit = event => {
     const { username, email, password } = this.state;
@@ -225,8 +227,21 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  openPopup = () => {
+      this.setState({
+          isOpen: true
+      });
+  };
+
+  closePopup = () => {
+      this.setState({
+          isOpen: false
+      });
+  };
+
   render() {
     const { email, password, firstname, lastname, birthday, error } = this.state;
+    const { isOpen } = this.state;
 
     const SignUpPageDesktop = (
         <DesktopSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
