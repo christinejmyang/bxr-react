@@ -7,16 +7,18 @@ import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
-const UnfilledHeart = styled.div`
-  font-size: 12px;
+const UnfilledHeart = styled.button`
+    font-size: 25px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 `;
 
-const FilledHeart = styled.div`
-  font-size: 12px;
+const FilledHeart = styled.button`
+    font-size: 25px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 `;
 
 const MobileProducts = styled.div`
@@ -74,9 +76,8 @@ class Products extends Component {
           description: products[product].description,
           name: products[product].name,
           price: products[product].price,
-          favorite: products[product].favorite,
-          saved: products[product].saved,
-          link: products[product].link
+          link: products[product].link,
+          liked: products[product].liked
         });
       }
       this.setState({
@@ -90,22 +91,17 @@ class Products extends Component {
     itemRef.remove();
   }
 
-  handleHeart(itemId) {
-    // const itemRef = firebase.database().ref(`/products/${itemId}`);
-    this.setState({liked: !this.state.liked});
+  handleHeart(id, name, description, price, link, liked) {
+    this.props.firebase.showDatabase(`/products/${id}`).set({
+      id: id,
+      description: description,
+      name: name,
+      price: price,
+      link: link,
+      liked: !liked
+    });
+    this.componentDidMount();
   }
-
-  formatLike() {
-    const likedHeart = (
-      <FilledHeart> &hearts; </FilledHeart>
-    );
-
-    const unlikedHeart = (
-      <UnfilledHeart> &#9825; </UnfilledHeart>
-    );
-    return this.state.liked === false ? unlikedHeart : likedHeart;
-  }
-
 
   render () {
     const bookshelfDesktop = (
@@ -115,12 +111,18 @@ class Products extends Component {
                {this.state.products.map(product =>
                  <Col span={3}>
                    <DesktopItem>
-                        <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
-                        <br/>
+                        <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={"https://picsum.photos/200"}>
                         <DesktopItemRemove>
                             <button onClick={() => this.removeItem(product.id)}>X</button>
                         </DesktopItemRemove>
-                        <button onClick={() => this.handleHeart(product.id)}> {this.formatLike()} </button>
+                          {product.liked === false ?
+                            (<UnfilledHeart
+                              onClick={() =>
+                                this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
+                                 &#9825; </UnfilledHeart>)
+                            :
+                            (<FilledHeart onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}> &hearts; </FilledHeart>)}
                         </Item>
                   </DesktopItem>
                 </Col>
