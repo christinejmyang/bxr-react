@@ -61,11 +61,12 @@ const DesktopSignInLink = styled.a`
 `;
 
 const DesktopDropdown = styled.div`
-    position: absolute;
-    margin-left: 5.8%;
+    position: fixed;
+    float: left;
+    margin-left: 0.5%;
     margin-top: 0.1%;
     padding: 1%;
-    width: 8%;
+    width: 100px;
     text-align: center;
     background-color: #eeeeee;
     opacity: 0.9;
@@ -170,7 +171,7 @@ class SignedOutLinks extends Component {
                           <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink>
                       </DesktopDropdown>
                   </DesktopNavLink>
                   <DesktopSignInLink onClick={this.logout}>Sign Out</DesktopSignInLink>
