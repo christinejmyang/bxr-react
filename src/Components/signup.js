@@ -34,8 +34,8 @@ const DesktopFooter = styled.div`
 const MobileSignUp = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
-    width: 110%;
-    margin-left: -10%;
+    width: 80%;
+    margin-left: 5%;
     padding: 5%;
 `;
 
@@ -63,7 +63,7 @@ const MobileInput = styled.input`
 const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
-    width: 38.5%;
+    width: 30%;
     text-align: center;
     padding: 1.5%;
     margin-right: 2%;
@@ -82,10 +82,11 @@ const DesktopLink = styled.a`
     }
 `;
 
-const MobileButton = styled.div`
+const MobileButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
-    width: 90%;
+    width: 100%;
+    float: center;
     text-align: center;
     padding: 3%;
     margin-right: 2%;
@@ -108,9 +109,8 @@ const DesktopFacebook = styled.button`
 `;
 
 const MobileFacebook = styled.button`
-    display: inline-block;
     background-color: #4567b2;
-    width: 90%;
+    width: 100%;
     text-align: center;
     padding: 3%;
     color: white;
@@ -133,8 +133,7 @@ const DesktopGoogle = styled.button`
 `;
 
 const MobileGoogle = styled.button`
-    display: inline-block;
-    width: 90%;
+    width: 100%;
     text-align: center;
     padding: 3%;
     margin-top: 2%;
@@ -159,7 +158,7 @@ const MobileLine = styled.hr`
         position: absolute;
         left: 0;
         top: 50%;
-        width: 95%;
+        width: 100%;
         height: 1px;
     }
     &:after {
@@ -297,7 +296,7 @@ class SignUpFormBase extends Component {
 
     return (
       <Section title="">
-        <Media query={{ minWidth: 500 }}>
+        <Media query={{ minWidth: 800 }}>
           {matches => (matches ? SignUpPageDesktop : SignUpPageMobile)}
         </Media>
       </Section>
