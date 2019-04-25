@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './../App.css';
 import Popup from './signinpopup.js'
 import SignIn from './signin.js'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, withRouter} from 'react-router-dom';
 import Media from 'react-media';
 import { Section, bodyTextStyle } from './Section.js'
 import styled, { css } from '@emotion/styled'
+import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 
 const DesktopNav = styled.nav`
     font-family: 'Avenir Next', sans-serif;
@@ -170,4 +171,4 @@ class SignedOutLinks extends Component {
     }
 }
 
-export default SignedOutLinks;
+export default withRouter(withFirebase(SignedOutLinks));

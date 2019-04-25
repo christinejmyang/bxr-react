@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './../App.css';
 import Popup from './signinpopup.js'
 import SignIn from './signin.js'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 import Media from 'react-media';
 import { Section, bodyTextStyle } from './Section.js'
 import styled, { css } from '@emotion/styled'
@@ -10,6 +10,8 @@ import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 
 const DesktopNav = styled.nav`
     font-family: 'Avenir Next', sans-serif;
+    z-index: 1;
+    position: fixed;
 `;
 
 const DesktopLogo = styled.a`
@@ -126,6 +128,7 @@ class SignedOutLinks extends Component {
           this.setState({
             user: null
           });
+          this.props.history.push("/");
         });
     }
 
@@ -148,9 +151,6 @@ class SignedOutLinks extends Component {
                     <DesktopNavLink href="/about">About</DesktopNavLink>
                     <DesktopNavLink href="/products">My Products</DesktopNavLink>
                     <DesktopSignInLink onClick={this.logout}>Sign Out</DesktopSignInLink>
-                        <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                            <SignIn></SignIn>
-                        </Popup>
                 </DesktopHeader>
             </DesktopNav>
             );
@@ -190,4 +190,4 @@ class SignedOutLinks extends Component {
     }
 }
 
-export default withFirebase(SignedOutLinks);
+export default withRouter(withFirebase(SignedOutLinks));
