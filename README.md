@@ -1,5 +1,14 @@
-# Setup
-* Necessary Installations
+# Code Base Interview
+* Team Members & Contributions
+  * Daniel
+    * Initial HTML/CSS skeleton
+    * Backend - Firebase setup and functions (auth, read, write)
+    * Frontend - Responsive design on "Brands", "Hosts", "How It Works", and "Home" page.
+      Wrote code for site-wide Footer. Implemented React-Router throughout the app.
+  * Will
+  * Christine
+
+* Necessary Installations / Libraries We Used
   * `npm install react`
   * `npm install react-router`
   * `npm install react-router-dom`
@@ -13,7 +22,15 @@
   * `npm install redux-thunk`
   * `npm install recompose`
 
-* To run the application, enter `npm start` on the command line
+* Tutorials and Online Resources
+  * https://facebook.github.io/create-react-app/docs/getting-started
+  * https://reacttraining.com/react-router/web/guides/basic-components
+  * https://firebase.google.com/docs/web/setup
+  * https://css-tricks.com/intro-firebase-react/
+  * https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/#firebase-authentication
+  * https://howtofirebase.com/save-and-query-firebase-data-ed73fb8c6e3a
+
+* After installing the necessary dependencies, run the application with `npm start` on the command line
 
 # E2 README
 ### User story template: ###
