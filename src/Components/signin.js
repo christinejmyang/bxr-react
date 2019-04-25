@@ -120,6 +120,18 @@ class SignInFormBase extends Component {
         this.state = { isOpen: false };
     }
 
+    loginWithGoogle = () => {
+      this.props.firebase
+        .doSignInWithPopup()
+        .then((result) => {
+          const user = result.user;
+          this.setState({
+            user
+          });
+        });
+        this.props.history.push("/profile");
+    };
+
     onSubmit = event => {
         const { email, password } = this.state;
 
@@ -163,13 +175,17 @@ class SignInFormBase extends Component {
               <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
               <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
               <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-              Don't have an account? <Link to="/signup">Sign Up</Link><br/><br/>
+              Don't have an account?<DesktopLink onClick={this.openPopup}>Sign Up</DesktopLink>
+                <Popup show={this.state.isOpen} onClose={this.closePopup}>
+                    <SignUp></SignUp>
+                </Popup>
+                <br/><br/>
             </form>
             <i>{error && <p>{error.message}</p>}</i>
           </DesktopMain>
           <DesktopSidebar>
-              <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-              <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+              <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
+              <DesktopGoogle onClick={this.loginWithGoogle}>Sign in with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
       </DesktopSignIn>
     );

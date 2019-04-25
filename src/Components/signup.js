@@ -192,7 +192,20 @@ class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
+    this.state = { isOpen: false };
   }
+
+  loginWithGoogle = () => {
+    this.props.firebase
+      .doSignInWithPopup()
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+        this.props.history.push("/profile")
+      });
+  };
 
   onSubmit = event => {
     const { username, email, password } = this.state;
@@ -214,8 +227,21 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  openPopup = () => {
+      this.setState({
+          isOpen: true
+      });
+  };
+
+  closePopup = () => {
+      this.setState({
+          isOpen: false
+      });
+  };
+
   render() {
     const { email, password, firstname, lastname, birthday, error } = this.state;
+    const { isOpen } = this.state;
 
     const SignUpPageDesktop = (
         <DesktopSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
@@ -238,7 +264,7 @@ class SignUpFormBase extends Component {
           </DesktopMain>
           <DesktopSidebar>
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-              <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+              <DesktopGoogle onClick={this.loginWithGoogle}>Sign up with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
           <i>{error && <p>{error.message}</p>}</i>
         </DesktopSignUp>
@@ -247,7 +273,7 @@ class SignUpFormBase extends Component {
     const SignUpPageMobile = (
         <MobileSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
           <MobileFacebook>Sign up with Facebook</MobileFacebook><br/>
-          <MobileGoogle>Sign up with Google</MobileGoogle><br/><br/>
+          <MobileGoogle onClick={this.loginWithGoogle}>Sign up with Google</MobileGoogle><br/><br/>
           <MobileLine data-content="or"/><br/>
           <form onSubmit={this.onSubmit}>
             <MobileInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/><br/>

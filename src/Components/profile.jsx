@@ -8,9 +8,6 @@ import { withFirebase } from '../Firebase'
 const DesktopProfile = styled.div`
     font-family: 'Avenir Next', sans-serif;
 `;
-const DesktopProfileComponent = styled.div`
-`;
-
 const DesktopButton = styled.button`
     display: inline-block;
     float: right;
