@@ -20,13 +20,20 @@ const FilledHeart = styled.div`
 const MobileSignUp = styled.div`
 `;
 
-const DesktopSignUp = styled.div`
+const DesktopProducts = styled.div`
     font-family: 'Avenir Next', sans-serif;
+    margin-top: -20%;
 `;
 
 const DesktopItem = styled.div`
     font-weight: bolder;
     text-transform: capitalize;
+    background-color: red;
+    width: 30%;
+    margin-top: -10%;
+    height: 300px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
 `;
 
 const DesktopItemRemove = styled.button`
@@ -130,17 +137,15 @@ class Products extends Component {
 
   render () {
     const bookshelfDesktop = (
-      <DesktopSignUp>
+      <DesktopProducts>
          <div>
          {this.state.user ?
-           <div style={{marginBottom: 100 + 'px'}}>
             <button onClick={this.logout} class="signOutButton">Sign Out</button>
             <img src={this.state.user.photoURL} style={profPicStyle}/>
            </div>
             :
             <button onClick={this.login} class="signInButton">Sign In With Google</button>
          }
-         </div>
          {this.state.user ?
          <div>
            {this.state.products.map(product =>
@@ -151,14 +156,14 @@ class Products extends Component {
                         <button onClick={() => this.removeItem(product.id)}>X</button>
                     </DesktopItemRemove>
                     <button onClick={() => this.handleHeart(product.id)}> {this.formatLike()} </button>
-                    </Item>
+                    </Item><br/><br/>
             </DesktopItem>)}
          </div>
          :
          <div className='wrapper'>
            <p>You must be logged in to view BXR's featured products.</p>
          </div> }
-      </DesktopSignUp>
+      </DesktopProducts>
     );
 
     const bookshelfMobile = (

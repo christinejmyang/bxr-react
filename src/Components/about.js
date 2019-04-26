@@ -15,6 +15,7 @@ const DesktopAbout = styled.div`
     padding: 10%;
     padding-top: 6%;
     padding-bottom: 7%;
+    margin-top: -15%;
 `;
 
 const DesktopFounderTeam = styled.div`

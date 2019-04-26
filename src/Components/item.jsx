@@ -8,12 +8,21 @@ const DesktopItem = styled.div`
 `;
 
 const MobileItem = styled.div`
-  text-align: center;
+    text-align: center;
 `;
 
 const textStyle = {
-  marginLeft:'10px',
+    marginLeft:'4%',
 };
+
+const ItemPrice = styled.p`
+    text-align: left;
+    font-weight: 300;
+    margin-left: 4%;
+    margin-top: -7%;
+    margin-bottom: -2%;
+    font-style: italic;
+`;
 
 class Item extends Component {
   state = {
@@ -35,9 +44,10 @@ class Item extends Component {
   }
 
   render() {
-    const itemDesktop = (
-      <DesktopItem>
-        <h4 style={textStyle}>{this.state.name}, ${this.state.price}</h4>
+      const itemDesktop = (
+          <DesktopItem>
+              <h4 style={textStyle}>{this.state.name}</h4>
+                  <ItemPrice>${this.state.price}</ItemPrice>
         <img onClick={this.togglePopup.bind(this)} style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
         {this.state.showPopup ?

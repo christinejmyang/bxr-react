@@ -9,6 +9,7 @@ const DesktopProfile = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
     padding: 5%;
+    margin-top: -15%;
 `;
 const DesktopProfileComponent = styled.div`
 `;
