@@ -60,6 +60,19 @@ const DesktopSignInLink = styled.a`
     }
 `;
 
+const MobileSignInLink = styled.a`
+    color: black;
+    font-size: 1.2em;
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover{
+        color: grey;
+    }
+`;
+
 const DesktopDropdown = styled.div`
     position: fixed;
     float: left;
@@ -173,7 +186,7 @@ class SignedOutLinks extends Component {
                           <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink>
                       </DesktopDropdown>
                   </DesktopNavLink>
-                  <DesktopSignInLink onClick={this.logout}>Sign Out</DesktopSignInLink>
+                  <MobileSignInLink onClick={this.logout}>Sign Out</MobileSignInLink>
               </DesktopHeader>
           </DesktopNav>
         );
