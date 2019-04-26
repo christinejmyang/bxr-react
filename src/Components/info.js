@@ -22,7 +22,6 @@ const Headline = styled.h1`
 	text-align: center;
 	font-size: 20px;
 `;
-
 const DesktopInput = styled.input`
     padding: 1%;
     margin-right: 2%;
@@ -33,7 +32,6 @@ const DesktopInput = styled.input`
     border: 1px solid lightgrey;
     border-radius: 5px 5px 5px 5px;
 `;
-
 const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;

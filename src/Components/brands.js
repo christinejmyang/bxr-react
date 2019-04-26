@@ -17,14 +17,14 @@ const DesktopBrands = styled.div`
     padding-top: 7%;
     padding-bottom: 8%;
 `;
+const DesktopPicture = styled.img`
+  padding-top: 50px;
+  width: 100px;
+`;
 const MobileBrands = styled.div`
   font-family: 'Avenir Next', sans-serif;
   align-content: center;
   text-align: center;
-`;
-const DesktopPicture = styled.img`
-  padding-top: 50px;
-  width: 100px;
 `;
 const Collection = styled.div`
 `;

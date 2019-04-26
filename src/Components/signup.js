@@ -33,14 +33,6 @@ const DesktopFooter = styled.div`
     grid-area: footer;
 `;
 
-const MobileSignUp = styled.div`
-    font-family: 'Avenir Next', sans-serif;
-    background-color: white;
-    width: 80%;
-    margin-left: 5%;
-    padding: 5%;
-`;
-
 const DesktopInput = styled.input`
     padding: 1%;
     margin-right: 2%;
@@ -51,18 +43,7 @@ const DesktopInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const MobileInput = styled.input`
-    padding: 3%;
-    margin-right: 2%;
-    margin-top: 2%;
-    font-family: 'Avenir Next', sans-serif;
-    width: 90%;
-    font-size: 1em;
-    border: 1px solid lightgrey;
-    border-radius: 5px 5px 5px 5px;
-`;
-
-const DesktopButton = styled.div`
+const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
     width: 30%;
@@ -84,6 +65,51 @@ const DesktopLink = styled.a`
     }
 `;
 
+const DesktopFacebook = styled.button`
+    display: inline-block;
+    cursor: pointer;
+    background-color: #4567b2;
+    width: 90%;
+    text-align: center;
+    padding: 4%;
+    color: white;
+    font-weight: 600;
+    border: 2px solid #4567b2;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const DesktopGoogle = styled.button`
+    display: inline-block;
+    cursor: pointer;
+    width: 90%;
+    text-align: center;
+    padding: 4%;
+    margin-top: -8%;
+    color: black;
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileSignUp = styled.div`
+    font-family: 'Avenir Next', sans-serif;
+    background-color: white;
+    width: 80%;
+    margin-left: 5%;
+    padding: 5%;
+`;
+
+const MobileInput = styled.input`
+    padding: 3%;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 90%;
+    font-size: 1em;
+    border: 1px solid lightgrey;
+    border-radius: 5px 5px 5px 5px;
+`;
+
 const MobileButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
@@ -97,16 +123,14 @@ const MobileButton = styled.button`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopFacebook = styled.div`
-    display: inline-block;
-    cursor: pointer;
-    background-color: #4567b2;
-    width: 90%;
+const MobileGoogle = styled.button`
+    width: 100%;
     text-align: center;
-    padding: 4%;
-    color: white;
-    font-weight: 600;
-    border: 2px solid #4567b2;
+    padding: 3%;
+    margin-top: 2%;
+    color: black;
+    font-weight: 500;
+    border: 2px solid black;
     border-radius: 5px 5px 5px 5px;
 `;
 
@@ -118,30 +142,6 @@ const MobileFacebook = styled.button`
     color: white;
     font-weight: 500;
     border: 2px solid #4567b2;
-    border-radius: 5px 5px 5px 5px;
-`;
-
-const DesktopGoogle = styled.div`
-    display: inline-block;
-    cursor: pointer;
-    width: 90%;
-    text-align: center;
-    padding: 4%;
-    margin-top: -8%;
-    color: black;
-    font-weight: 600;
-    border: 2px solid black;
-    border-radius: 5px 5px 5px 5px;
-`;
-
-const MobileGoogle = styled.button`
-    width: 100%;
-    text-align: center;
-    padding: 3%;
-    margin-top: 2%;
-    color: black;
-    font-weight: 500;
-    border: 2px solid black;
     border-radius: 5px 5px 5px 5px;
 `;
 
