@@ -100,9 +100,9 @@ class Profile extends Component {
               </MobileButton>
               <br/><br/>Joined in April 2019<br/><br/>
               <h2>About You</h2>
-              I'm originally from Seoul, South Korea, and now live in central Florida. At Duke, I'm a junior studying Computer Science, VMS, and Psychology. I love dancing and trying new food, and can fit my arm in a vending machine!<br/><br/>
+              I love BXR!<br/><br/>
               <h2>Interests</h2>
-              Dancing, designing, listening to music, watching TV, trying new restaurants<br/><br/>
+              BXR!<br/><br/>
               <h2>Favorites</h2>
               <img></img>
               <img></img>
