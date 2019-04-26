@@ -39,7 +39,7 @@ const DesktopInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopButton = styled.button`
+const DesktopButton = styled.div`
     display: inline-block;
     background-color: lightcoral;
     width: 97%;
@@ -61,8 +61,9 @@ const DesktopLink = styled.a`
     }
 `;
 
-const DesktopFacebook = styled.button`
+const DesktopFacebook = styled.div`
     display: inline-block;
+    cursor: pointer;
     background-color: #4567b2;
     width: 100%;
     text-align: center;
@@ -86,8 +87,9 @@ const MobileInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopGoogle = styled.button`
+const DesktopGoogle = styled.div`
     display: inline-block;
+    cursor: pointer;
     width: 100%;
     text-align: center;
     padding: 4%;
@@ -99,7 +101,7 @@ const DesktopGoogle = styled.button`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const MobileGoogle = styled.button`
+const MobileGoogle = styled.div`
     width: 100%;
     text-align: center;
     padding: 3%;
@@ -173,6 +175,10 @@ const MobileSignIn = styled.div`
   padding: 5%;
 `;
 
+const SignInPage = () => (
+  <SignInView/>
+);
+
 const SignIn = () => (
   <SignInForm />
 );
@@ -199,7 +205,6 @@ class SignInFormBase extends Component {
             user
           });
         });
-        this.props.history.push("/profile");
     };
 
     onSubmit = event => {
@@ -209,12 +214,12 @@ class SignInFormBase extends Component {
           .doSignInWithEmailAndPassword(email, password)
           .then(() => {
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push("/profile");
           })
           .catch(error => {
             this.setState({ error });
           });
 
+        this.props.history.push("/");
         event.preventDefault();
     };
 
@@ -239,21 +244,22 @@ class SignInFormBase extends Component {
     const { isOpen } = this.state;
 
     const SignInPageDesktop = (
-        <DesktopSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
-          <DesktopMain>
-            <form onSubmit={this.onSubmit}>
-              <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
-              <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
-              <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-              Don't have an account?<DesktopLink><Link to="/signup">Sign Up</Link></DesktopLink>
-              <br/><br/>
-            </form>
-            <i>{error && <p>{error.message}</p>}</i>
-          </DesktopMain>
-          <DesktopSidebar>
-              <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
-              <DesktopGoogle onClick={this.loginWithGoogle}>Sign in with Google</DesktopGoogle><br/><br/>
-          </DesktopSidebar>
+        <DesktopSignIn show={this.state.signingIn} onSubmit={this.onSubmit}><h2>Sign In</h2>
+            <DesktopMain>
+                <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
+                <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
+        
+                <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
+                Don't have an account?<DesktopLink onClick={this.openPopup}>Sign Up</DesktopLink>
+                <Popup show={this.state.isOpen} onClose={this.closePopup}>
+                    <SignUp></SignUp>
+                </Popup>
+                <br/><br/>
+            </DesktopMain>
+            <DesktopSidebar>
+                <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
+                <DesktopGoogle onClick={this.loginWithGoogle}>Sign in with Google</DesktopGoogle><br/><br/>
+            </DesktopSidebar>
       </DesktopSignIn>
     );
 
@@ -289,6 +295,6 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
-export default SignIn;
-
-export { SignInForm };
+const SignInView = withFirebase(SignInFormBase);
+export default SignInPage;
+export { SignInView };

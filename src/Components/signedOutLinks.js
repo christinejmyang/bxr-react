@@ -20,6 +20,7 @@ const DesktopLogo = styled.a`
     font-size: 2em;
     color: black;
     float: left;
+    margin-top: -0.5%;
     margin-left: 0.5%;
     margin-right: 2%;
     &:hover {
@@ -39,7 +40,7 @@ const DesktopNavLink = styled.a`
     font-size: 1.2em;
     float: left;
     margin-left: 3%;
-    margin-top: 10px;
+    font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -50,9 +51,9 @@ const DesktopNavLink = styled.a`
 const DesktopSignInLink = styled.a`
     color: black;
     font-size: 1.2em;
+    font-weight: 600;
     float: right;
     margin-right: 4%;
-    margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -65,6 +66,8 @@ const DesktopDropdown = styled.div`
     float: left;
     margin-left: 0.5%;
     margin-top: 0.1%;
+    position: absolute;
+    margin-left: -2.2%;
     padding: 1%;
     width: 100px;
     text-align: center;
@@ -109,7 +112,11 @@ class SignedOutLinks extends Component {
             hidden: !this.state.hidden,
         });
     };
-
+    
+    checkLogin() {
+        alert("You must sign in to view this page!");
+    };
+    
     openPopup = () => {
         this.setState({
             isOpen: true
@@ -126,7 +133,8 @@ class SignedOutLinks extends Component {
         super(props);
         this.state = {
             hidden: true,
-            isOpen: false
+            isOpen: false,
+            user: this.user
         };
     };
 
@@ -137,17 +145,19 @@ class SignedOutLinks extends Component {
             <DesktopNav>
                 <DesktopHeader>
                     <DesktopLogo href="/">bxr</DesktopLogo>
-
+                    <DesktopNavLink href="/about">About</DesktopNavLink>
                     <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}>Benefits
                         <DesktopDropdown hidden={hidden}>
                             <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/>
+                            <DesktopDropdownLink onClick={this.checkLogin}>For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
 
-                    <DesktopNavLink href="/about">About</DesktopNavLink>
-                    <DesktopSignInLink href="/signin">Sign In</DesktopSignInLink>
+                    <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
+                        <Popup show={this.state.isOpen} onClose={this.closePopup}>
+                            <SignIn></SignIn>
+                        </Popup>
                 </DesktopHeader>
             </DesktopNav>
             );

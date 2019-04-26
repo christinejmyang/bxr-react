@@ -10,8 +10,22 @@ const DesktopItem = styled.div`
 `;
 
 const MobileItem = styled.div`
+<<<<<<< HEAD
   text-transform: capitalize;
   text-align: center;
+`;
+
+const textStyle = {
+    marginLeft:'4%',
+};
+
+const ItemPrice = styled.p`
+    text-align: left;
+    font-weight: 300;
+    margin-left: 4%;
+    margin-top: -7%;
+    margin-bottom: -2%;
+    font-style: italic;
 `;
 
 class Item extends Component {

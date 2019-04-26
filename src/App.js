@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import './App.css'
+
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { withFirebase} from './Firebase'
 import MainPic from './Components/mainpic.js'
 import HowItWorks from './Components/hiw.js'
-import About from './Components/about.js'
 import Footer from './Components/footer.jsx'
-import Products from './Components/products.jsx'
+import Nav from './Components/nav.js'
+import Homepage from './Components/homepage.js'
 import SignIn from './Components/signin.js'
 import SignUp from './Components/signup.js'
-import Profile from './Components/profile.jsx'
-import Nav from './Components/nav.js'
+
+import About from './Components/about.js'
+import Products from './Components/products.jsx'
 import Hosts from './Components/hosts.js'
 import Brands from './Components/brands.js'
+
+import Profile from './Components/profile.jsx'
 import Survey from './Components/survey.js'
 import Info from './Components/info.js'
-
-
 
 class App extends Component {
   constructor(props) {
@@ -47,10 +48,9 @@ class App extends Component {
         <div className="App">
           <Nav authUser={this.state.authUser}/>
           <Switch>
-            <Route exact path="/" component={MainPic} />
+            <Route exact path="/" component={Homepage} />
           </Switch>
           <Switch>
-            <Route exact path="/" component={HowItWorks} />
             <Route path="/about" component={About} />
             <Route path="/products" component={Products} />
             <Route path="/signin" component={SignIn} />
