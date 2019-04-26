@@ -30,6 +30,12 @@ const DesktopProducts = styled.div`
     font-family: 'Source Sans Pro', sans-serif;
 `;
 
+const headis = styled.header`
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 100px;
+    float: center;
+`;
+
 const DesktopItem = styled.div`
     font-weight: bolder;
     text-transform: capitalize;
@@ -80,6 +86,7 @@ class Products extends Component {
           name: products[product].name,
           price: products[product].price,
           link: products[product].link,
+          image: products[product].image,
           liked: products[product].liked
         });
       }
@@ -94,41 +101,48 @@ class Products extends Component {
     itemRef.remove();
   }
 
-  handleHeart(id, name, description, price, link, liked) {
+  handleHeart(id, name, description, price, link, liked, image) {
     this.props.firebase.showDatabase(`/products/${id}`).set({
       id: id,
       description: description,
       name: name,
       price: price,
       link: link,
+      image: image,
       liked: !liked
     });
     this.componentDidMount();
   }
 
+
+
   render () {
+    var styles = {
+      
+    }
     const bookshelfDesktop = (
       <DesktopProducts>
+        <h1 style={styles}> My Products </h1>
          {this.state.user ?
              <Row gutter={0}>
                {this.state.products.map(product =>
                  <Col span={3}>
-                        <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={"https://picsum.photos/200"}>
-                          <DesktopItemRemove>
-                              <button onClick={() => this.removeItem(product.id)}>X</button>
-                          </DesktopItemRemove>
-                          {product.liked === false ?
-                              <UnfilledHeart
-                                onClick={() =>
-                                  this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
-                                &hearts; </UnfilledHeart>
-                              :
-                              <FilledHeart
-                                onClick={() =>
-                                  this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
-                                &hearts; </FilledHeart>
-                            }
-                        </Item>
+                    <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
+                      <DesktopItemRemove>
+                        <button onClick={() => this.removeItem(product.id)}>X</button>
+                      </DesktopItemRemove>
+                      {product.liked === false ?
+                          <UnfilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </UnfilledHeart>
+                          :
+                          <FilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </FilledHeart>
+                        }
+                    </Item>
                 </Col>
              )}
              </Row>
