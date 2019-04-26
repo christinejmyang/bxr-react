@@ -3,8 +3,14 @@
   * Daniel
     * Initial HTML/CSS skeleton
     * Backend - Firebase setup and functions (auth, read, write)
-    * Frontend - Responsive design on "Brands", "Hosts", "How It Works", and "Home" page.
-      Wrote code for site-wide Footer. Implemented React-Router throughout the app.
+      * Firebase for SignIn/SignUp using both email/pw and google
+      * Retrieve user data when filling out an info form, send to database under that specific user
+      * Display and delete products in "My Products" from database
+    * Frontend
+      * Responsive design and content on "Brands", "Hosts", "How It Works", and "Home" page
+      * Wrote code for site-wide Footer
+      * Changing display of the site based on user auth state (nav links, products page, etc)
+      * Implemented React-Router throughout the app
   * Will 
     * Products Page 
       * Item Component
@@ -13,7 +19,6 @@
     * Nav bar dropdown menu and mobile hamburger 
   * Christine
     * Navigation bar links
-      * Changing links based on user status
       * Adding login/logout functionality to nav bar
     * Profile Page
     * Login/Register Pop-ups

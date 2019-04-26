@@ -48,6 +48,19 @@ const DesktopNavLink = styled.a`
     }
 `;
 
+const MobileSignInLink = styled.a`
+    color: black;
+    font-size: 1.2em;
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover{
+        color: grey;
+    }
+`;
+
 const DesktopDropdown = styled.div`
     position: fixed;
     float: left;
@@ -193,30 +206,21 @@ class SignedInLinks extends Component {
         );
 
         const SignedInHeaderMobile = (
-          <nav>
-            <ul class="HeaderUl">
-              <li class="HeaderLinkBurger">
-                <p>
-                  <div class="hamburger">
-                    <a> &#9776; </a>
-                    <div class="dropdown-content">
-                      <Link to="/about">About</Link>
-                      <Link to="/">My Products</Link>
-                      <Link to="/">Sign Out</Link>
-                      <div class="dropdown2">
-                        <a>Benefits</a>
-                        <div class="dropdown-content2">
-                          <Link to="/brands">For Brands</Link>
-                          <Link to="/hosts">For Hosts</Link>
-                          <Link to="/profile">For Renters</Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </p>
-              </li>
-            </ul>
-          </nav>
+          <DesktopNav>
+              <DesktopHeader>
+                  <DesktopLogo href="/">bxr</DesktopLogo>
+                  <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}><HamburgerMenu src={menu} />
+                      <DesktopDropdown hidden={hidden}>
+                          <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink>
+                      </DesktopDropdown>
+                  </DesktopNavLink>
+                  <MobileSignInLink onClick={this.logout}>Sign Out</MobileSignInLink>
+              </DesktopHeader>
+          </DesktopNav>
         );
 
     return (
