@@ -39,7 +39,7 @@ const DesktopInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopButton = styled.div`
+const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
     cursor: pointer;
@@ -62,9 +62,8 @@ const DesktopLink = styled.a`
     }
 `;
 
-const DesktopFacebook = styled.div`
+const DesktopFacebook = styled.button`
     display: inline-block;
-    cursor: pointer;
     background-color: #4567b2;
     width: 100%;
     text-align: center;
@@ -88,9 +87,8 @@ const MobileInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopGoogle = styled.div`
+const DesktopGoogle = styled.button`
     display: inline-block;
-    cursor: pointer;
     width: 100%;
     text-align: center;
     padding: 4%;
@@ -102,7 +100,7 @@ const DesktopGoogle = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const MobileGoogle = styled.div`
+const MobileGoogle = styled.button`
     width: 100%;
     text-align: center;
     padding: 3%;
@@ -136,7 +134,6 @@ const MobileLine = styled.hr`
         position: relative;
         display: inline-block;
         color: black;
-
         padding: 0 .5em;
         line-height: 1.5em;
         color: #818078;
@@ -176,10 +173,6 @@ const MobileSignIn = styled.div`
   padding: 5%;
 `;
 
-const SignInPage = () => (
-  <SignInView/>
-);
-
 const SignIn = () => (
   <SignInForm />
 );
@@ -206,6 +199,7 @@ class SignInFormBase extends Component {
             user
           });
         });
+        this.props.history.push("/profile");
     };
 
     onSubmit = event => {
@@ -246,25 +240,23 @@ class SignInFormBase extends Component {
     const { isOpen } = this.state;
 
     const SignInPageDesktop = (
-        <DesktopSignIn show={this.state.signingIn} onSubmit={this.onSubmit}><h2>Sign In</h2>
-            <DesktopMain>
-                <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
-                <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
-        
-                <DesktopButton onClick={this.onSubmit} type="submit">Log In</DesktopButton><br/><br/>
-                Don't have an account?<DesktopLink href="/signup">Sign Up</DesktopLink>
-                <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                    <SignUp></SignUp>
-                </Popup>
-                <br/><br/>
-            </DesktopMain>
-            <DesktopSidebar>
-                <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
-                <DesktopGoogle onClick={this.loginWithGoogle}>Sign in with Google</DesktopGoogle><br/><br/>
-            </DesktopSidebar>
+        <DesktopSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
+          <DesktopMain>
+            <form onSubmit={this.onSubmit}>
+              <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
+              <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
+              <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
+              Don't have an account?<DesktopLink><Link to="/signup">Sign Up</Link></DesktopLink>
+              <br/><br/>
+            </form>
+            <i>{error && <p>{error.message}</p>}</i>
+          </DesktopMain>
+          <DesktopSidebar>
+              <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
+              <DesktopGoogle onClick={this.loginWithGoogle}>Sign in with Google</DesktopGoogle><br/><br/>
+          </DesktopSidebar>
       </DesktopSignIn>
     );
-
     const SignInPageMobile = (
         <MobileSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
           <MobileFacebook>Sign in with Facebook</MobileFacebook><br/>
@@ -297,6 +289,5 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
-const SignInView = withRouter(withFirebase(SignInFormBase));
-export default SignInPage;
-export { SignInView };
+export default SignIn;
+export { SignInForm };

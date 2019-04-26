@@ -12,14 +12,14 @@ import arrow from './../img/down-arrow2.svg'
 const DesktopHIW = styled.div`
   font-family: 'Avenir Next', sans-serif;
 `;
+const DesktopPicture = styled.img`
+  padding-top: 50px;
+  width: 100px;
+`;
 const MobileHIW = styled.div`
   font-family: 'Avenir Next', sans-serif;
   align-content: center;
   text-align: center;
-`;
-const DesktopPicture = styled.img`
-  padding-top: 50px;
-  width: 100px;
 `;
 const Collection = styled.div`
 	margin-bottom: 150px;

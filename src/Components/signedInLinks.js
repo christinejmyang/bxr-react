@@ -20,7 +20,6 @@ const DesktopLogo = styled.a`
     font-size: 2em;
     color: black;
     float: left;
-    margin-top: -0.5%;
     margin-left: 0.5%;
     margin-right: 2%;
     &:hover {
@@ -40,7 +39,7 @@ const DesktopNavLink = styled.a`
     font-size: 1.2em;
     float: left;
     margin-left: 3%;
-    font-weight: 600;
+    margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -48,11 +47,11 @@ const DesktopNavLink = styled.a`
     }
 `;
 
-const MobileSignInLink = styled.a`
+const DesktopSignInLink = styled.a`
     color: black;
     font-size: 1.2em;
     float: right;
-    margin-right: 25px;
+    margin-right: 4%;
     margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
@@ -64,7 +63,8 @@ const MobileSignInLink = styled.a`
 const DesktopDropdown = styled.div`
     position: fixed;
     float: left;
-    margin-left: -2%;
+    margin-left: 0.5%;
+    margin-top: 0.1%;
     padding: 1%;
     width: 100px;
     text-align: center;
@@ -89,19 +89,13 @@ const HamburgerMenu = styled.img`
   width: 20px;
 `;
 
-const DesktopSignOutPic = styled.img`
-  width: '75px';
-  borderRadius: '15em';
-  float: 'right';
-  margin-right: 4%;
-`;
-
 const DesktopDashboard = styled.a`
     color: black;
     font-weight: 600;
     font-size: 1.2em;
     float: right;
     margin-right: 4%;
+    margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -123,7 +117,7 @@ const DesktopDashDropdown = styled.div`
 `;
 
 class SignedInLinks extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -132,7 +126,7 @@ class SignedInLinks extends Component {
         };
         this.logout = this.logout.bind(this);
     }
-    
+
     logout() {
         this.props.firebase
             .doSignOut()
@@ -193,7 +187,6 @@ class SignedInLinks extends Component {
                             <DesktopDropdownLink href="/products">For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
-                    
                     <DesktopDashboard onMouseOver={() => this.handleOpenCloseDashboard()} onMouseOut={() => this.handleOpenCloseDashboard()}>Dashboard
                         <DesktopDashDropdown hidden={dashHidden}>
                             <DesktopDropdownLink href="/profile">My Account</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
@@ -218,7 +211,13 @@ class SignedInLinks extends Component {
                           <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink>
                       </DesktopDropdown>
                   </DesktopNavLink>
-                  <MobileSignInLink onClick={this.logout}>Sign Out</MobileSignInLink>
+                  <DesktopDashboard onMouseOver={() => this.handleOpenCloseDashboard()} onMouseOut={() => this.handleOpenCloseDashboard()}>Dashboard
+                      <DesktopDashDropdown hidden={dashHidden}>
+                          <DesktopDropdownLink href="/profile">My Account</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink onClick={this.logout}>Sign Out</DesktopDropdownLink><br/>
+                      </DesktopDashDropdown>
+                  </DesktopDashboard>
               </DesktopHeader>
           </DesktopNav>
         );

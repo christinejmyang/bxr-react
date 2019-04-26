@@ -8,17 +8,15 @@ import { withFirebase } from '../Firebase'
 import { compose } from 'recompose';
 
 const DesktopSignUp = styled.div`
-    font-family: 'Avenir Next', sans-serif;
-    background-color: white;
-    width: 80%;
-    margin-left: 5%;
-    margin-top: -8%;
-    padding: 5%;
-    display: grid;
-    grid-template-areas:
+  font-family: 'Avenir Next', sans-serif;
+  background-color: white;
+  width: 80%;
+  margin-left: 5%;
+  padding: 5%;
+  display: grid;
+  grid-template-areas:
       "header header header header"
       "main main . sidebar"
-      "footer footer footer footer"
 `;
 
 const DesktopMain = styled.div`
@@ -62,7 +60,7 @@ const MobileInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopButton = styled.div`
+const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
     width: 30%;
@@ -97,13 +95,13 @@ const MobileButton = styled.button`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopFacebook = styled.div`
+const DesktopFacebook = styled.button`
     display: inline-block;
-    cursor: pointer;
     background-color: #4567b2;
     width: 90%;
     text-align: center;
     padding: 4%;
+    margin-left: -2%;
     color: white;
     font-weight: 600;
     border: 2px solid #4567b2;
@@ -121,12 +119,12 @@ const MobileFacebook = styled.button`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopGoogle = styled.div`
+const DesktopGoogle = styled.button`
     display: inline-block;
-    cursor: pointer;
     width: 90%;
     text-align: center;
     padding: 4%;
+    margin-left: -2%;
     margin-top: -8%;
     color: black;
     font-weight: 600;
@@ -168,7 +166,6 @@ const MobileLine = styled.hr`
         position: relative;
         display: inline-block;
         color: black;
-
         padding: 0 .5em;
         line-height: 1.5em;
         color: #818078;
@@ -176,10 +173,6 @@ const MobileLine = styled.hr`
       }
 `;
 
-const SignUpPage = () => (
-  <SignUpView/>
-);
-    
 const SignUp = () => (
   <SignUpForm />
 );
@@ -198,7 +191,6 @@ class SignUpFormBase extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
     this.state = { isOpen: false };
-    this.loginWithGoogle = this.loginWithGoogle.bind(this);
   }
 
   loginWithGoogle = () => {
@@ -251,29 +243,28 @@ class SignUpFormBase extends Component {
 
     const SignUpPageDesktop = (
         <DesktopSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
-            <DesktopMain>
-                <form onSubmit={this.onSubmit}>
-                    <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/>
-                    <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
+          <DesktopMain>
+            <form onSubmit={this.onSubmit}>
+              <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/>
+              <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
 
-                    <DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/>
-                    <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/>
-                </form>
-            </DesktopMain>
-            <DesktopSidebar>
-                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-                <DesktopGoogle onClick={this.loginWithGoogle}>Sign up with Google</DesktopGoogle><br/><br/>
-            </DesktopSidebar>
-            <DesktopFooter>
-                <h3>Birthday</h3>
-                To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
-                <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
+              <DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/>
+              <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/>
 
-                We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
-                <DesktopButton type="submit">Sign Up</DesktopButton>
-                Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
-                <i>{error && <p>{error.message}</p>}</i>
-            </DesktopFooter>
+              <h3>Birthday</h3>
+              To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
+              <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
+
+              We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
+              <DesktopButton type="submit">Sign Up</DesktopButton>
+            </form>
+              Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
+          </DesktopMain>
+          <DesktopSidebar>
+              <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
+              <DesktopGoogle onClick={this.loginWithGoogle}>Sign up with Google</DesktopGoogle><br/><br/>
+          </DesktopSidebar>
+          <i>{error && <p>{error.message}</p>}</i>
         </DesktopSignUp>
     );
 
@@ -313,10 +304,10 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpForm = compose(
-    withRouter,
-    withFirebase,
+  withRouter,
+  withFirebase,
 )(SignUpFormBase);
 
-const SignUpView = withFirebase(SignUpFormBase);
-export default SignUpPage;
-export { SignUpView };
+export default SignUp;
+
+export { SignUpForm };
