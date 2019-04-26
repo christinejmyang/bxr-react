@@ -8,8 +8,8 @@
   * Will 
     * Products Page 
       * Item Component
-      * Popup
-      * Like / Unlike connected with Firebase
+      * Popup Component with more details for each product
+      * Like / unlike updates firebase values
   * Christine
 
 * Necessary Installations / Libraries We Used
