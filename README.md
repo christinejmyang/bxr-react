@@ -10,6 +10,7 @@
       * Item Component
       * Popup Component with more details for each product
       * Like / unlike updates firebase values
+    * Nav bar dropdown menu and mobile hamburger 
   * Christine
 
 * Necessary Installations / Libraries We Used
