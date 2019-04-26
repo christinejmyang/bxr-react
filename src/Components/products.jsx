@@ -21,7 +21,7 @@ const MobileSignUp = styled.div`
 `;
 
 const DesktopSignUp = styled.div`
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Avenir Next', sans-serif;
 `;
 
 const DesktopItem = styled.div`
@@ -198,6 +198,5 @@ class Products extends Component {
 };
 
 const ProductsView = withFirebase(Products);
-
 export default ProductsPage;
 export { ProductsView };

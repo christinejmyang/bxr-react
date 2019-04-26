@@ -58,8 +58,7 @@ const DesktopSignInLink = styled.a`
 
 const DesktopDropdown = styled.div`
     position: absolute;
-    margin-left: 5.8%;
-    margin-top: 0.1%;
+    margin-left: 12.4%;
     padding: 1%;
     width: 8%;
     text-align: center;
@@ -88,6 +87,10 @@ class SignedOutLinks extends Component {
         });
     };
     
+    checkLogin() {
+        alert("You must sign in to view this page!");
+    };
+    
     openPopup = () => {
         this.setState({
             isOpen: true
@@ -104,27 +107,29 @@ class SignedOutLinks extends Component {
         super(props);
         this.state = {
             hidden: true,
-            isOpen: false
+            isOpen: false,
+            user: this.user
         };
-    };
-    
+    }
+
     render() {
         const { hidden } = this.state;
         const { isOpen } = this.state;
-        const SignedInHeaderDesktop = (
+        
+        const SignedOutHeaderDesktop = (
             <DesktopNav>
                 <DesktopHeader>
                     <DesktopLogo href="/">bxr</DesktopLogo>
                     
+                    <DesktopNavLink href="/about">About</DesktopNavLink>
                     <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}>Benefits
                         <DesktopDropdown hidden={hidden}>
                             <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/>
+                            <DesktopDropdownLink onClick={this.checkLogin}>For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
-                    
-                    <DesktopNavLink href="/about">About</DesktopNavLink>
+
                     <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
                         <Popup show={this.state.isOpen} onClose={this.closePopup}>
                             <SignIn></SignIn>
@@ -133,7 +138,7 @@ class SignedOutLinks extends Component {
             </DesktopNav>
             );
 
-        const SignedInHeaderMobile = (
+        const SignedOutHeaderMobile = (
           <nav>
             <ul class="HeaderUl">
               <li class="HeaderLinkBurger">
@@ -162,7 +167,7 @@ class SignedOutLinks extends Component {
 
         return (
             <Media query={{ minWidth: 500 }}>
-              {matches => (matches ? SignedInHeaderDesktop : SignedInHeaderMobile)}
+              {matches => (matches ? SignedOutHeaderDesktop : SignedOutHeaderMobile)}
             </Media>
         );
     }

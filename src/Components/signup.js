@@ -62,7 +62,7 @@ const MobileInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopButton = styled.button`
+const DesktopButton = styled.div`
     display: inline-block;
     background-color: lightcoral;
     width: 38.5%;
@@ -96,13 +96,13 @@ const MobileButton = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopFacebook = styled.button`
+const DesktopFacebook = styled.div`
     display: inline-block;
+    cursor: pointer;
     background-color: #4567b2;
     width: 90%;
     text-align: center;
     padding: 4%;
-    margin-left: -2%;
     color: white;
     font-weight: 600;
     border: 2px solid #4567b2;
@@ -121,12 +121,12 @@ const MobileFacebook = styled.button`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopGoogle = styled.button`
+const DesktopGoogle = styled.div`
     display: inline-block;
+    cursor: pointer;
     width: 90%;
     text-align: center;
     padding: 4%;
-    margin-left: -2%;
     margin-top: -8%;
     color: black;
     font-weight: 600;
@@ -177,6 +177,10 @@ const MobileLine = styled.hr`
       }
 `;
 
+const SignUpPage = () => (
+  <SignUpView/>
+);
+    
 const SignUp = () => (
   <SignUpForm />
 );
@@ -191,109 +195,111 @@ const INITIAL_STATE = {
 };
 
 class SignUpFormBase extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...INITIAL_STATE };
-  }
+    constructor(props) {
+        super(props);
+        this.state = { ...INITIAL_STATE };
+        this.googleLogin = this.googleLogin.bind(this);
+    }
 
-  onSubmit = event => {
-    const { username, email, password } = this.state;
+    googleLogin() {
+        this.props.firebase
+          .doSignInWithPopup(this.provider)
+          .then((result) => {
+            const user = result.user;
+            this.setState({
+              user
+            });
+          });
+      }
 
-    this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, password)
-      .then(authUser => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push("/profile");
-      })
-      .catch(error => {
-        this.setState({ error });
-      });
+    onSubmit = event => {
+        const { username, email, password } = this.state;
+        this.props.firebase
+            .doCreateUserWithEmailAndPassword(email, password)
+            .then(authUser => {
+                this.setState({ ...INITIAL_STATE });
+                this.props.history.push("/profile");
+            })
+            .catch(error => {
+                this.setState({ error });
+            });
+        event.preventDefault();
+    };
 
-    event.preventDefault();
-  };
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    render() {
+        const { email, password, firstname, lastname, birthday, error } = this.state;
 
-  render() {
-    const { email, password, firstname, lastname, birthday, error } = this.state;
+        const SignUpPageDesktop = (
+            <DesktopSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
+                <DesktopMain>
+                    <form onSubmit={this.onSubmit}>
+                        <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/>
+                        <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
 
-    const SignUpPageDesktop = (
-        <DesktopSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
-          <DesktopMain>
-            <form onSubmit={this.onSubmit}>
-              <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/>
-              <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
+                        <DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/>
+                        <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/>
+                    </form>
+                </DesktopMain>
+                <DesktopSidebar>
+                    <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
+                    <DesktopGoogle onClick={this.googleLogin}>Sign up with Google</DesktopGoogle><br/><br/>
+                </DesktopSidebar>
+                <DesktopFooter>
+                    <h3>Birthday</h3>
+                    To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
+                    <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
 
-              <DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/>
-              <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/>
+                    We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
+                    <DesktopButton type="submit">Sign Up</DesktopButton>
+                    Already have an account?<DesktopLink onClick={this.closePopup}>Sign In</DesktopLink><br/><br/>
+                </DesktopFooter>
+          {error && <p>{error.message}</p>}
+            </DesktopSignUp>
+        );
 
-              <h3>Birthday</h3>
-              To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
-              <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
+        const SignUpPageMobile = (
+            <MobileSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
+              <MobileFacebook>Sign up with Facebook</MobileFacebook><br/>
+              <MobileGoogle>Sign up with Google</MobileGoogle><br/><br/>
+              <MobileLine data-content="or"/><br/>
+              <form onSubmit={this.onSubmit}>
+                <MobileInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/><br/>
+                <MobileInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
 
-              We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
-              <DesktopButton type="submit">Sign Up</DesktopButton>
-            </form>
+                <MobileInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/><br/>
+                <MobileInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/><br/><br/>
+
+                <h3>Birthday</h3>
+                To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
+                <MobileInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
+
+                We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
+                <MobileButton type="submit">Sign Up</MobileButton><br/><br/>
+              </form>
               Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
-          </DesktopMain>
-          <DesktopSidebar>
-              <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-              <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
-          </DesktopSidebar>
-          <DesktopFooter>
-              <h3>Birthday</h3>
-              To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
-              <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
+            {error && <p>{error.message}</p>}
+            </MobileSignUp>
+        );
 
-              We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
-              <DesktopButton type="submit">Sign Up</DesktopButton>
-              Already have an account?<DesktopLink onClick={this.closePopup}>Sign In</DesktopLink><br/><br/>
-          </DesktopFooter>
-      {error && <p>{error.message}</p>}
-        </DesktopSignUp>
-    );
-
-    const SignUpPageMobile = (
-        <MobileSignUp onSubmit={this.onSubmit}><h2>Sign Up</h2>
-          <MobileFacebook>Sign up with Facebook</MobileFacebook><br/>
-          <MobileGoogle>Sign up with Google</MobileGoogle><br/><br/>
-          <MobileLine data-content="or"/><br/>
-          <form onSubmit={this.onSubmit}>
-            <MobileInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/><br/>
-            <MobileInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
-
-            <MobileInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/><br/>
-            <MobileInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/><br/><br/>
-
-            <h3>Birthday</h3>
-            To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
-            <MobileInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
-
-            We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
-            <MobileButton type="submit">Sign Up</MobileButton><br/><br/>
-          </form>
-          Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
-        {error && <p>{error.message}</p>}
-        </MobileSignUp>
-    );
-
-    return (
-      <Section title="">
-        <Media query={{ minWidth: 500 }}>
-          {matches => (matches ? SignUpPageDesktop : SignUpPageMobile)}
-        </Media>
-      </Section>
-    );
+        return (
+            <Section title="">
+                <Media query={{ minWidth: 500 }}>
+                    {matches => (matches ? SignUpPageDesktop : SignUpPageMobile)}
+                </Media>
+            </Section>
+        );
   }
 }
 
 const SignUpForm = compose(
-  withRouter,
-  withFirebase,
+    withRouter,
+    withFirebase,
 )(SignUpFormBase);
 
-export default SignUp;
-
-export { SignUpForm };
+const SignUpView = withFirebase(SignUpFormBase);
+export default SignUpPage;
+export { SignUpView };

@@ -50,23 +50,6 @@ h1 {
 
 /* INDEX.HTML */
 
-.headline {
-	text-align: center;
-	padding-top: 1%;
-    font-size: 1.5em;
-    font-weight: 500;
-    font-style: italic;
-	color: white;
-}
-
-.icons {
-	float: left;
-	margin-left: 50px;
-	margin-bottom: 30px;
-  margin-right: 50px;
-  height: 60px;
-}
-
 .one {
 	width: 100%;
     margin-top: -2%;
@@ -74,61 +57,6 @@ h1 {
 	background-position: left, right top, right bottom;
 	background-repeat: no-repeat;
 	font-family: 'Avenir Next', sans-serif;
-}
-
-.two {
-	border-top: 2px solid lightcoral;
-}
-
-.two p {
-	font-family: 'Avenir Next', sans-serif;
-	font-weight: bold;
-	font-size: 30px;
-}
-
-/* ABOUT.HTML */
-
-.aboutone {
-	font-weight: lighter;
-	font-size: 14px;
-}
-
-.descript-text p {
-	font-family: 'Avenir Next', sans-serif;
-	font-size: 14px;
-	font-weight: lighter;
-	margin-right: 25%;
-}
-
-.about-header {
-	font-size: 30px;
-	font-weight: bold;
-}
-
-.prof-text {
-	font-size: 14px;
-}
-
-.leftpic {
-  margin-right: 30px;
-  border-radius: 50%;
-  height: 100px;
-	float:left;
-}
-
-.rightpic {
-  float: right;
-  margin-left: 30px;
-  border-radius: 50%;
-  height: 100px;
-}
-
-.profile {
-	margin-top: -3%;
-}
-
-#bold {
-	color: lightcoral;
 }
 
 /* BENEFITS DROPDOWN */

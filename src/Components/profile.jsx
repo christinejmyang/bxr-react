@@ -3,16 +3,25 @@ import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import { withFirebase } from '../Firebase'
+import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 
 const DesktopProfile = styled.div`
     font-family: 'Avenir Next', sans-serif;
+    background-color: white;
+    padding: 5%;
 `;
 const DesktopProfileComponent = styled.div`
 `;
 
-const DesktopButton = styled.button`
+const DesktopPic = styled.div`
+    width: '75px',
+    borderRadius: '15em',
+    float: 'right',
+`;
+
+const DesktopButton = styled.div`
     display: inline-block;
+    cursor: pointer;
     float: right;
     background-color: lightcoral;
     width: 55px;
@@ -37,28 +46,50 @@ const MobileButton = styled.button`
     border-radius: 25px 25px 25px 25px;
 `;
 
-class Profile extends Component {
 
+const ProfilePage = () => (
+  <ProfileView/>
+)
+
+class Profile extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            user: this.user
+        };
+        this.logout = this.logout.bind(this); // <-- add this line
+    }
+    logout() {
+        this.props.firebase
+            .doSignOut()
+            .then(() => {
+                this.setState({
+                    user: null
+                });
+            });
+            window.location.href = "/";
+    }
     render () {
         const profileDesktop = (
             <DesktopProfile>
-              <img src="./../img/christine.jpg"/>
-              Welcome, name!
-              <DesktopButton>
-                  EDIT
-              </DesktopButton>
-              <br/><br/>Joined in April 2019<br/><br/>
-              <h2>About You</h2>
-              I'm originally from Seoul, South Korea, and now live in central Florida. At Duke, I'm a junior studying Computer Science, VMS, and Psychology. I love dancing and trying new food, and can fit my arm in a vending machine!<br/><br/>
-              <h2>Interests</h2>
-              Dancing, designing, listening to music, watching TV, trying new restaurants<br/><br/>
-              <h2>Favorites</h2>
-              <img></img>
-              <img></img>
-              <img></img>
-              See more
+                <DesktopPic>
+                    <button onClick={this.logout} class="signOutButton">Sign Out</button>
+                    
+                </DesktopPic>
+                Welcome, {this.state.username}!
+                <DesktopButton>
+                    EDIT
+                </DesktopButton>
+                <br/><br/>Joined in April 2019<br/><br/>
+                <h2>About You</h2>
+                I love BXR!<br/><br/>
+                <h2>Interests</h2>
+                BXR!<br/><br/>
+                <h2>Favorites</h2>
+                See more
             </DesktopProfile>
-    );
+        );
 
         const profileMobile = (
             <MobileProfile>
@@ -90,4 +121,6 @@ class Profile extends Component {
   }
 };
 
-export default Profile;
+const ProfileView = withFirebase(Profile);
+export default ProfilePage;
+export { ProfileView };

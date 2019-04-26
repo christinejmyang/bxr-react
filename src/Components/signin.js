@@ -39,7 +39,7 @@ const DesktopInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopButton = styled.button`
+const DesktopButton = styled.div`
     display: inline-block;
     background-color: lightcoral;
     width: 97%;
@@ -63,6 +63,7 @@ const DesktopLink = styled.a`
 
 const DesktopFacebook = styled.div`
     display: inline-block;
+    cursor: pointer;
     background-color: #4567b2;
     width: 100%;
     text-align: center;
@@ -87,8 +88,9 @@ const MobileFacebook = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopGoogle = styled.button`
+const DesktopGoogle = styled.div`
     display: inline-block;
+    cursor: pointer;
     width: 100%;
     text-align: center;
     padding: 4%;
@@ -102,6 +104,10 @@ const DesktopGoogle = styled.button`
 
 const MobileSignIn = styled.div`
 `;
+
+const SignInPage = () => (
+  <SignInView/>
+);
 
 const SignIn = () => (
   <SignInForm />
@@ -118,6 +124,18 @@ class SignInFormBase extends Component {
         super(props);
         this.state = { ...INITIAL_STATE };
         this.state = { isOpen: false };
+        this.googleLogin = this.googleLogin.bind(this);
+    }
+    
+    googleLogin() {
+        this.props.firebase
+          .doSignInWithPopup(this.provider)
+          .then((result) => {
+            const user = result.user;
+            this.setState({
+              user
+            });
+          });
     }
 
     onSubmit = event => {
@@ -170,8 +188,8 @@ class SignInFormBase extends Component {
                 <br/><br/>
             </DesktopMain>
             <DesktopSidebar>
-                <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
-                <DesktopGoogle>Sign up with Google</DesktopGoogle><br/><br/>
+                <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
+                <DesktopGoogle onClick={this.googleLogin}>Sign in with Google</DesktopGoogle><br/><br/>
             </DesktopSidebar>
       </DesktopSignIn>
     );
@@ -214,6 +232,6 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
-export default SignIn;
-
-export { SignInForm };
+const SignInView = withFirebase(SignInFormBase);
+export default SignInPage;
+export { SignInView };
