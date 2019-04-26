@@ -11,14 +11,14 @@ import tag from './../img/tag.svg'
 const DesktopBrands = styled.div`
   font-family: 'Avenir Next', sans-serif;
 `;
+const DesktopPicture = styled.img`
+  padding-top: 50px;
+  width: 100px;
+`;
 const MobileBrands = styled.div`
   font-family: 'Avenir Next', sans-serif;
   align-content: center;
   text-align: center;
-`;
-const DesktopPicture = styled.img`
-  padding-top: 50px;
-  width: 100px;
 `;
 const Collection = styled.div`
 `;

@@ -60,19 +60,6 @@ const DesktopSignInLink = styled.a`
     }
 `;
 
-const MobileSignInLink = styled.a`
-    color: black;
-    font-size: 1.2em;
-    float: right;
-    margin-right: 25px;
-    margin-top: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    &:hover{
-        color: grey;
-    }
-`;
-
 const DesktopDropdown = styled.div`
     position: fixed;
     float: left;
@@ -97,6 +84,21 @@ const DesktopDropdownLink = styled.a`
         font-style: italic;
     }
 `;
+
+const MobileSignInLink = styled.a`
+    color: black;
+    font-size: 1.2em;
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover{
+        color: grey;
+    }
+`;
+
+
 
 const HamburgerMenu = styled.img`
   width: 20px;

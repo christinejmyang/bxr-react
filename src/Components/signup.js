@@ -31,30 +31,11 @@ const DesktopFooter = styled.div`
     grid-area: footer;
 `;
 
-const MobileSignUp = styled.div`
-    font-family: 'Avenir Next', sans-serif;
-    background-color: white;
-    width: 80%;
-    margin-left: 5%;
-    padding: 5%;
-`;
-
 const DesktopInput = styled.input`
     padding: 1%;
     margin-right: 2%;
     font-family: 'Avenir Next', sans-serif;
     width: 42%;
-    font-size: 1em;
-    border: 1px solid lightgrey;
-    border-radius: 5px 5px 5px 5px;
-`;
-
-const MobileInput = styled.input`
-    padding: 3%;
-    margin-right: 2%;
-    margin-top: 2%;
-    font-family: 'Avenir Next', sans-serif;
-    width: 90%;
     font-size: 1em;
     border: 1px solid lightgrey;
     border-radius: 5px 5px 5px 5px;
@@ -82,19 +63,6 @@ const DesktopLink = styled.a`
     }
 `;
 
-const MobileButton = styled.button`
-    display: inline-block;
-    background-color: lightcoral;
-    width: 100%;
-    float: center;
-    text-align: center;
-    padding: 3%;
-    margin-right: 2%;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px 5px 5px 5px;
-`;
-
 const DesktopFacebook = styled.button`
     display: inline-block;
     background-color: #4567b2;
@@ -104,17 +72,6 @@ const DesktopFacebook = styled.button`
     margin-left: -2%;
     color: white;
     font-weight: 600;
-    border: 2px solid #4567b2;
-    border-radius: 5px 5px 5px 5px;
-`;
-
-const MobileFacebook = styled.button`
-    background-color: #4567b2;
-    width: 100%;
-    text-align: center;
-    padding: 3%;
-    color: white;
-    font-weight: 500;
     border: 2px solid #4567b2;
     border-radius: 5px 5px 5px 5px;
 `;
@@ -132,6 +89,38 @@ const DesktopGoogle = styled.button`
     border-radius: 5px 5px 5px 5px;
 `;
 
+const MobileSignUp = styled.div`
+    font-family: 'Avenir Next', sans-serif;
+    background-color: white;
+    width: 80%;
+    margin-left: 5%;
+    padding: 5%;
+`;
+
+const MobileInput = styled.input`
+    padding: 3%;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 90%;
+    font-size: 1em;
+    border: 1px solid lightgrey;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileButton = styled.button`
+    display: inline-block;
+    background-color: lightcoral;
+    width: 100%;
+    float: center;
+    text-align: center;
+    padding: 3%;
+    margin-right: 2%;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px 5px 5px 5px;
+`;
+
 const MobileGoogle = styled.button`
     width: 100%;
     text-align: center;
@@ -140,6 +129,17 @@ const MobileGoogle = styled.button`
     color: black;
     font-weight: 500;
     border: 2px solid black;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileFacebook = styled.button`
+    background-color: #4567b2;
+    width: 100%;
+    text-align: center;
+    padding: 3%;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #4567b2;
     border-radius: 5px 5px 5px 5px;
 `;
 

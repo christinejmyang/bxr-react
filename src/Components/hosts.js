@@ -11,14 +11,14 @@ import stars from './../img/five-stars.svg'
 const DesktopHosts = styled.div`
     font-family: 'Avenir Next', sans-serif;
 `;
+const DesktopPicture = styled.img`
+  padding-top: 50px;
+  width: 100px;
+`;
 const MobileHosts = styled.div`
   font-family: 'Avenir Next', sans-serif;
   align-content: center;
   text-align: center;
-`;
-const DesktopPicture = styled.img`
-  padding-top: 50px;
-  width: 100px;
 `;
 const Collection = styled.div`
 `;
@@ -96,7 +96,7 @@ class Hosts extends Component {
                   - Daniel, VRBO Host
                 </div>
                 <br />
-  
+
                 <div>
                   <DesktopPicture src={stars} />
                 </div>
