@@ -161,8 +161,7 @@ class SignedOutLinks extends Component {
                           <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><br/>
+                          <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/>
                       </DesktopDropdown>
                   </DesktopNavLink>
                   <MobileSignInLink href="/signin">Sign In</MobileSignInLink>

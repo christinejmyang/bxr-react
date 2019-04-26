@@ -17,6 +17,7 @@ const Pup = styled.div`
   background-color: rgba(0,0,0, 0.5);
   font-family: 'Avenir Next', sans-serif;
   text-transform: none;
+  overflow-y: scroll;
 `;
 
 const PupInner = styled.div`

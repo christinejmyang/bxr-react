@@ -86,7 +86,7 @@ const DesktopDropdownLink = styled.a`
 `;
 
 const HamburgerMenu = styled.img`
-  width: 5px;
+  width: 20px;
 `;
 
 const DesktopSignOutPic = styled.img`

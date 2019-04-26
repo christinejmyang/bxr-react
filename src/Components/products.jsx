@@ -28,12 +28,13 @@ const MobileProducts = styled.div`
 
 const DesktopProducts = styled.div`
     font-family: 'Source Sans Pro', sans-serif;
+    margin-bottom: 100px;
 `;
 
-const headis = styled.header`
+const Headis = styled.h1`
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 100px;
-    float: center;
+    font-size: 50px;
+    text-align: center;
 `;
 
 const DesktopItem = styled.div`
@@ -44,6 +45,10 @@ const DesktopItem = styled.div`
 const DesktopItemRemove = styled.button`
     border: none;
     background-color: transparent;
+`;
+
+const ProductsCollection = styled.div`
+  margin-top: -100px;
 `;
 
 const profPicStyle = {
@@ -118,12 +123,13 @@ class Products extends Component {
 
   render () {
     var styles = {
-      
+
     }
     const bookshelfDesktop = (
       <DesktopProducts>
-        <h1 style={styles}> My Products </h1>
-         {this.state.user ?
+        <Headis> My Products </Headis>
+        <ProductsCollection>
+          {this.state.user ?
              <Row gutter={0}>
                {this.state.products.map(product =>
                  <Col span={3}>
@@ -150,6 +156,7 @@ class Products extends Component {
          <div className='wrapper'>
            <p>You must be logged in to view BXR's featured products.</p>
          </div> }
+       </ProductsCollection>
       </DesktopProducts>
     );
 
@@ -158,19 +165,19 @@ class Products extends Component {
          {this.state.user ?
            <div>
                {this.state.products.map(product =>
-                  <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={"https://picsum.photos/200"}>
+                  <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                     <DesktopItemRemove>
                         <button onClick={() => this.removeItem(product.id)}>X</button>
                     </DesktopItemRemove>
                     {product.liked === false ?
                         <UnfilledHeart
                           onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
                           &hearts; </UnfilledHeart>
                         :
                         <FilledHeart
                           onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked)}>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
                           &hearts; </FilledHeart>
                       }
                   </Item>
