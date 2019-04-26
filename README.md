@@ -5,7 +5,11 @@
     * Backend - Firebase setup and functions (auth, read, write)
     * Frontend - Responsive design on "Brands", "Hosts", "How It Works", and "Home" page.
       Wrote code for site-wide Footer. Implemented React-Router throughout the app.
-  * Will
+  * Will 
+    * Products Page 
+      * Item Component
+      * Popup
+      * Like / Unlike connected with Firebase
   * Christine
 
 * Necessary Installations / Libraries We Used
