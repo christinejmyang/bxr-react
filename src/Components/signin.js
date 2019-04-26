@@ -42,6 +42,7 @@ const DesktopInput = styled.input`
 const DesktopButton = styled.div`
     display: inline-block;
     background-color: lightcoral;
+    cursor: pointer;
     width: 97%;
     text-align: center;
     padding: 3%;
@@ -214,12 +215,13 @@ class SignInFormBase extends Component {
           .doSignInWithEmailAndPassword(email, password)
           .then(() => {
             this.setState({ ...INITIAL_STATE });
+            this.props.history.push("/profile");
           })
           .catch(error => {
             this.setState({ error });
+            alert("Sorry! That combination is invalid.");
           });
 
-        this.props.history.push("/");
         event.preventDefault();
     };
 
@@ -249,8 +251,8 @@ class SignInFormBase extends Component {
                 <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
                 <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
         
-                <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-                Don't have an account?<DesktopLink onClick={this.openPopup}>Sign Up</DesktopLink>
+                <DesktopButton onClick={this.onSubmit} type="submit">Log In</DesktopButton><br/><br/>
+                Don't have an account?<DesktopLink href="/signup">Sign Up</DesktopLink>
                 <Popup show={this.state.isOpen} onClose={this.closePopup}>
                     <SignUp></SignUp>
                 </Popup>
@@ -295,6 +297,6 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
-const SignInView = withFirebase(SignInFormBase);
+const SignInView = withRouter(withFirebase(SignInFormBase));
 export default SignInPage;
 export { SignInView };

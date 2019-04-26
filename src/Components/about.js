@@ -6,6 +6,8 @@ import profilepic from './../img/profile1.png';
 import daniel from './../img/daniel.jpg';
 import will from './../img/will.jpg';
 import christine from './../img/christine.jpg';
+import nishant from './../img/nishant.jpg';
+import sean from './../img/sean.jpg';
 
 const DesktopAbout = styled.div`
     font-family: 'Avenir Next', sans-serif;
@@ -37,7 +39,7 @@ const DesktopPic = styled.img`
 `;
 const DesktopText = styled.p`
     text-align: left;
-    font-size: 0.8em;
+    font-size: 1em;
     width: 100%;
     margin-top: 5%;
 `;
@@ -62,13 +64,13 @@ class About extends React.Component{
                 <h2>Meet the Team</h2>
                 <DesktopFounderTeam>
                     <DesktopFounder>
-                        <DesktopPic src={profilepic} alt=""/>
+                        <DesktopPic src={sean} alt=""/>
                         <br/><h3>Sean Yoon, Co-founder & CEO</h3>
                         <DesktopText><br/><br/>hiiiLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</DesktopText>
                     </DesktopFounder>
 
                     <DesktopFounder>
-                        <DesktopPic src={profilepic} alt=""/>
+                        <DesktopPic src={nishant} alt=""/>
                         <br/><h3>Nishant Kumar, Co-founder & CTO</h3>
                         <DesktopText><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquipex ea commodo consequat.</DesktopText><br/>
                     </DesktopFounder>

@@ -154,7 +154,7 @@ class SignedOutLinks extends Component {
                         </DesktopDropdown>
                     </DesktopNavLink>
 
-                    <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
+                    <DesktopSignInLink href="/signin">Sign In</DesktopSignInLink>
                         <Popup show={this.state.isOpen} onClose={this.closePopup}>
                             <SignIn></SignIn>
                         </Popup>
