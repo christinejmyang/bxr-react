@@ -12,6 +12,17 @@
       * Like / unlike updates firebase values
     * Nav bar dropdown menu and mobile hamburger 
   * Christine
+    * Navigation bar links
+      * Changing links based on user status
+      * Adding login/logout functionality to nav bar
+    * Profile Page
+    * Login/Register Pop-ups
+      * Sign-in Component
+      * Sign-up Component
+    * Styling/designing iteratively
+      * Converting CSS to styled components
+      * Implementing grids (header/main/footer)
+      * Responsiveness using media queries
 
 * Necessary Installations / Libraries We Used
   * `npm install react`
@@ -35,6 +46,9 @@
   * https://css-tricks.com/intro-firebase-react/
   * https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/#firebase-authentication
   * https://howtofirebase.com/save-and-query-firebase-data-ed73fb8c6e3a
+  * https://www.styled-components.com/docs/basics
+  * https://firebase.google.com/docs/auth/android/manage-users
+  * https://www.w3schools.com
 
 * After installing the necessary dependencies, run the application with `npm start` on the command line
 
