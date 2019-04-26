@@ -20,7 +20,6 @@ const DesktopLogo = styled.a`
     font-size: 2em;
     color: black;
     float: left;
-    margin-top: -0.5%;
     margin-left: 0.5%;
     margin-right: 2%;
     &:hover {
@@ -40,7 +39,7 @@ const DesktopNavLink = styled.a`
     font-size: 1.2em;
     float: left;
     margin-left: 3%;
-    font-weight: 600;
+    margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -51,9 +50,9 @@ const DesktopNavLink = styled.a`
 const DesktopSignInLink = styled.a`
     color: black;
     font-size: 1.2em;
-    font-weight: 600;
     float: right;
     margin-right: 4%;
+    margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -66,8 +65,6 @@ const DesktopDropdown = styled.div`
     float: left;
     margin-left: 0.5%;
     margin-top: 0.1%;
-    position: absolute;
-    margin-left: -2.2%;
     padding: 1%;
     width: 100px;
     text-align: center;
@@ -88,11 +85,16 @@ const DesktopDropdownLink = styled.a`
     }
 `;
 
-const MobileSignInLink = styled.a`
+const HamburgerMenu = styled.img`
+  width: 20px;
+`;
+
+const DesktopDashboard = styled.a`
     color: black;
+    font-weight: 600;
     font-size: 1.2em;
     float: right;
-    margin-right: 25px;
+    margin-right: 4%;
     margin-top: 10px;
     text-decoration: none;
     cursor: pointer;
@@ -101,8 +103,17 @@ const MobileSignInLink = styled.a`
     }
 `;
 
-const HamburgerMenu = styled.img`
-  width: 20px;
+const DesktopDashDropdown = styled.div`
+    position: fixed;
+    float: left;
+    margin-left: -1.3%;
+    padding: 1%;
+    width: 100px;
+    text-align: center;
+    background-color: #eeeeee;
+    opacity: 0.9;
+	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 `;
 
 class SignedOutLinks extends Component {
@@ -112,11 +123,11 @@ class SignedOutLinks extends Component {
             hidden: !this.state.hidden,
         });
     };
-    
+
     checkLogin() {
         alert("You must sign in to view this page!");
     };
-    
+
     openPopup = () => {
         this.setState({
             isOpen: true
@@ -153,11 +164,7 @@ class SignedOutLinks extends Component {
                             <DesktopDropdownLink onClick={this.checkLogin}>For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
-
-                    <DesktopSignInLink onClick={this.openPopup}>Sign In</DesktopSignInLink>
-                        <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                            <SignIn></SignIn>
-                        </Popup>
+                    <DesktopSignInLink href="/signin">Sign In</DesktopSignInLink>
                 </DesktopHeader>
             </DesktopNav>
             );
@@ -174,7 +181,7 @@ class SignedOutLinks extends Component {
                           <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/>
                       </DesktopDropdown>
                   </DesktopNavLink>
-                  <MobileSignInLink href="/signin">Sign In</MobileSignInLink>
+                  <DesktopSignInLink href="/signin">Sign In</DesktopSignInLink>
               </DesktopHeader>
           </DesktopNav>
         );

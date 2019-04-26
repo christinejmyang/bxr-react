@@ -35,7 +35,7 @@ const Headis = styled.h1`
     font-size: 50px;
     text-align: center;
     font-family: 'Avenir Next', sans-serif;
-    margin-top: -20%;
+    margin-top: 5%;
 `;
 
 const DesktopItem = styled.div`
@@ -161,6 +161,7 @@ class Products extends Component {
 
     const bookshelfMobile = (
        <MobileProducts>
+       <Headis> My Products </Headis>
          {this.state.user ?
            <div>
                {this.state.products.map(product =>

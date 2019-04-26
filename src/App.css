@@ -45,6 +45,52 @@ h1 {
 	font-weight: bold;
 }
 
+/* ABOUT.HTML */
+
+.aboutone {
+	font-weight: lighter;
+	font-size: 14px;
+}
+
+.descript-text p {
+	font-family: 'Avenir Next', sans-serif;
+	font-size: 14px;
+	font-weight: lighter;
+	margin-right: 25%;
+}
+
+.about-header {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.prof-text {
+	font-size: 14px;
+}
+
+.leftpic {
+  margin-right: 30px;
+  border-radius: 50%;
+  height: 100px;
+	float:left;
+}
+
+.rightpic {
+  float: right;
+  margin-left: 30px;
+  border-radius: 50%;
+  height: 100px;
+}
+
+.profile {
+	margin-top: -3%;
+}
+
+#bold {
+	color: lightcoral;
+}
+
+
 /* FOOTER STYLING */
 
 #copyright {

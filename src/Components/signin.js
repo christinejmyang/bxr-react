@@ -133,7 +133,6 @@ const MobileLine = styled.hr`
         position: relative;
         display: inline-block;
         color: black;
-
         padding: 0 .5em;
         line-height: 1.5em;
         color: #818078;
@@ -256,7 +255,6 @@ class SignInFormBase extends Component {
           </DesktopSidebar>
       </DesktopSignIn>
     );
-
     const SignInPageMobile = (
         <MobileSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
           <MobileFacebook>Sign in with Facebook</MobileFacebook><br/>
