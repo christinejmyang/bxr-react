@@ -20,6 +20,7 @@ const DesktopLogo = styled.a`
     font-size: 2em;
     color: black;
     float: left;
+    margin-top: -0.5%;
     margin-left: 0.5%;
     margin-right: 2%;
     &:hover {
@@ -39,20 +40,7 @@ const DesktopNavLink = styled.a`
     font-size: 1.2em;
     float: left;
     margin-left: 3%;
-    margin-top: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    &:hover{
-        color: grey;
-    }
-`;
-
-const DesktopSignInLink = styled.a`
-    color: black;
-    font-size: 1.2em;
-    float: right;
-    margin-right: 4%;
-    margin-top: 10px;
+    font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     &:hover{
@@ -63,8 +51,7 @@ const DesktopSignInLink = styled.a`
 const DesktopDropdown = styled.div`
     position: fixed;
     float: left;
-    margin-left: 0.5%;
-    margin-top: 0.1%;
+    margin-left: -2%;
     padding: 1%;
     width: 100px;
     text-align: center;
@@ -96,17 +83,52 @@ const DesktopSignOutPic = styled.img`
   margin-right: 4%;
 `;
 
-class SignedOutLinks extends Component {
+const DesktopDashboard = styled.a`
+    color: black;
+    font-weight: 600;
+    font-size: 1.2em;
+    float: right;
+    margin-right: 4%;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover{
+        color: grey;
+    }
+`;
 
+const DesktopDashDropdown = styled.div`
+    position: fixed;
+    float: left;
+    margin-left: -1.3%;
+    padding: 1%;
+    width: 100px;
+    text-align: center;
+    background-color: #eeeeee;
+    opacity: 0.9;
+	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+`;
+
+class SignedInLinks extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            user: null,
             hidden: true,
-            isOpen: false
+            dashHidden: true
         };
         this.logout = this.logout.bind(this);
+    }
+    
+    logout() {
+        this.props.firebase
+            .doSignOut()
+            .then(() => {
+                this.setState({
+                    user: null
+                });
+            window.location.href = "/";
+            });
     };
 
     handleOpenCloseDropdown() {
@@ -114,7 +136,11 @@ class SignedOutLinks extends Component {
             hidden: !this.state.hidden,
         });
     };
-
+    handleOpenCloseDashboard() {
+        this.setState({
+            dashHidden: !this.state.dashHidden,
+        });
+    };
     openPopup = () => {
         this.setState({
             isOpen: true
@@ -140,50 +166,65 @@ class SignedOutLinks extends Component {
 
     render() {
         const { hidden } = this.state;
+        const { dashHidden } = this.state;
         const { isOpen } = this.state;
         const SignedInHeaderDesktop = (
             <DesktopNav>
                 <DesktopHeader>
                     <DesktopLogo href="/">bxr</DesktopLogo>
-
+                    <DesktopNavLink href="/about">About</DesktopNavLink>
                     <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}>Benefits
                         <DesktopDropdown hidden={hidden}>
                             <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/>
+                            <DesktopDropdownLink href="/products">For Renters</DesktopDropdownLink><br/>
                         </DesktopDropdown>
                     </DesktopNavLink>
-                    <DesktopNavLink href="/about">About</DesktopNavLink>
-                    <DesktopNavLink href="/products">My Products</DesktopNavLink>
-                    <DesktopSignInLink onClick={this.logout}>Sign Out</DesktopSignInLink>
+                    
+                    <DesktopDashboard onMouseOver={() => this.handleOpenCloseDashboard()} onMouseOut={() => this.handleOpenCloseDashboard()}>Dashboard
+                        <DesktopDashDropdown hidden={dashHidden}>
+                            <DesktopDropdownLink href="/profile">My Account</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                            <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><hr style={{border: '1px solid black'}}/>
+                            <DesktopDropdownLink onClick={this.logout}>Sign Out</DesktopDropdownLink><br/>
+                        </DesktopDashDropdown>
+                    </DesktopDashboard>
                 </DesktopHeader>
             </DesktopNav>
-            );
+        );
 
         const SignedInHeaderMobile = (
-          <DesktopNav>
-              <DesktopHeader>
-                  <DesktopLogo href="/">bxr</DesktopLogo>
-                  <DesktopNavLink onMouseOver={() => this.handleOpenCloseDropdown()} onMouseOut={() => this.handleOpenCloseDropdown()}><HamburgerMenu src={menu} />
-                      <DesktopDropdown hidden={hidden}>
-                          <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink>
-                      </DesktopDropdown>
-                  </DesktopNavLink>
-                  <DesktopSignInLink onClick={this.logout}>Sign Out</DesktopSignInLink>
-              </DesktopHeader>
-          </DesktopNav>
+          <nav>
+            <ul class="HeaderUl">
+              <li class="HeaderLinkBurger">
+                <p>
+                  <div class="hamburger">
+                    <a> &#9776; </a>
+                    <div class="dropdown-content">
+                      <Link to="/about">About</Link>
+                      <Link to="/">My Products</Link>
+                      <Link to="/">Sign Out</Link>
+                      <div class="dropdown2">
+                        <a>Benefits</a>
+                        <div class="dropdown-content2">
+                          <Link to="/brands">For Brands</Link>
+                          <Link to="/hosts">For Hosts</Link>
+                          <Link to="/profile">For Renters</Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </p>
+              </li>
+            </ul>
+          </nav>
         );
 
-        return (
-            <Media query={{ minWidth: 500 }}>
-              {matches => (matches ? SignedInHeaderDesktop : SignedInHeaderMobile)}
-            </Media>
-        );
-    }
+    return (
+        <Media query={{ minWidth: 500 }}>
+          {matches => (matches ? SignedInHeaderDesktop : SignedInHeaderMobile)}
+        </Media>
+    );
+  }
 }
 
-export default withRouter(withFirebase(SignedOutLinks));
+export default withRouter(withFirebase(SignedInLinks));

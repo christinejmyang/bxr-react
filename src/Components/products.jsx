@@ -32,9 +32,10 @@ const DesktopProducts = styled.div`
 `;
 
 const Headis = styled.h1`
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 50px;
     text-align: center;
+    font-family: 'Avenir Next', sans-serif;
+    margin-top: -20%;
 `;
 
 const DesktopItem = styled.div`
@@ -128,7 +129,6 @@ class Products extends Component {
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> My Products </Headis>
-        <ProductsCollection>
           {this.state.user ?
              <Row gutter={0}>
                {this.state.products.map(product =>
@@ -156,8 +156,7 @@ class Products extends Component {
          <div className='wrapper'>
            <p>You must be logged in to view BXR's featured products.</p>
          </div> }
-       </ProductsCollection>
-      </DesktopProducts>
+      <br/><br/><br/></DesktopProducts>
     );
 
     const bookshelfMobile = (

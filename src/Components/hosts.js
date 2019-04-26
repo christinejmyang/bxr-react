@@ -10,6 +10,12 @@ import stars from './../img/five-stars.svg'
 
 const DesktopHosts = styled.div`
     font-family: 'Avenir Next', sans-serif;
+    background-color: white;
+    width: 100%;
+    margin-left: -10%;
+    padding: 10%;
+    padding-top: 7%;
+    padding-bottom: 8%;
 `;
 const MobileHosts = styled.div`
   font-family: 'Avenir Next', sans-serif;
@@ -23,12 +29,21 @@ const DesktopPicture = styled.img`
 const Collection = styled.div`
 `;
 const Left = styled.div`
-  float: left;
+    float: left;
 `;
 const Right = styled.div`
-  margin-left: 15%;
-  padding-top: 50px;
+    padding-left: 15%;
+    padding-top: 6%;
 `;
+//const MobileHosts = styled.div`
+//    font-family: 'Avenir Next', sans-serif;
+//    background-color: white;
+//    width: 100%;
+//    margin-left: -10%;
+//    padding: 10%;
+//    padding-top: 7%;
+//    padding-bottom: 8%;
+//`;
 
 class Hosts extends Component {
 
@@ -36,7 +51,7 @@ class Hosts extends Component {
         const desktop = (
             <DesktopHosts>
               <h1>BXR for Hosts</h1>
-              Enhance your property by partnering with BXR! Here are some reasons why other Hosts are switching to BXR...
+              Enhance your property by partnering with BXR! Here are some reasons why other hosts are switching to BXR...<br/>
               <Collection>
                 <Left>
                   <DesktopPicture src={eye} />
@@ -45,9 +60,8 @@ class Hosts extends Component {
                   "Partnering with BXR to make our property a Brand Experience Room has boosted our bookings by 42%. Customers <b><i>see the BXR badge </i></b>
                    and associate it with a superior experience."
                   <br/><br/>
-                  - Amy, AirBnb Host
+                  — Amy, AirBnb Host<br/><br/>
                 </Right>
-                <br />
                 <Left>
                   <DesktopPicture src={coin} />
                 </Left>
@@ -55,19 +69,19 @@ class Hosts extends Component {
                   "I'm in awe at how BXR has transformed my property. I can't even remember the last time I wasn't booked! BXR has done wonders for
                   my <b><i>revenue, </i></b> and it's easy to undestand why."
                   <br/><br/>
-                  - Daniel, VRBO Host
+                  — Daniel, VRBO Host
                 </Right>
-                <br />
+                <br/>
                 <Left>
                   <DesktopPicture src={stars} />
                 </Left>
                 <Right>
                   "My properties have seen an amazing transformation since I partnered with BXR. The average ratings have gone up by a full star -- and
                   I haven't <b><i>invested a penny! </i></b> I highly recommend using this service before you get left behind!"
-                  <br/><br/>
-                  - Veronica, HomeAway Host
+                  <br/>
+                  — Veronica, HomeAway Host
                 </Right>
-              </Collection>
+              </Collection><br/>
             </DesktopHosts>
     );
 
