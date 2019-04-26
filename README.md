@@ -17,8 +17,7 @@
       * Adding login/logout functionality to nav bar
     * Profile Page
     * Login/Register Pop-ups
-      * Sign-in Component
-      * Sign-up Component
+      * SignIn & SignUp Components
     * Styling/designing iteratively
       * Converting CSS to styled components
       * Implementing grids (header/main/footer)
