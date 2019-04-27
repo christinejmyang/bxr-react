@@ -58,30 +58,24 @@ const profPicStyle = {
   float: 'center',
 };
 
-const ProductsPage = () => (
-  <ProductsView />
+const MyProductsPage = () => (
+  <MyProductsView />
 )
 
-class Products extends Component {
+class MyProducts extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       products: [],
-      user: null,
       edit: this.false
     };
   }
 
   componentDidMount() {
-    this.props.firebase
-      .doOnAuthStateChanged((user) => {
-        if (user) {
-          this.setState({ user });
-        }
-      });
-    const productsRef = this.props.firebase.showDatabase('products');
+    const currentUser = this.props.firebase.doGetCurrentUser()
+    const productsRef = this.props.firebase.showDatabase('/users/' + currentUser + '/products/');
     productsRef.on('value', (snapshot) => {
       let products = snapshot.val();
       let newState = [];
@@ -103,18 +97,14 @@ class Products extends Component {
   }
 
   removeItem(itemId) {
-    const itemRef = this.props.firebase.showDatabase(`/products/${itemId}`);
+    const currentUser = this.props.firebase.doGetCurrentUser();
+    const itemRef = this.props.firebase.showDatabase('/users/' + currentUser + '/products/' + itemId);
     itemRef.remove();
   }
 
   handleHeart(id, name, description, price, link, liked, image) {
-    this.props.firebase.showDatabase(`/products/${id}`).set({
-      id: id,
-      description: description,
-      name: name,
-      price: price,
-      link: link,
-      image: image,
+    const currentUser = this.props.firebase.doGetCurrentUser();
+    this.props.firebase.showDatabase('/users/' + currentUser + '/products/' + id).update({
       liked: !liked
     });
     this.componentDidMount();
@@ -129,7 +119,6 @@ class Products extends Component {
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> My Products </Headis>
-          {this.state.user ?
              <Row gutter={0}>
                {this.state.products.map(product =>
                  <Col span={3}>
@@ -152,17 +141,12 @@ class Products extends Component {
                 </Col>
              )}
              </Row>
-         :
-         <div className='wrapper'>
-           <p>You must be logged in to view BXR's featured products.</p>
-         </div> }
       <br/><br/><br/></DesktopProducts>
     );
 
     const bookshelfMobile = (
        <MobileProducts>
        <Headis> My Products </Headis>
-         {this.state.user ?
            <div>
                {this.state.products.map(product =>
                   <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
@@ -183,10 +167,6 @@ class Products extends Component {
                   </Item>
              )}
            </div>
-         :
-         <div className='wrapper'>
-           <p>You must be logged in to view BXR's featured products.</p>
-         </div> }
       </MobileProducts>
     );
 
@@ -200,7 +180,7 @@ class Products extends Component {
   }
 };
 
-const ProductsView = withFirebase(Products);
+const MyProductsView = withFirebase(MyProducts);
 
-export default ProductsPage;
-export { ProductsView };
+export default MyProductsPage;
+export { MyProductsView };
