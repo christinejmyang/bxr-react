@@ -29,7 +29,7 @@ const DesktopLogo = styled.a`
 
 const DesktopHeader = styled.header`
     width: 100%;
-    height: 4%;
+    height: 40px;
     position: fixed;
     background-color: lightcoral;
 `;
