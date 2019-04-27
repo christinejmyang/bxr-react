@@ -51,7 +51,7 @@ class App extends Component {
             <Route exact path="/" component={MainPic} />
           </Switch>
           <Switch>
-            <Route path="/" component={HowItWorks} />
+            <Route exact path="/" component={HowItWorks} />
             <Route path="/about" component={About} />
             <Route path="/products" component={Products} />
             <Route path="/signin" component={SignIn} />
