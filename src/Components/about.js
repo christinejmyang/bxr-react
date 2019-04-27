@@ -124,7 +124,7 @@ class About extends React.Component{
 						<img src={daniel} alt="" class="leftpic" />
 						<h1 class="prof-header">Daniel Berlin, Software Development Team</h1>
 						<p class="prof-text">Daniel is originally from Cleveland, Ohio and now studies Computer Science and Finance at Duke University.
-							He enjoys golf, fitness and reading. Hes also a huge Billy Joel fan!</p>
+							He enjoys golf, fitness and reading. He's also a huge Billy Joel fan!</p>
 					</article>
 					<article class="profile">
 						<img src={will} alt="" class="rightpic" />
