@@ -212,7 +212,7 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.firebase.showDatabase(`/users/${firstname}`).set({
+        this.props.firebase.showDatabase(`/users/${this.props.firebase.doGetCurrentUser()}`).set({
             email: email,
             password: password,
             firstname: firstname,
@@ -222,7 +222,12 @@ class SignUpFormBase extends Component {
             aboutyou: null,
             interests: null
         });
-        this.props.history.push("/info");
+        this.props.history.push({
+          pathname: '/info',
+          appState: {
+            uid: this.props.firebase.doGetCurrentUser()
+          }
+        });
       })
       .catch(error => {
         this.setState({ error });

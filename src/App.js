@@ -11,7 +11,8 @@ import SignIn from './Components/signin.js'
 import SignUp from './Components/signup.js'
 
 import About from './Components/about.js'
-import Products from './Components/products.jsx'
+import Products from './Components/products.js'
+import MyProducts from './Components/myProducts.js'
 import Hosts from './Components/hosts.js'
 import Brands from './Components/brands.js'
 
@@ -54,6 +55,7 @@ class App extends Component {
             <Route exact path="/" component={HowItWorks} />
             <Route path="/about" component={About} />
             <Route path="/products" component={Products} />
+            <Route path="/myproducts" component={MyProducts} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />

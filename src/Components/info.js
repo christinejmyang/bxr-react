@@ -58,10 +58,10 @@ class Info extends Component {
   }
 
   onSubmit = event => {
-      const { aboutyou, interests, username } = this.state;
+      const { aboutyou, interests, username} = this.state;
 
       this.props.firebase
-        .doCreateNewUser(aboutyou, interests, username)
+        .doUpdateUserInfo(aboutyou, interests, username, this.props.location.appState.uid)
         .then(() => {
           this.setState({ ...INITIAL_STATE });
           this.props.history.push("/profile");
