@@ -101,7 +101,6 @@ const Space = styled.div`
 `;
 
 class Popup extends Component {
-
   render() {
     const desktopPop = (
       <Pop>
