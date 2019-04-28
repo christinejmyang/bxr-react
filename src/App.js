@@ -12,6 +12,7 @@ import SignUp from './Components/signup.js'
 
 import About from './Components/about.js'
 import Products from './Components/products.jsx'
+import MyProducts from './Components/myProducts.jsx'
 import Hosts from './Components/hosts.js'
 import Brands from './Components/brands.js'
 
@@ -48,11 +49,13 @@ class App extends Component {
         <div className="App">
           <Nav authUser={this.state.authUser}/>
           <Switch>
-            <Route exact path="/" component={Homepage} />
+            <Route exact path="/" component={MainPic} />
           </Switch>
           <Switch>
+            <Route exact path="/" component={HowItWorks} />
             <Route path="/about" component={About} />
             <Route path="/products" component={Products} />
+            <Route path="/myproducts" component={MyProducts} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />

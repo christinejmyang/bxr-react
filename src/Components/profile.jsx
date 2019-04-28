@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
@@ -9,7 +8,7 @@ const DesktopProfile = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
     padding: 5%;
-    
+
 `;
 const DesktopProfileComponent = styled.div`
 `;
@@ -31,6 +30,7 @@ const DesktopButton = styled.div`
     color: white;
     font-weight: bold;
     border-radius: 25px 25px 25px 25px;
+    font-size: 15px;
 `;
 
 const EditLink = styled.a`
@@ -46,7 +46,7 @@ const EditLink = styled.a`
 const MobileProfile = styled.div`
   font-family: 'Avenir Next', sans-serif;
 `;
-const MobileButton = styled.button`
+const MobileButton = styled.a`
     display: inline-block;
     background-color: lightcoral;
     width: 45px;
@@ -56,6 +56,7 @@ const MobileButton = styled.button`
     color: white;
     font-weight: bold;
     border-radius: 25px 25px 25px 25px;
+    font-size: 12px;
 `;
 
 
@@ -67,44 +68,73 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            firstname: '',
+            aboutyou: '',
+            interests: '',
             user: this.user
         };
     }
+
+    componentDidMount() {
+      this.props.firebase
+        .doOnAuthStateChanged((user) => {
+          if (user) {
+            this.setState({ user });
+            const currentUser = this.props.firebase.doGetCurrentUser();
+            const nameRef = this.props.firebase.showDatabase('users/' + currentUser + '/firstname');
+            const aboutRef = this.props.firebase.showDatabase('users/' + currentUser + '/aboutyou');
+            const interestsRef = this.props.firebase.showDatabase('users/' + currentUser + '/interests');
+            nameRef.on('value', (snapshot) => {
+              let firstname = snapshot.val();
+              this.setState( {
+                firstname: firstname
+              });
+            });
+            aboutRef.on('value', (snapshot) => {
+              let aboutyou = snapshot.val();
+              this.setState( {
+                aboutyou: aboutyou
+              });
+            });
+            interestsRef.on('value', (snapshot) => {
+              let interests = snapshot.val();
+              this.setState( {
+                interests: interests
+              });
+            });
+          }
+          else {}
+        });
+      }
+
     render () {
         const profileDesktop = (
             <DesktopProfile>
-                Welcome!
+                <h1>Welcome, {this.state.firstname}!
                 <DesktopButton>
                     <EditLink href="/info">EDIT</EditLink>
                 </DesktopButton>
-                <br/><br/>Joined in April 2019<br/><br/>
+              </h1>
+              <br></br>
                 <h2>About You</h2>
-                I love BXR!<br/><br/>
+                {this.state.aboutyou}<br/><br/>
                 <h2>Interests</h2>
-                BXR!<br/><br/>
-                <h2>Favorites</h2>
-                See more
+                {this.state.interests}<br/><br/>
             </DesktopProfile>
         );
 
         const profileMobile = (
             <MobileProfile>
-              <img src="./../img/christine.jpg"/>
-              Welcome, name!
-              <MobileButton>
+              <h1>
+                Welcome, {this.state.firstname}!
+              <MobileButton href="/info">
                   EDIT
               </MobileButton>
-              <br/><br/>Joined in April 2019<br/><br/>
+            </h1>
               <h2>About You</h2>
-              I love BXR!<br/><br/>
+              {this.state.aboutyou}<br/><br/>
               <h2>Interests</h2>
-              BXR!<br/><br/>
-              <h2>Favorites</h2>
-              <img></img>
-              <img></img>
-              <img></img>
-              See more
+              {this.state.interests}<br/><br/>
             </MobileProfile>
     );
 

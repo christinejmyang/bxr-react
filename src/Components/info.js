@@ -48,7 +48,10 @@ const INITIAL_STATE = {
   aboutyou: '',
   interests: '',
   username: '',
-  error: null,
+	firstname: '',
+	lastname: '',
+	email: '',
+  error: null
 };
 
 class Info extends Component {
@@ -58,13 +61,14 @@ class Info extends Component {
   }
 
   onSubmit = event => {
-      const { aboutyou, interests, username } = this.state;
+      const { aboutyou, interests, username, firstname, lastname, email} = this.state;
+			const userid = this.props.firebase.doGetCurrentUser();
 
       this.props.firebase
-        .doCreateNewUser(aboutyou, interests, username)
+        .doUpdateUserInfo(aboutyou, interests, username, firstname, lastname, email, userid)
         .then(() => {
           this.setState({ ...INITIAL_STATE });
-          this.props.history.push("/profile");
+					this.props.history.push('/profile');
         })
         .catch(error => {
           this.setState({ error });
@@ -78,11 +82,14 @@ class Info extends Component {
   };
 
 	render(){
-    const { aboutyou, interests, username, error } = this.state;
+    const { aboutyou, interests, username, firstname, lastname, email, error } = this.state;
 		return(
 			  <Main>
 					<Headline><i>Let's get to know each other! Tell us more about yourself below.</i></Headline>
           <form onSubmit={this.onSubmit}>
+						<DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="Firstname..."/><br/>
+            <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Lastname..."/><br/>
+            <DesktopInput name="email" value={email} onChange={this.onChange} type="text" placeholder="Email..."/><br/>
             <DesktopInput name="username" value={username} onChange={this.onChange} type="text" placeholder="Choose a username..."/><br/>
             <DesktopInput name="aboutyou" value={aboutyou} onChange={this.onChange} type="text" placeholder="Tell us about yourself..."/><br/>
             <DesktopInput name="interests" value={interests} onChange={this.onChange} type="text" placeholder="List your interests..."/><br/><br/><br/>

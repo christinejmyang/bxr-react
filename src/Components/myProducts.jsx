@@ -7,6 +7,22 @@ import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
+const UnfilledHeart = styled.button`
+    font-size: 40px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: none;
+`;
+
+const FilledHeart = styled.button`
+    font-size: 40px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: red;
+`;
+
 const MobileProducts = styled.div`
 `;
 
@@ -27,13 +43,7 @@ const DesktopItem = styled.div`
     text-transform: capitalize;
 `;
 
-const DesktopItemRemove = styled.div`
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-`;
-
-const DesktopItemAdd = styled.button`
+const DesktopItemRemove = styled.button`
     border: none;
     background-color: transparent;
 `;
@@ -48,11 +58,11 @@ const profPicStyle = {
   float: 'center',
 };
 
-const ProductsPage = () => (
-  <ProductsView />
+const MyProductsPage = () => (
+  <MyProductsView />
 )
 
-class Products extends Component {
+class MyProducts extends Component {
 
   constructor(props) {
     super(props);
@@ -67,7 +77,9 @@ class Products extends Component {
     this.props.firebase
       .doOnAuthStateChanged((user) => {
         if (user) {
-          const productsRef = this.props.firebase.showDatabase('products');
+          this.setState({ user });
+          const currentUser = this.props.firebase.doGetCurrentUser();
+          const productsRef = this.props.firebase.showDatabase('/users/' + currentUser + '/products/');
           productsRef.on('value', (snapshot) => {
             let products = snapshot.val();
             let newState = [];
@@ -86,53 +98,78 @@ class Products extends Component {
               products: newState
             });
           });
-        }
-      });
+        }
+      });
   }
 
-  addItem(id, description, name, price, link, image, liked) {
-    const currentUser = this.props.firebase.doGetCurrentUser()
-    this.props.firebase.showDatabase('/users/' + currentUser + '/products/' + id).set({
-      name: name,
-      description: description,
-      name: name,
-      price: price,
-      link: link,
-      image: image,
-      liked: liked
-    });
+  removeItem(itemId) {
+    const currentUser = this.props.firebase.doGetCurrentUser();
+    const itemRef = this.props.firebase.showDatabase('/users/' + currentUser + '/products/' + itemId);
+    itemRef.remove();
   }
+
+  handleHeart(id, name, description, price, link, liked, image) {
+    const currentUser = this.props.firebase.doGetCurrentUser();
+    this.props.firebase.showDatabase('/users/' + currentUser + '/products/' + id).update({
+      liked: !liked
+    });
+    this.componentDidMount();
+  }
+
 
 
   render () {
+    var styles = {
+
+    }
     const bookshelfDesktop = (
       <DesktopProducts>
-        <Headis> Products </Headis>
+        <Headis> My Products </Headis>
              <Row gutter={0}>
                {this.state.products.map(product =>
                  <Col span={3}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
-                      <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
-                        ADD
-                      </button>
+                        <button onClick={() => this.removeItem(product.id)}>X</button>
                       </DesktopItemRemove>
-                      </Item>
+                      {product.liked === false ?
+                          <UnfilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </UnfilledHeart>
+                          :
+                          <FilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </FilledHeart>
+                        }
+                    </Item>
                 </Col>
              )}
              </Row>
-           </DesktopProducts>
+      <br/><br/><br/></DesktopProducts>
     );
 
     const bookshelfMobile = (
        <MobileProducts>
-       <Headis> Products </Headis>
+       <Headis> My Products </Headis>
            <div>
                {this.state.products.map(product =>
                   <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                     <DesktopItemRemove>
-                        <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>ADD</button>
+                        <button onClick={() => this.removeItem(product.id)}>X</button>
                     </DesktopItemRemove>
+                    {product.liked === false ?
+                        <UnfilledHeart
+                          onClick={() =>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                          &hearts; </UnfilledHeart>
+                        :
+                        <FilledHeart
+                          onClick={() =>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                          &hearts; </FilledHeart>
+                      }
                   </Item>
              )}
            </div>
@@ -149,7 +186,7 @@ class Products extends Component {
   }
 };
 
-const ProductsView = withFirebase(Products);
+const MyProductsView = withFirebase(MyProducts);
 
-export default ProductsPage;
-export { ProductsView };
+export default MyProductsPage;
+export { MyProductsView };

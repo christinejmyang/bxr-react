@@ -32,6 +32,9 @@ class Firebase {
   doSignOut = () =>
     this.auth.signOut();
 
+  doGetCurrentUser = () =>
+    this.auth.currentUser.uid;
+
   doPasswordReset = email =>
     this.auth.sendPasswordResetEmail(email);
 
@@ -44,11 +47,23 @@ class Firebase {
   doOnAuthStateChanged = (user) =>
     this.auth.onAuthStateChanged(user);
 
-  doCreateNewUser = (aboutyou, interests, username) =>
-    app.database().ref('users/' + username).set({
+  doUpdateUserInfo = (aboutyou, interests, username, firstname, lastname, email, id) =>
+    app.database().ref('users/' + id).update({
       aboutyou: aboutyou,
-      interests: interests
+      interests: interests,
+      username: username,
+      firstname: firstname,
+      lastname: lastname,
+      email: email
     });
+
+  doSubmitSurvey = (product, experience, likeliness, recommendations, uid) =>
+    app.database().ref('users/' + uid + '/surveys/' + product).set({
+      experience: experience,
+      likeliness: likeliness,
+      recommendations: recommendations
+    });
+
 
 }
 
