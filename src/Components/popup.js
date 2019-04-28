@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom'
 import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
@@ -58,7 +59,7 @@ const Picture = styled.img`
   height: 200px;
 `;
 
-const Link = styled.a`
+const LinkTo = styled.a`
   color: blue;
   text-decoration: underline;
   position: absolute;
@@ -92,7 +93,8 @@ class Popup extends Component {
           <Title>{this.props.text}, ${this.props.price}</Title>
           <Description>{this.props.description}
           <br></br>
-          <Link href={this.props.link} target="_blank">Buy Here</Link>
+          <LinkTo href={this.props.link} target="_blank">Buy Here</LinkTo><br/><br/><br/>
+          <Link to={{pathname: "/survey", state: {productName: this.props.text}}}>Take a Survey</Link>
           </Description>
           <Picture src={this.props.image} alt=""></Picture>
           <Button class="closePopButton" onClick={this.props.closePopup}>X</Button>

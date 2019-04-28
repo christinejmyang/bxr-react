@@ -3,16 +3,15 @@ import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
-import './../App.css';
 
 const DesktopFooter = styled.footer`
 	position: absolute;
-	background-color: rgb(48, 48, 48, 48);
+	background-color: transparent;
 	width: 100%;
 	left: 0;
-	border-top: 2px solid lightcoral;
+	border-top: 2px solid transparent;
 	font-family: 'Avenir Next', sans-serif;
-	color: white;
+	color: grey;
 `;
 const DesktopFooterBox = styled.div`
 	display: flex;
@@ -32,10 +31,10 @@ const Link = styled.a`
 	color: gray;
 	transition: color 0.3s;
 	&:hover {
-		color: white;
+		color: black;
 	}
 	&:visited {
-		color: white;
+		color: black;
 	}
 `;
 const DesktopFooterList = styled.ul`

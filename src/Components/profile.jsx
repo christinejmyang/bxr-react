@@ -9,7 +9,7 @@ const DesktopProfile = styled.div`
     font-family: 'Avenir Next', sans-serif;
     background-color: white;
     padding: 5%;
-    
+
 `;
 const DesktopProfileComponent = styled.div`
 `;
@@ -67,14 +67,33 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            firstname: '',
             user: this.user
         };
     }
+
+    componentDidMount() {
+      this.props.firebase
+        .doOnAuthStateChanged((user) => {
+          if (user) {
+            this.setState({ user });
+            const currentUser = this.props.firebase.doGetCurrentUser();
+            this.setState( {
+              firstname: currentUser
+            });
+          }
+          else {
+            this.setState( {
+              firstname: ''
+            });
+          }
+        });
+      }      
+
     render () {
         const profileDesktop = (
             <DesktopProfile>
-                Welcome!
+                Welcome, {this.state.firstname}!
                 <DesktopButton>
                     <EditLink href="/info">EDIT</EditLink>
                 </DesktopButton>
@@ -90,8 +109,7 @@ class Profile extends Component {
 
         const profileMobile = (
             <MobileProfile>
-              <img src="./../img/christine.jpg"/>
-              Welcome, name!
+              Welcome, {this.state.firstname}!
               <MobileButton>
                   EDIT
               </MobileButton>
