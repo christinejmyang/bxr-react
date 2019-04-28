@@ -74,26 +74,32 @@ class MyProducts extends Component {
   }
 
   componentDidMount() {
-    const currentUser = this.props.firebase.doGetCurrentUser()
-    const productsRef = this.props.firebase.showDatabase('/users/' + currentUser + '/products/');
-    productsRef.on('value', (snapshot) => {
-      let products = snapshot.val();
-      let newState = [];
-      for (let product in products) {
-        newState.push({
-          id: product,
-          description: products[product].description,
-          name: products[product].name,
-          price: products[product].price,
-          link: products[product].link,
-          image: products[product].image,
-          liked: products[product].liked
-        });
-      }
-      this.setState({
-        products: newState
-      });
-    });
+    this.props.firebase
+      .doOnAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ user });
+          const currentUser = this.props.firebase.doGetCurrentUser();
+          const productsRef = this.props.firebase.showDatabase('/users/' + currentUser + '/products/');
+          productsRef.on('value', (snapshot) => {
+            let products = snapshot.val();
+            let newState = [];
+            for (let product in products) {
+              newState.push({
+                id: product,
+                description: products[product].description,
+                name: products[product].name,
+                price: products[product].price,
+                link: products[product].link,
+                image: products[product].image,
+                liked: products[product].liked
+              });
+            }
+            this.setState({
+              products: newState
+            });
+          });
+        }
+      });
   }
 
   removeItem(itemId) {

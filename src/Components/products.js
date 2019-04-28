@@ -79,30 +79,34 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    const productsRef = this.props.firebase.showDatabase('products');
-    productsRef.on('value', (snapshot) => {
-      let products = snapshot.val();
-      let newState = [];
-      for (let product in products) {
-        newState.push({
-          id: product,
-          description: products[product].description,
-          name: products[product].name,
-          price: products[product].price,
-          link: products[product].link,
-          image: products[product].image,
-          liked: products[product].liked
-        });
-      }
-      this.setState({
-        products: newState
+    this.props.firebase
+      .doOnAuthStateChanged((user) => {
+        if (user) {
+          const productsRef = this.props.firebase.showDatabase('products');
+          productsRef.on('value', (snapshot) => {
+            let products = snapshot.val();
+            let newState = [];
+            for (let product in products) {
+              newState.push({
+                id: product,
+                description: products[product].description,
+                name: products[product].name,
+                price: products[product].price,
+                link: products[product].link,
+                image: products[product].image,
+                liked: products[product].liked
+              });
+            }
+            this.setState({
+              products: newState
+            });
+          });
+        }
       });
-    });
   }
 
-  addItem(id, name, description, price, link, liked, image) {
+  addItem(id, description, name, price, link, image, liked) {
     const currentUser = this.props.firebase.doGetCurrentUser()
-
     this.props.firebase.showDatabase('/users/' + currentUser + '/products/' + id).set({
       name: name,
       description: description,
@@ -114,19 +118,8 @@ class Products extends Component {
     });
   }
 
-  handleHeart(id, name, description, price, link, liked, image) {
-    this.props.firebase.showDatabase(`/products/${id}`).update({
-      liked: !liked
-    });
-    this.componentDidMount();
-  }
-
-
 
   render () {
-    var styles = {
-
-    }
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> Products </Headis>
@@ -137,17 +130,6 @@ class Products extends Component {
                       <DesktopItemAdd>
                         <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>+</button>
                       </DesktopItemAdd>
-                      {product.liked === false ?
-                          <UnfilledHeart
-                            onClick={() =>
-                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                            &hearts; </UnfilledHeart>
-                          :
-                          <FilledHeart
-                            onClick={() =>
-                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                            &hearts; </FilledHeart>
-                        }
                     </Item>
                 </Col>
              )}
@@ -165,17 +147,6 @@ class Products extends Component {
                     <DesktopItemRemove>
                         <button onClick={() => this.removeItem(product.id)}>X</button>
                     </DesktopItemRemove>
-                    {product.liked === false ?
-                        <UnfilledHeart
-                          onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                          &hearts; </UnfilledHeart>
-                        :
-                        <FilledHeart
-                          onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                          &hearts; </FilledHeart>
-                      }
                   </Item>
              )}
            </div>
