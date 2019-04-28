@@ -17,6 +17,7 @@ class Firebase {
     app.initializeApp(config);
     this.provider = new app.auth.GoogleAuthProvider();
     this.auth = app.auth();
+    this.database = app.database();
   }
 
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -25,11 +26,14 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-  doSignInWithPopup = (provider) =>
+  doSignInWithPopup = () =>
     this.auth.signInWithPopup(this.provider);
 
   doSignOut = () =>
     this.auth.signOut();
+
+  doGetCurrentUser = () =>
+    this.auth.currentUser.uid;
 
   doPasswordReset = email =>
     this.auth.sendPasswordResetEmail(email);
@@ -42,6 +46,25 @@ class Firebase {
 
   doOnAuthStateChanged = (user) =>
     this.auth.onAuthStateChanged(user);
+
+  doUpdateUserInfo = (aboutyou, interests, username, firstname, lastname, email, id) =>
+    app.database().ref('users/' + id).update({
+      aboutyou: aboutyou,
+      interests: interests,
+      username: username,
+      firstname: firstname,
+      lastname: lastname,
+      email: email
+    });
+
+  doSubmitSurvey = (product, experience, likeliness, recommendations, uid) =>
+    app.database().ref('users/' + uid + '/surveys/' + product).set({
+      experience: experience,
+      likeliness: likeliness,
+      recommendations: recommendations
+    });
+
+
 }
 
 export default Firebase;

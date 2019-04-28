@@ -39,7 +39,7 @@ const DesktopInput = styled.input`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopButton = styled.div`
+const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
     width: 97%;
@@ -61,9 +61,8 @@ const DesktopLink = styled.a`
     }
 `;
 
-const DesktopFacebook = styled.div`
+const DesktopFacebook = styled.button`
     display: inline-block;
-    cursor: pointer;
     background-color: #4567b2;
     width: 100%;
     text-align: center;
@@ -76,21 +75,19 @@ const DesktopFacebook = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const MobileFacebook = styled.div`
-    display: inline-block;
-    background-color: #4567b2;
-    width: 90%;
-    text-align: center;
+const MobileInput = styled.input`
     padding: 3%;
-    color: white;
-    font-weight: 500;
-    border: 2px solid #4567b2;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 90%;
+    font-size: 1em;
+    border: 1px solid lightgrey;
     border-radius: 5px 5px 5px 5px;
 `;
 
-const DesktopGoogle = styled.div`
+const DesktopGoogle = styled.button`
     display: inline-block;
-    cursor: pointer;
     width: 100%;
     text-align: center;
     padding: 4%;
@@ -102,12 +99,78 @@ const DesktopGoogle = styled.div`
     border-radius: 5px 5px 5px 5px;
 `;
 
-const MobileSignIn = styled.div`
+const MobileGoogle = styled.button`
+    width: 100%;
+    text-align: center;
+    padding: 3%;
+    margin-top: 2%;
+    color: black;
+    font-weight: 500;
+    border: 2px solid black;
+    border-radius: 5px 5px 5px 5px;
 `;
 
-const SignInPage = () => (
-  <SignInView/>
-);
+const MobileLine = styled.hr`
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+    &:before {
+        content: '';
+        background: darkgrey;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+    }
+    &:after {
+        content: attr(data-content);
+        position: relative;
+        display: inline-block;
+        color: black;
+        padding: 0 .5em;
+        line-height: 1.5em;
+        color: #818078;
+        background-color: white;
+      }
+`;
+
+const MobileFacebook = styled.button`
+    background-color: #4567b2;
+    width: 100%;
+    text-align: center;
+    padding: 3%;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #4567b2;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileButton = styled.button`
+    display: inline-block;
+    background-color: lightcoral;
+    width: 100%;
+    float: center;
+    text-align: center;
+    padding: 3%;
+    margin-right: 2%;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px 5px 5px 5px;
+`;
+
+const MobileSignIn = styled.div`
+  font-family: 'Avenir Next', sans-serif;
+  background-color: white;
+  width: 80%;
+  margin-left: 5%;
+  padding: 5%;
+`;
 
 const SignIn = () => (
   <SignInForm />
@@ -124,19 +187,19 @@ class SignInFormBase extends Component {
         super(props);
         this.state = { ...INITIAL_STATE };
         this.state = { isOpen: false };
-        this.googleLogin = this.googleLogin.bind(this);
     }
-    
-    googleLogin() {
-        this.props.firebase
-          .doSignInWithPopup(this.provider)
-          .then((result) => {
-            const user = result.user;
-            this.setState({
-              user
-            });
+
+    loginWithGoogle = () => {
+      this.props.firebase
+        .doSignInWithPopup()
+        .then((result) => {
+          const user = result.user;
+          this.setState({
+            user
           });
-    }
+        });
+        this.props.history.push("/profile");
+    };
 
     onSubmit = event => {
         const { email, password } = this.state;
@@ -175,51 +238,43 @@ class SignInFormBase extends Component {
     const { isOpen } = this.state;
 
     const SignInPageDesktop = (
-        <DesktopSignIn show={this.state.signingIn} onSubmit={this.onSubmit}><h2>Sign In</h2>
-            <DesktopMain>
-                <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
-                <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
-        
-                <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-                Don't have an account?<DesktopLink onClick={this.openPopup}>Sign Up</DesktopLink>
-                <Popup show={this.state.isOpen} onClose={this.closePopup}>
-                    <SignUp></SignUp>
-                </Popup>
-                <br/><br/>
-            </DesktopMain>
-            <DesktopSidebar>
-                <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
-                <DesktopGoogle onClick={this.googleLogin}>Sign in with Google</DesktopGoogle><br/><br/>
-            </DesktopSidebar>
+        <DesktopSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
+          <DesktopMain>
+            <form onSubmit={this.onSubmit}>
+              <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
+              <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
+              <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
+              Don't have an account?<DesktopLink><Link to="/signup">Sign Up</Link></DesktopLink>
+              <br/><br/>
+            </form>
+            <i>{error && <p>{error.message}</p>}</i>
+          </DesktopMain>
+          <DesktopSidebar>
+              <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>
+              <DesktopGoogle onClick={this.loginWithGoogle}>Sign in with Google</DesktopGoogle><br/><br/>
+          </DesktopSidebar>
       </DesktopSignIn>
     );
-
     const SignInPageMobile = (
-      <MobileSignIn>
-        <form onSubmit={this.onSubmit}>
-          <h5>Sign In</h5>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input name="email" value={email} onChange={this.onChange} type="email"/>
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input name="password" value={password} onChange={this.onChange} type="password"/>
-          </div>
-          <div>
-            <button type="submit">Login</button>
-          </div>
-          <div>
-            <p> Don't have an account? </p>
-            <Link to="/signup"> <button>Sign Up</button> </Link>
-          </div>
-        </form>
-      </MobileSignIn>
+        <MobileSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
+          <MobileFacebook>Sign in with Facebook</MobileFacebook><br/>
+          <MobileGoogle onClick={this.loginWithGoogle}>Sign in with Google</MobileGoogle><br/><br/>
+          <MobileLine data-content="or"/><br/>
+          <form onSubmit={this.onSubmit}>
+            <MobileInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email address"/><br/>
+            <MobileInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/>
+            <MobileButton type="submit">Sign In</MobileButton><br/><br/>
+          </form>
+          Don't have an account? <Link to="/signup">Sign Up</Link><br/><br/>
+
+          <i>{error && <p>{error.message}</p>}</i>
+        </MobileSignIn>
     );
+
 
     return (
       <Section title="">
-        <Media query={{ minWidth: 500 }}>
+        <Media query={{ minWidth: 800 }}>
           {matches => (matches ? SignInPageDesktop : SignInPageMobile)}
         </Media>
       </Section>
@@ -232,6 +287,6 @@ const SignInForm = compose(
   withFirebase,
 )(SignInFormBase);
 
-const SignInView = withFirebase(SignInFormBase);
-export default SignInPage;
-export { SignInView };
+export default SignIn;
+
+export { SignInForm };

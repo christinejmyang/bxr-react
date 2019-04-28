@@ -5,10 +5,14 @@ import styled from '@emotion/styled';
 import Popup from './popup.js'
 
 const DesktopItem = styled.div`
+  text-transform: capitalize;
+  margin-bottom: -100px;
 `;
 
 const MobileItem = styled.div`
-    text-align: center;
+<<<<<<< HEAD
+  text-transform: capitalize;
+  text-align: center;
 `;
 
 const textStyle = {
@@ -32,11 +36,6 @@ class Item extends Component {
     showPopup: this.false
   };
 
-  styles = {
-    fontSize: 100,
-    fontWeight: "bold"
-  };
-
   togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup
@@ -44,11 +43,11 @@ class Item extends Component {
   }
 
   render() {
-      const itemDesktop = (
-          <DesktopItem>
-              <h4 style={textStyle}>{this.state.name}</h4>
-                  <ItemPrice>${this.state.price}</ItemPrice>
-        <img onClick={this.togglePopup.bind(this)} style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
+    const itemDesktop = (
+      <DesktopItem>
+        <h2> {this.state.name}, ${this.state.price}</h2>
+        <img onClick={this.togglePopup.bind(this)} style={{padding:1, border:10, backgroundColor: 'black',
+                                                           height: 200, width: 200 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
         {this.state.showPopup ?
           <Popup
@@ -58,18 +57,32 @@ class Item extends Component {
             popupImage={this.props.imageUrl}
             description={this.props.description}
             link={this.props.link}
+            image={this.props.image}
           />
-          : null
+          :
+          null
         }
-        <br/>
       </DesktopItem>
     );
 
     const itemMobile = (
       <MobileItem>
-        <img style={{ padding: 10 }} src={this.state.imageUrl} alt="" />
+        <h2>{this.state.name}, ${this.state.price}</h2>
+        <img onClick={this.togglePopup.bind(this)} style={{ padding:1, border:10, backgroundColor: 'black',
+                                                           height: 200, width: 200 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
-        <h4 style={textStyle}>{this.state.name}, {this.state.price}</h4>
+        {this.state.showPopup ?
+          <Popup
+            text={this.props.name}
+            price={this.props.price}
+            closePopup={this.togglePopup.bind(this)}
+            popupImage={this.props.imageUrl}
+            description={this.props.description}
+            link={this.props.link}
+            image={this.props.image}
+          />
+          : null
+        }
       </MobileItem>
     );
 

@@ -1,5 +1,34 @@
-# Setup
-* Necessary Installations
+# Code Base Interview
+* Team Members & Contributions
+  * Daniel
+    * Initial HTML/CSS skeleton
+    * Backend - Firebase setup and functions (auth, read, write)
+      * Firebase for SignIn/SignUp using both email/pw and google
+      * Retrieve user data when filling out an info form, send to database under that specific user
+      * Display and delete products in "My Products" from database
+    * Frontend
+      * Responsive design and content on "Brands", "Hosts", "How It Works", and "Home" page
+      * Wrote code for site-wide Footer
+      * Changing display of the site based on user auth state (nav links, products page, etc)
+      * Implemented React-Router throughout the app
+  * Will 
+    * Products Page 
+      * Item Component
+      * Popup Component with more details for each product
+      * Like / unlike updates firebase values
+    * Nav bar dropdown menu and mobile hamburger 
+  * Christine
+    * Navigation bar links
+      * Adding login/logout functionality to nav bar
+    * Profile Page
+    * Login/Register Pop-ups
+      * SignIn & SignUp Components
+    * Styling/designing iteratively
+      * Converting CSS to styled components
+      * Implementing grids (header/main/footer)
+      * Responsiveness using media queries
+
+* Necessary Installations / Libraries We Used
   * `npm install react`
   * `npm install react-router`
   * `npm install react-router-dom`
@@ -12,8 +41,20 @@
   * `npm install react-redux-firebase`
   * `npm install redux-thunk`
   * `npm install recompose`
+  * `npm i -S react-simple-flex-grid`
 
-* To run the application, enter `npm start` on the command line
+* Tutorials and Online Resources
+  * https://facebook.github.io/create-react-app/docs/getting-started
+  * https://reacttraining.com/react-router/web/guides/basic-components
+  * https://firebase.google.com/docs/web/setup
+  * https://css-tricks.com/intro-firebase-react/
+  * https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/#firebase-authentication
+  * https://howtofirebase.com/save-and-query-firebase-data-ed73fb8c6e3a
+  * https://www.styled-components.com/docs/basics
+  * https://firebase.google.com/docs/auth/android/manage-users
+  * https://www.w3schools.com
+
+* After installing the necessary dependencies, run the application with `npm start` on the command line
 
 # E2 README
 ### User story template: ###

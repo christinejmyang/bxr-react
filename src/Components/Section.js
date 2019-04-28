@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
-export const SectionTitle = styled.h1`
+export const SectionTitle = styled.div`
   margin: 0 auto 40px;
   font-size: 2em;
   font-weight: 600;

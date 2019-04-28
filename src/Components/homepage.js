@@ -10,27 +10,24 @@ import staircase from './../img/staircase.jpg';
 import facade from './../img/facade.jpg';
 
 const DesktopHome = styled.div`
+	position: relative;
+	text-align: center;
     font-family: 'Avenir Next', sans-serif;
 `;
 
-const DesktopHomePic = styled.section`
-    width: 100%;
-    height: 500px;
-    margin-top: -9%;
-	background-image: url(${apartment}), url(${staircase}), url(${facade});;
-    background-position: left, right top, right bottom;
-	background-repeat: no-repeat;
-	font-family: 'Avenir Next', sans-serif;
-    border-bottom: 2px solid lightcoral;
+const DesktopPicture = styled.img`
+  width: 100%;
 `;
 
-const DesktopHeadline = styled.h1`
-    text-align: center;
-    font-size: 1.5em;
-    margin-left: -10%;
-    font-weight: 600;
-    font-style: italic;
+const Headline = styled.h1`
+	position: absolute;
+	font-family: 'Avenir Next', sans-serif;
 	color: white;
+	top: 45%;
+	left: 15%;
+	font-weight: bold;
+	text-align: center;
+	font-size: 3vw;
 `;
 
 const DesktopHow = styled.div`
@@ -54,9 +51,10 @@ class Homepage extends Component {
 	render() {
         const HomepageDesktop = (
             <DesktopHome>
-                <DesktopHomePic>
-                    <DesktopHeadline><br/><br/><br/><br/><br/>Get authentic market insights better, faster, cheaper.</DesktopHeadline>
-                </DesktopHomePic>
+                <DesktopHome>
+                    <DesktopPicture src={apartment}/>
+					<Headline><i>Authentic market insights better, faster, cheaper.</i></Headline>
+                </DesktopHome>
                 <DesktopHow>
                     <br/><br/><h1>How it Works</h1><br/>
                     <DesktopPoints>
@@ -70,15 +68,15 @@ class Homepage extends Component {
                     <DesktopPoints>
                         <DesktopIcon src={money}/>
                         <br/>Customers are rewarded monetarily or on the BXR points system, which can lead to future BXR rewards!
-                    </DesktopPoints>
+                    </DesktopPoints><br/><br/>
                 </DesktopHow>
             </DesktopHome>
         );
         const HomepageMobile = (  
             <DesktopHome>
-                <DesktopHomePic>
+                <DesktopHome>
                     Get authentic market insights better, faster, cheaper.
-                </DesktopHomePic>
+                </DesktopHome>
                 <DesktopHow>
                     <h1>How</h1>
                         <img src={product} alt="" class="icons" />
