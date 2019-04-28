@@ -10,7 +10,7 @@ import { compose } from 'recompose';
 const DesktopSurvey = styled.div`
     font-family: 'Avenir Next', sans-serif;
 `;
-const DesktopButton = styled.button`
+const SurveyButton = styled.button`
     display: inline-block;
     float: right;
     background-color: lightcoral;
@@ -37,6 +37,7 @@ const MobileButton = styled.button`
 `;
 
 const Main = styled.div`
+  font-family: 'Source Sans Pro', sans-serif;
 	position: relative;
 	text-align: center;
   margin-top: 150px;
@@ -88,13 +89,28 @@ class Survey extends Component {
       this.state = { ...INITIAL_STATE };
   }
 
+  componentDidMount() {
+
+    if (this.props.location.state != null) {
+      const { productName } = this.props.location.state
+      this.setState( {
+        product: productName
+      });
+    }
+    else {
+      this.setState( {
+        product: ''
+      });
+    }
+  }
+
   onSubmit = event => {
       const { product, experience, likeliness, recommendations} = this.state;
+      const currentUser = this.props.firebase.doGetCurrentUser();
 
       this.props.firebase
-        .doSubmitSurvey(product, experience, likeliness, recommendations)
+        .doSubmitSurvey(product, experience, likeliness, recommendations, currentUser)
         .then(() => {
-          this.setState({ ...INITIAL_STATE });
           this.props.history.push("/myproducts");
         })
         .catch(error => {
@@ -109,16 +125,14 @@ class Survey extends Component {
   };
 
     render () {
+        const { product, experience, likeliness, recommendations} = this.state;
         const desktop = (
           <Main>
-            Welcome, name!
-            <DesktopButton>
-                SUBMIT
-            </DesktopButton>
+            Let us know what you thought! Fill out the short form below.
             <form onSubmit={this.onSubmit}>
-              <DesktopInput name="product" value={product} onChange={this.onChange} type="text" placeholder="Name of your product..."/><br/>
-              <DesktopInput name="experience" value={experience} onChange={this.onChange} type="number" placeholder="Rate your overall experience..."/><br/>
-              <DesktopInput name="likeliness" value={likeliness} onChange={this.onChange} type="number" placeholder="Rate your likeliness to recommend to others..."/><br/>
+              <DesktopInput name="product" value={product} type="text" placeholder={product} readonly/><br/>
+              <DesktopInput name="experience" value={experience} onChange={this.onChange} type="number" min="1" max="5" placeholder="Rate your overall experience (1-5 scale)..."/><br/>
+              <DesktopInput name="likeliness" value={likeliness} onChange={this.onChange} type="number" min="1" max="5" placeholder="Rate your likeliness to recommend to others (1-5 scale)..."/><br/>
               <DesktopInput name="recommendations" value={recommendations} onChange={this.onChange} type="text" placeholder="Leave any recommendations or suggested improvements..."/><br/><br/><br/>
               <DesktopButton type="submit">Finish</DesktopButton><br/><br/>
             </form>
@@ -132,9 +146,9 @@ class Survey extends Component {
                 SUBMIT
             </DesktopButton>
             <form onSubmit={this.onSubmit}>
-              <DesktopInput name="product" value={product} onChange={this.onChange} type="text" placeholder="Name of your product..."/><br/>
-              <DesktopInput name="experience" value={experience} onChange={this.onChange} type="number" placeholder="Rate your overall experience..."/><br/>
-              <DesktopInput name="likeliness" value={likeliness} onChange={this.onChange} type="number" placeholder="Rate your likeliness to recommend to others..."/><br/>
+              <DesktopInput name="product" value={product} type="text" placeholder={product} readonly/><br/>
+              <DesktopInput name="experience" value={experience} onChange={this.onChange} type="number" min="1" max="5" placeholder="Rate your overall experience (1-5 scale)..."/><br/>
+              <DesktopInput name="likeliness" value={likeliness} onChange={this.onChange} type="number" min="1" max="5" placeholder="Rate your likeliness to recommend to others (1-5 scale)..."/><br/>
               <DesktopInput name="recommendations" value={recommendations} onChange={this.onChange} type="text" placeholder="Leave any recommendations or suggested improvements..."/><br/><br/><br/>
               <DesktopButton type="submit">Finish</DesktopButton><br/><br/>
             </form>
@@ -149,4 +163,4 @@ class Survey extends Component {
   }
 };
 
-export default Survey;
+export default withRouter(withFirebase(Survey));
