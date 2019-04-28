@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Item from './item.jsx'
+import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
@@ -31,7 +31,6 @@ const MobileProducts = styled.div`
 const DesktopProducts = styled.div`
     font-family: 'Source Sans Pro', sans-serif;
     margin-bottom: 100px;
-    text-align: center;
 `;
 
 const Headis = styled.h1`
@@ -44,7 +43,6 @@ const Headis = styled.h1`
 const DesktopItem = styled.div`
     font-weight: bolder;
     text-transform: capitalize;
-    text
 `;
 
 const DesktopItemRemove = styled.button`
@@ -56,20 +54,23 @@ const ProductsCollection = styled.div`
   margin-top: -100px;
 `;
 
-const profPicStyle = {
-  width: '75px',
-  borderRadius: '15em',
-  float: 'center',
-};
-
 const Collection = styled.div`
   flex-direction: column;
   text-align: center;
 `;
 
 const Child = styled.div`
-  text-transform: capitalize;
+  flex-direction: column;
+  text-align: center;
 `;
+
+
+
+const profPicStyle = {
+  width: '75px',
+  borderRadius: '15em',
+  float: 'center',
+};
 
 const MyProductsPage = () => (
   <MyProductsView />
@@ -132,16 +133,12 @@ class MyProducts extends Component {
 
 
   render () {
-    var styles = {
-
-    }
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> My Products </Headis>
-          <ProductsCollection>
              <Row gutter={0}>
                {this.state.products.map(product =>
-                 <Col span={3}>
+                 <Col span={0}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
                         <button onClick={() => this.removeItem(product.id)}>X</button>
@@ -161,41 +158,40 @@ class MyProducts extends Component {
                 </Col>
              )}
              </Row>
-          </ProductsCollection>
       <br/><br/><br/></DesktopProducts>
     );
 
     const bookshelfMobile = (
-       <MobileProducts>
-       <Headis> My Products </Headis>
-           <Collection>
+      <DesktopProducts>
+        <Headis> My Products </Headis>
+             <Row gutter={0}>
                {this.state.products.map(product =>
-                 <Child>
-                  <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
-                    <DesktopItemRemove>
+                 <Col span={0}>
+                    <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
+                      <DesktopItemRemove>
                         <button onClick={() => this.removeItem(product.id)}>X</button>
-                    </DesktopItemRemove>
-                    {product.liked === false ?
-                        <UnfilledHeart
-                          onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                          &hearts; </UnfilledHeart>
-                        :
-                        <FilledHeart
-                          onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                          &hearts; </FilledHeart>
-                      }
-                  </Item>
-                </Child>
+                      </DesktopItemRemove>
+                      {product.liked === false ?
+                          <UnfilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </UnfilledHeart>
+                          :
+                          <FilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </FilledHeart>
+                        }
+                    </Item>
+                </Col>
              )}
-           </Collection>
-      </MobileProducts>
+             </Row>
+      <br/><br/><br/></DesktopProducts>
     );
 
     return(
       <Section title="">
-        <Media query={{ minWidth: 1020 }}>
+        <Media query={{ minWidth: 1000 }}>
           {matches => (matches ? bookshelfDesktop : bookshelfMobile)}
         </Media>
       </Section>

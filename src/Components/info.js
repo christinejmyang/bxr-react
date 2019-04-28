@@ -60,6 +60,24 @@ class Info extends Component {
       this.state = { ...INITIAL_STATE };
   }
 
+	componentDidMount() {
+		if (this.props.location.state != null) {
+      const { firstname, lastname, email } = this.props.location.state
+      this.setState( {
+        firstname: firstname,
+				lastname: lastname,
+				email: email
+      });
+    }
+    else {
+      this.setState( {
+        firstname: null,
+				lastname: null,
+				email: null
+      });
+    }
+	}
+
   onSubmit = event => {
       const { aboutyou, interests, username, firstname, lastname, email} = this.state;
 			const userid = this.props.firebase.doGetCurrentUser();
@@ -87,9 +105,9 @@ class Info extends Component {
 			  <Main>
 					<Headline><i>Let's get to know each other! Tell us more about yourself below.</i></Headline>
           <form onSubmit={this.onSubmit}>
-						<DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="Firstname..."/><br/>
-            <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Lastname..."/><br/>
-            <DesktopInput name="email" value={email} onChange={this.onChange} type="text" placeholder="Email..."/><br/>
+						<DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder={firstname ? firstname : "Firstname..."}/><br/>
+            <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder={lastname ? lastname : "Lastname..."}/><br/>
+            <DesktopInput name="email" value={email} onChange={this.onChange} type="text" placeholder={email ? email : "Email..."}/><br/>
             <DesktopInput name="username" value={username} onChange={this.onChange} type="text" placeholder="Choose a username..."/><br/>
             <DesktopInput name="aboutyou" value={aboutyou} onChange={this.onChange} type="text" placeholder="Tell us about yourself..."/><br/>
             <DesktopInput name="interests" value={interests} onChange={this.onChange} type="text" placeholder="List your interests..."/><br/><br/><br/>

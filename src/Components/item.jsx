@@ -10,7 +10,6 @@ const DesktopItem = styled.div`
 `;
 
 const MobileItem = styled.div`
-<<<<<<< HEAD
   text-transform: capitalize;
   text-align: center;
 `;
@@ -29,12 +28,16 @@ const ItemPrice = styled.p`
 `;
 
 class Item extends Component {
-  state = {
-    imageUrl: this.props.image,
-    name: this.props.name,
-    price: this.props.price,
-    showPopup: this.false
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageUrl: this.props.image,
+      name: this.props.name,
+      price: this.props.price,
+      showPopup: this.false
+    };
+  }
 
   togglePopup() {
     this.setState({
@@ -43,6 +46,8 @@ class Item extends Component {
   }
 
   render() {
+    const { imageUrl, name, price, showPopup} = this.state;
+
     const itemDesktop = (
       <DesktopItem>
         <h2> {this.state.name}, ${this.state.price}</h2>
