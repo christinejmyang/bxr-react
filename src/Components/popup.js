@@ -85,7 +85,6 @@ const Button = styled.div`
 
 class Popup extends Component {
 
-
   render() {
     return (
       <Pup>
@@ -94,7 +93,7 @@ class Popup extends Component {
           <Description>{this.props.description}
           <br></br>
           <LinkTo href={this.props.link} target="_blank">Buy Here</LinkTo><br/><br/><br/>
-          <Link to={{pathname: "/survey", state: {productName: this.props.text}}}>Take a Survey</Link>
+          <Link to={{pathname: "/survey", state: {productName: this.props.text}}} >Take a Survey</Link>
           </Description>
           <Picture src={this.props.image} alt=""></Picture>
           <Button class="closePopButton" onClick={this.props.closePopup}>X</Button>
