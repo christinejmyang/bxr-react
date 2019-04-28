@@ -5,12 +5,12 @@ import styled from '@emotion/styled';
 
 const DesktopFooter = styled.footer`
 	position: absolute;
-	background-color: transparent;
+	background-color: rgb(48, 48, 48, 48);
 	width: 100%;
 	left: 0;
-	border-top: 2px solid transparent;
+	border-top: 2px solid lightcoral;
 	font-family: 'Avenir Next', sans-serif;
-	color: grey;
+	color: white;
 `;
 const DesktopFooterBox = styled.div`
 	display: flex;
@@ -30,10 +30,10 @@ const Link = styled.a`
 	color: gray;
 	transition: color 0.3s;
 	&:hover {
-		color: black;
+		color: white;
 	}
 	&:visited {
-		color: black;
+		color: white;
 	}
 `;
 const DesktopFooterList = styled.ul`
