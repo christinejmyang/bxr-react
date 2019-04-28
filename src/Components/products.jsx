@@ -138,58 +138,36 @@ class Products extends Component {
   render () {
     const bookshelfDesktop = (
       <DesktopProducts>
-         <div>
-         {this.state.user ?
-            <button onClick={this.logout} class="signOutButton">Sign Out</button>
-            <img src={this.state.user.photoURL} style={profPicStyle}/>
-           </div>
-            :
-            <button onClick={this.login} class="signInButton">Sign In With Google</button>
-         }
-         {this.state.user ?
-         <div>
-           {this.state.products.map(product =>
-             <DesktopItem>
-                    <Item key={1} link={product.link} description={product.description} price={product.price} name={product.name} favorite={product.favorite} image={"https://picsum.photos/200"}>
-                    <br/>
-                    <DesktopItemRemove>
-                        <button onClick={() => this.removeItem(product.id)}>X</button>
-                    </DesktopItemRemove>
-                    <button onClick={() => this.handleHeart(product.id)}> {this.formatLike()} </button>
-                    </Item><br/><br/>
-            </DesktopItem>)}
-         </div>
-         :
-         <div className='wrapper'>
-           <p>You must be logged in to view BXR's featured products.</p>
-         </div> }
-      </DesktopProducts>
+        <Headis> Products </Headis>
+             <Row gutter={0}>
+               {this.state.products.map(product =>
+                 <Col span={3}>
+                    <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
+                      <DesktopItemRemove>
+                      <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
+                        ADD
+                      </button>
+                      </DesktopItemRemove>
+                      </Item>
+                </Col>
+             )}
+             </Row>
+       </DesktopProducts>
     );
 
     const bookshelfMobile = (
-       <MobileSignUp>
-       <div>
-         {this.state.user ?
-           <button onClick={this.logout} class="signOutButton">Sign Out</button>
-           :
-           <button onClick={this.login} class="signInButton">Sign In With Google</button>
-         }
-       </div>
-       {this.state.user ?
-       <div>
-         <div className='user-profile'>
-           <img src={this.state.user.photoURL} style={profPicStyle}/>
-         </div>
-         {this.state.products.map(product =>
-           <Item key={2} price={product.price} name={product.name} image={"https://picsum.photos/200"}>
-             <button onClick={() => this.removeItem(product.id)}>X</button>
-           </Item>)}
-       </div>
-       :
-       <div className='wrapper'>
-         <p>You must be logged in to view BXR's featured products.</p>
-       </div> }
-      </MobileSignUp>
+       <MobileProducts>
+       <Headis> Products </Headis>
+           <div>
+               {this.state.products.map(product =>
+                  <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
+                    <DesktopItemRemove>
+                        <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>ADD</button>
+                    </DesktopItemRemove>
+                  </Item>
+             )}
+           </div>
+      </MobileProducts>
     );
 
     return(
