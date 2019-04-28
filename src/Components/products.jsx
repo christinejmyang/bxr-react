@@ -59,6 +59,19 @@ const Child = styled.div`
   text-transform: capitalize;
 `;
 
+const DesktopButton = styled.div`
+    display: inline-block;
+    cursor: pointer;
+    background-color: lightcoral;
+    width: 70px;
+    padding: 1%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px 25px 25px 25px;
+    font-size: 15px;
+`;
+
 const profPicStyle = {
   width: '75px',
   borderRadius: '15em',
@@ -131,9 +144,9 @@ class Products extends Component {
                  <Col span={3}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
-                      <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
+                      <DesktopButton onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
                         ADD
-                      </button>
+                      </DesktopButton>
                       </DesktopItemRemove>
                       </Item>
                 </Col>
@@ -151,7 +164,7 @@ class Products extends Component {
                  <Child>
                   <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                     <DesktopItemRemove>
-                        <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>ADD</button>
+                        <DesktopButton onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>ADD</DesktopButton>
                     </DesktopItemRemove>
                   </Item>
                 </Child>
