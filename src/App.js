@@ -11,8 +11,8 @@ import SignIn from './Components/signin.js'
 import SignUp from './Components/signup.js'
 
 import About from './Components/about.js'
-import Products from './Components/products.js'
-import MyProducts from './Components/myProducts.js'
+import Products from './Components/products.jsx'
+import MyProducts from './Components/myProducts.jsx'
 import Hosts from './Components/hosts.js'
 import Brands from './Components/brands.js'
 
