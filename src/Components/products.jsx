@@ -1,27 +1,11 @@
 import React, {Component} from 'react'
-import Item from './item'
+import Item from './item.jsx'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
 import Firebase, { FirebaseContext, withFirebase} from './../Firebase'
 import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
-
-const UnfilledHeart = styled.button`
-    font-size: 40px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: none;
-`;
-
-const FilledHeart = styled.button`
-    font-size: 40px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: red;
-`;
 
 const MobileProducts = styled.div`
 `;
@@ -43,9 +27,10 @@ const DesktopItem = styled.div`
     text-transform: capitalize;
 `;
 
-const DesktopItemRemove = styled.button`
+const DesktopItemRemove = styled.div`
     border: none;
     background-color: transparent;
+    cursor: pointer;
 `;
 
 const DesktopItemAdd = styled.button`
@@ -127,15 +112,16 @@ class Products extends Component {
                {this.state.products.map(product =>
                  <Col span={3}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
-                      <DesktopItemAdd>
-                        <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>+</button>
-                      </DesktopItemAdd>
-                    </Item>
+                      <DesktopItemRemove>
+                      <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
+                        ADD
+                      </button>
+                      </DesktopItemRemove>
+                      </Item>
                 </Col>
              )}
              </Row>
-         :
-      <br/><br/><br/></DesktopProducts>
+           </DesktopProducts>
     );
 
     const bookshelfMobile = (
@@ -145,7 +131,7 @@ class Products extends Component {
                {this.state.products.map(product =>
                   <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                     <DesktopItemRemove>
-                        <button onClick={() => this.removeItem(product.id)}>X</button>
+                        <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>ADD</button>
                     </DesktopItemRemove>
                   </Item>
              )}

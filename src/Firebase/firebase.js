@@ -47,11 +47,14 @@ class Firebase {
   doOnAuthStateChanged = (user) =>
     this.auth.onAuthStateChanged(user);
 
-  doUpdateUserInfo = (aboutyou, interests, username, id) =>
+  doUpdateUserInfo = (aboutyou, interests, username, firstname, lastname, email, id) =>
     app.database().ref('users/' + id).update({
       aboutyou: aboutyou,
       interests: interests,
-      username: username
+      username: username,
+      firstname: firstname,
+      lastname: lastname,
+      email: email
     });
 
   doSubmitSurvey = (product, experience, likeliness, recommendations, uid) =>
