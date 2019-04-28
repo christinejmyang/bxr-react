@@ -185,13 +185,15 @@ class SignedInLinks extends Component {
                             <DesktopDropdownLink href="/brands">For Brands</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink href="/products">For Renters</DesktopDropdownLink><br/>
+
                         </DesktopDropdown>
                     </DesktopNavLink>
                     <DesktopNavLink href="/products"> Products </DesktopNavLink>
                     <DesktopDashboard onMouseOver={() => this.handleOpenCloseDashboard()} onMouseOut={() => this.handleOpenCloseDashboard()}>Dashboard
                         <DesktopDashDropdown hidden={dashHidden}>
                             <DesktopDropdownLink href="/profile">My Account</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                            <DesktopDropdownLink href="/myproducts">My Products</DesktopDropdownLink><hr style={{border: '1px solid black'}}/>
+                            <DesktopDropdownLink href="/myproducts">My Products</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
+                            <DesktopDropdownLink href="/survey">Take a Survey</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                             <DesktopDropdownLink onClick={this.logout}>Sign Out</DesktopDropdownLink><br/>
                         </DesktopDashDropdown>
                     </DesktopDashboard>
@@ -216,6 +218,7 @@ class SignedInLinks extends Component {
                       <DesktopDashDropdown hidden={dashHidden}>
                           <DesktopDropdownLink href="/profile">My Account</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/survey">Survey</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink onClick={this.logout}>Sign Out</DesktopDropdownLink><br/>
                       </DesktopDashDropdown>
                   </DesktopDashboard>
