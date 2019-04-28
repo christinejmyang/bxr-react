@@ -141,10 +141,7 @@ class Survey extends Component {
 
         const mobile = (
           <Main>
-            Welcome, name!
-            <DesktopButton>
-                SUBMIT
-            </DesktopButton>
+            Let us know what you thought! Fill out the short form below.
             <form onSubmit={this.onSubmit}>
               <DesktopInput name="product" value={product} type="text" placeholder={product} readonly/><br/>
               <DesktopInput name="experience" value={experience} onChange={this.onChange} type="number" min="1" max="5" placeholder="Rate your overall experience (1-5 scale)..."/><br/>
