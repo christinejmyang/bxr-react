@@ -8,7 +8,7 @@ import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
 const UnfilledHeart = styled.button`
-    font-size: 40px;
+    font-size: 20px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -16,7 +16,7 @@ const UnfilledHeart = styled.button`
 `;
 
 const FilledHeart = styled.button`
-    font-size: 40px;
+    font-size: 20px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -44,7 +44,6 @@ const Headis = styled.h1`
 const DesktopItem = styled.div`
     font-weight: bolder;
     text-transform: capitalize;
-    text
 `;
 
 const DesktopItemRemove = styled.button`
@@ -70,6 +69,22 @@ const Collection = styled.div`
 const Child = styled.div`
   text-transform: capitalize;
 `;
+
+const DesktopButton = styled.div`
+  padding-top: -20px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: lightcoral;
+  width: 23px;
+  padding: 1%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 23px 23px 23px 23px;
+  font-size: 15px;
+`;
+
+
 
 const MyProductsPage = () => (
   <MyProductsView />
@@ -132,9 +147,6 @@ class MyProducts extends Component {
 
 
   render () {
-    var styles = {
-
-    }
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> My Products </Headis>
@@ -144,7 +156,7 @@ class MyProducts extends Component {
                  <Col span={3}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
-                        <button onClick={() => this.removeItem(product.id)}>X</button>
+                        <DesktopButton onClick={() => this.removeItem(product.id)}>X</DesktopButton>
                       </DesktopItemRemove>
                       {product.liked === false ?
                           <UnfilledHeart
@@ -173,7 +185,7 @@ class MyProducts extends Component {
                  <Child>
                   <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                     <DesktopItemRemove>
-                        <button onClick={() => this.removeItem(product.id)}>X</button>
+                        <DesktopButton onClick={() => this.removeItem(product.id)}>X</DesktopButton>
                     </DesktopItemRemove>
                     {product.liked === false ?
                         <UnfilledHeart
