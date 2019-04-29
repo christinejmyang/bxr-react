@@ -209,13 +209,13 @@ class SignedInLinks extends Component {
                           <DesktopDropdownLink href="/hosts">For Hosts</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink href="/profile">For Renters</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink href="/about">About</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink>
+                          <DesktopDropdownLink href="/products">Products</DesktopDropdownLink>
                       </DesktopDropdown>
                   </DesktopNavLink>
                   <DesktopDashboard onMouseOver={() => this.handleOpenCloseDashboard()} onMouseOut={() => this.handleOpenCloseDashboard()}>Dashboard
                       <DesktopDashDropdown hidden={dashHidden}>
                           <DesktopDropdownLink href="/profile">My Account</DesktopDropdownLink><br/><hr style={{border: '1px solid black'}}/>
-                          <DesktopDropdownLink href="/products">My Products</DesktopDropdownLink><hr style={{border: '1px solid black'}}/>
+                          <DesktopDropdownLink href="/myproducts">My Products</DesktopDropdownLink><hr style={{border: '1px solid black'}}/>
                           <DesktopDropdownLink onClick={this.logout}>Sign Out</DesktopDropdownLink><br/>
                       </DesktopDashDropdown>
                   </DesktopDashboard>
@@ -224,7 +224,7 @@ class SignedInLinks extends Component {
         );
 
     return (
-        <Media query={{ minWidth: 500 }}>
+        <Media query={{ minWidth: 800 }}>
           {matches => (matches ? SignedInHeaderDesktop : SignedInHeaderMobile)}
         </Media>
     );

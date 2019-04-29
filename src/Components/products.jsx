@@ -8,11 +8,19 @@ import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
 const MobileProducts = styled.div`
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-bottom: 100px;
+`;
+
+const MobileItem = styled.div`
+  text-transform: capitalize;
+  text-align: center;
 `;
 
 const DesktopProducts = styled.div`
-    font-family: 'Source Sans Pro', sans-serif;
-    margin-bottom: 100px;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-bottom: 100px;
+  text-align: center;
 `;
 
 const Headis = styled.h1`
@@ -40,6 +48,28 @@ const DesktopItemAdd = styled.button`
 
 const ProductsCollection = styled.div`
   margin-top: -100px;
+`;
+
+const Collection = styled.div`
+  flex-direction: column;
+  text-align: center;
+`;
+
+const Child = styled.div`
+  text-transform: capitalize;
+`;
+
+const DesktopButton = styled.div`
+    display: inline-block;
+    cursor: pointer;
+    background-color: lightcoral;
+    width: 70px;
+    padding: 1%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px 25px 25px 25px;
+    font-size: 15px;
 `;
 
 const profPicStyle = {
@@ -108,40 +138,44 @@ class Products extends Component {
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> Products </Headis>
+          <ProductsCollection>
              <Row gutter={0}>
                {this.state.products.map(product =>
                  <Col span={3}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
-                      <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
+                      <DesktopButton onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
                         ADD
-                      </button>
+                      </DesktopButton>
                       </DesktopItemRemove>
                       </Item>
                 </Col>
              )}
              </Row>
-           </DesktopProducts>
+            </ProductsCollection>
+        </DesktopProducts>
     );
 
     const bookshelfMobile = (
        <MobileProducts>
        <Headis> Products </Headis>
-           <div>
+           <Collection>
                {this.state.products.map(product =>
+                 <Child>
                   <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                     <DesktopItemRemove>
-                        <button onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>ADD</button>
+                        <DesktopButton onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>ADD</DesktopButton>
                     </DesktopItemRemove>
                   </Item>
+                </Child>
              )}
-           </div>
+           </Collection>
       </MobileProducts>
     );
 
     return(
       <Section title="">
-        <Media query={{ minWidth: 800 }}>
+        <Media query={{ minWidth: 1020 }}>
           {matches => (matches ? bookshelfDesktop : bookshelfMobile)}
         </Media>
       </Section>

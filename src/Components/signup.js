@@ -224,8 +224,11 @@ class SignUpFormBase extends Component {
         });
         this.props.history.push({
           pathname: '/info',
-          appState: {
-            uid: this.props.firebase.doGetCurrentUser()
+          state: {
+            uid: this.props.firebase.doGetCurrentUser(),
+            firstname: firstname,
+            lastname: lastname,
+            email: email
           }
         });
       })

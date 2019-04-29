@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Item from './item.jsx'
+import Item from './item'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
@@ -8,7 +8,7 @@ import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
 const UnfilledHeart = styled.button`
-    font-size: 20px;
+    font-size: 40px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -16,7 +16,7 @@ const UnfilledHeart = styled.button`
 `;
 
 const FilledHeart = styled.button`
-    font-size: 20px;
+    font-size: 40px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -31,7 +31,6 @@ const MobileProducts = styled.div`
 const DesktopProducts = styled.div`
     font-family: 'Source Sans Pro', sans-serif;
     margin-bottom: 100px;
-    text-align: center;
 `;
 
 const Headis = styled.h1`
@@ -55,36 +54,23 @@ const ProductsCollection = styled.div`
   margin-top: -100px;
 `;
 
-const profPicStyle = {
-  width: '75px',
-  borderRadius: '15em',
-  float: 'center',
-};
-
 const Collection = styled.div`
   flex-direction: column;
   text-align: center;
 `;
 
 const Child = styled.div`
-  text-transform: capitalize;
-`;
-
-const DesktopButton = styled.div`
-  padding-top: -20px;
-  display: inline-block;
-  cursor: pointer;
-  background-color: lightcoral;
-  width: 23px;
-  padding: 1%;
+  flex-direction: column;
   text-align: center;
-  color: white;
-  font-weight: bold;
-  border-radius: 23px 23px 23px 23px;
-  font-size: 15px;
 `;
 
 
+
+const profPicStyle = {
+  width: '75px',
+  borderRadius: '15em',
+  float: 'center',
+};
 
 const MyProductsPage = () => (
   <MyProductsView />
@@ -150,13 +136,12 @@ class MyProducts extends Component {
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> My Products </Headis>
-          <ProductsCollection>
              <Row gutter={0}>
                {this.state.products.map(product =>
-                 <Col span={3}>
+                 <Col span={0}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
-                        <DesktopButton onClick={() => this.removeItem(product.id)}>X</DesktopButton>
+                        <button onClick={() => this.removeItem(product.id)}>X</button>
                       </DesktopItemRemove>
                       {product.liked === false ?
                           <UnfilledHeart
@@ -173,41 +158,40 @@ class MyProducts extends Component {
                 </Col>
              )}
              </Row>
-          </ProductsCollection>
       <br/><br/><br/></DesktopProducts>
     );
 
     const bookshelfMobile = (
-       <MobileProducts>
-       <Headis> My Products </Headis>
-           <Collection>
+      <DesktopProducts>
+        <Headis> My Products </Headis>
+             <Row gutter={0}>
                {this.state.products.map(product =>
-                 <Child>
-                  <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
-                    <DesktopItemRemove>
-                        <DesktopButton onClick={() => this.removeItem(product.id)}>X</DesktopButton>
-                    </DesktopItemRemove>
-                    {product.liked === false ?
-                        <UnfilledHeart
-                          onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                          &hearts; </UnfilledHeart>
-                        :
-                        <FilledHeart
-                          onClick={() =>
-                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                          &hearts; </FilledHeart>
-                      }
-                  </Item>
-                </Child>
+                 <Col span={0}>
+                    <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
+                      <DesktopItemRemove>
+                        <button onClick={() => this.removeItem(product.id)}>X</button>
+                      </DesktopItemRemove>
+                      {product.liked === false ?
+                          <UnfilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </UnfilledHeart>
+                          :
+                          <FilledHeart
+                            onClick={() =>
+                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                            &hearts; </FilledHeart>
+                        }
+                    </Item>
+                </Col>
              )}
-           </Collection>
-      </MobileProducts>
+             </Row>
+      <br/><br/><br/></DesktopProducts>
     );
 
     return(
       <Section title="">
-        <Media query={{ minWidth: 1020 }}>
+        <Media query={{ minWidth: 1000 }}>
           {matches => (matches ? bookshelfDesktop : bookshelfMobile)}
         </Media>
       </Section>
