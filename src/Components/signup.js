@@ -43,7 +43,7 @@ const DesktopInput = styled.input`
     padding: 1%;
     margin-right: 2%;
     font-family: 'Avenir Next', sans-serif;
-    width: 42%;
+    width: 35%;
     font-size: 1em;
     border: 1px solid lightgrey;
     border-radius: 5px 5px 5px 5px;
@@ -63,19 +63,25 @@ const MobileInput = styled.input`
 const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
-    width: 30%;
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 1em;
+    width: 40%;
+    cursor: pointer;
     text-align: center;
     padding: 1.5%;
-    margin-right: 2%;
+    margin-right: 5%;
+    margin-top: -1.5%;
+    float: left;
     color: white;
     font-weight: bold;
     border-radius: 5px 5px 5px 5px;
+    border: 0 solid transparent;
 `;
 
 const DesktopLink = styled.a`
     color: lightcoral;
     font-weight: 600;
-    margin-left: 1%;
+    margin-left: 0.5%;
     cursor: pointer;
     &:hover {
         color: grey;
@@ -98,10 +104,13 @@ const MobileButton = styled.button`
 const DesktopFacebook = styled.button`
     display: inline-block;
     background-color: #4567b2;
-    width: 90%;
+    width: 150%;
+    cursor: pointer;
+    font-family: 'Avenir Next', sans-serif;
+    margin-left: -60%;
+    font-size: 0.9em;
     text-align: center;
-    padding: 4%;
-    margin-left: -2%;
+    padding: 6%;
     color: white;
     font-weight: 600;
     border: 2px solid #4567b2;
@@ -121,10 +130,13 @@ const MobileFacebook = styled.button`
 
 const DesktopGoogle = styled.button`
     display: inline-block;
-    width: 90%;
+    width: 150%;
+    cursor: pointer;
+    font-family: 'Avenir Next', sans-serif;
+    margin-left: -60%;
+    font-size: 0.9em;
     text-align: center;
-    padding: 4%;
-    margin-left: -2%;
+    padding: 6%;
     margin-top: -8%;
     color: black;
     font-weight: 600;
@@ -267,16 +279,16 @@ class SignUpFormBase extends Component {
               <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Create a password"/><br/><br/>
 
               <DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder="First name"/>
-              <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/>
+              <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder="Last name"/><br/><br/>
 
               <h3>Birthday</h3>
               To sign up, you must be 18 or older. Other people won’t see your birthday.<br/><br/>
               <DesktopInput name="birthday" value={birthday} onChange={this.onChange} type="date"/><br/><br/><br/>
 
-              We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
+              We’ll send you marketing promotions, special offers, and policy updates via email.<br/><br/>
               <DesktopButton type="submit">Sign Up</DesktopButton>
             </form>
-              Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
+              Already have an account? <DesktopLink href="/signin">Sign In</DesktopLink><br/><br/>
           </DesktopMain>
           <DesktopSidebar>
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>

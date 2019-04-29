@@ -5,27 +5,31 @@ import styled from '@emotion/styled';
 import Popup from './popup.js'
 
 const DesktopItem = styled.div`
-  text-transform: capitalize;
-  margin-bottom: -100px;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-family: 'Avenir Next', sans-serif;
+    margin-bottom: -60%;
 `;
 
 const MobileItem = styled.div`
   text-transform: capitalize;
-  text-align: center;
+`;
+
+const ItemName = styled.span`
+    float: left;
+    margin-left: 5%;
+`;
+
+const ItemPrice = styled.span`
+    float: right;
+    margin-right: -8%;
+    margin-bottom: 5%;
+    font-weight: 400;
 `;
 
 const textStyle = {
     marginLeft:'4%',
 };
-
-const ItemPrice = styled.p`
-    text-align: left;
-    font-weight: 300;
-    margin-left: 4%;
-    margin-top: -7%;
-    margin-bottom: -2%;
-    font-style: italic;
-`;
 
 class Item extends Component {
 
@@ -50,8 +54,9 @@ class Item extends Component {
 
     const itemDesktop = (
       <DesktopItem>
-        <h2> {this.state.name}, ${this.state.price}</h2>
-        <img onClick={this.togglePopup.bind(this)} style={{padding:1, border:10, backgroundColor: 'black',
+        <ItemName>{this.state.name}</ItemName>
+        <ItemPrice>${this.state.price}</ItemPrice>
+        <img onClick={this.togglePopup.bind(this)} style={{padding:10, border:10, cursor: 'pointer', backgroundColor: 'grey',
                                                            height: 200, width: 200 }} src={this.state.imageUrl} alt="" />
         {this.props.children}
         {this.state.showPopup ?

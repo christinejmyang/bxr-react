@@ -11,9 +11,6 @@ const Main = styled.div`
 	text-align: center;
   margin-top: 150px;
 `;
-const DesktopPicture = styled.img`
-  width: 100%;
-`;
 const Headline = styled.h1`
 	font-family: 'Avenir Next', sans-serif;
 	color: black;
@@ -27,7 +24,18 @@ const DesktopInput = styled.input`
     margin-right: 2%;
     margin-top: 2%;
     font-family: 'Avenir Next', sans-serif;
-    width: 80%;
+    width: 20%;
+    font-size: 1em;
+    border: 1px solid lightgrey;
+    border-radius: 5px 5px 5px 5px;
+`;
+const DesktopLongInput = styled.input`
+    padding: 1%;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 20%;
+    height: 150px;
     font-size: 1em;
     border: 1px solid lightgrey;
     border-radius: 5px 5px 5px 5px;
@@ -35,13 +43,17 @@ const DesktopInput = styled.input`
 const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
-    width: 60%;
+    font-family: 'Avenir Next', sans-serif;
+    cursor: pointer;
+    width: 10%;
     text-align: center;
-    padding: 3%;
+    padding: 0.6%;
     margin-right: 2%;
+    font-size: 1em;
     color: white;
     font-weight: bold;
     border-radius: 5px 5px 5px 5px;
+    border: 0px solid transparent;
 `;
 
 const INITIAL_STATE = {
@@ -103,15 +115,15 @@ class Info extends Component {
     const { aboutyou, interests, username, firstname, lastname, email, error } = this.state;
 		return(
 			  <Main>
-					<Headline><i>Let's get to know each other! Tell us more about yourself below.</i></Headline>
+					<Headline><i><br/>Let's get to know each other! Tell us more about yourself below.</i></Headline>
           <form onSubmit={this.onSubmit}>
-						<DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder={firstname ? firstname : "Firstname..."}/><br/>
-            <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder={lastname ? lastname : "Lastname..."}/><br/>
-            <DesktopInput name="email" value={email} onChange={this.onChange} type="text" placeholder={email ? email : "Email..."}/><br/>
-            <DesktopInput name="username" value={username} onChange={this.onChange} type="text" placeholder="Choose a username..."/><br/>
-            <DesktopInput name="aboutyou" value={aboutyou} onChange={this.onChange} type="text" placeholder="Tell us about yourself..."/><br/>
-            <DesktopInput name="interests" value={interests} onChange={this.onChange} type="text" placeholder="List your interests..."/><br/><br/><br/>
-            <DesktopButton type="submit">Finish</DesktopButton><br/><br/>
+						<DesktopInput name="firstname" value={firstname} onChange={this.onChange} type="text" placeholder={firstname ? firstname : "First Name"}/>
+            <DesktopInput name="lastname" value={lastname} onChange={this.onChange} type="text" placeholder={lastname ? lastname : "Last Name"}/><br/>
+            <DesktopInput name="email" value={email} onChange={this.onChange} type="text" placeholder={email ? email : "Email"}/>
+            <DesktopInput name="username" value={username} onChange={this.onChange} type="text" placeholder="Choose a username"/><br/>
+            <DesktopLongInput name="aboutyou" value={aboutyou} onChange={this.onChange} type="text" placeholder="Tell us about yourself!"/>
+            <DesktopLongInput name="interests" value={interests} onChange={this.onChange} type="text" placeholder="List your interests..."/><br/><br/><br/>
+            <DesktopButton type="submit">Finish</DesktopButton><br/><br/><br/>
           </form>
 			  </Main>
 		);

@@ -116,9 +116,9 @@ class Profile extends Component {
                 </DesktopButton>
               </h1>
               <br></br>
-                <h2>About You</h2>
+                <h2><i>About You</i></h2>
                 {this.state.aboutyou}<br/><br/>
-                <h2>Interests</h2>
+                <h2><i>Interests</i></h2>
                 {this.state.interests}<br/><br/>
             </DesktopProfile>
         );

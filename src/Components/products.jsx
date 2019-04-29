@@ -24,26 +24,26 @@ const DesktopProducts = styled.div`
 `;
 
 const Headis = styled.h1`
-    font-size: 50px;
+    font-size: 2em;
     text-align: center;
     font-family: 'Avenir Next', sans-serif;
-    margin-top: 5%;
 `;
 
 const DesktopItem = styled.div`
     font-weight: bolder;
     text-transform: capitalize;
+    font-family: 'Avenir Next', sans-serif;
 `;
 
 const DesktopItemRemove = styled.div`
     border: none;
     background-color: transparent;
-    cursor: pointer;
 `;
 
 const DesktopItemAdd = styled.button`
     border: none;
     background-color: transparent;
+
 `;
 
 const ProductsCollection = styled.div`
@@ -61,15 +61,18 @@ const Child = styled.div`
 
 const DesktopButton = styled.div`
     display: inline-block;
-    cursor: pointer;
+    cursor: pointer !important;
     background-color: lightcoral;
-    width: 70px;
-    padding: 1%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 70%;
+    padding: 5%;
+    margin-top: 5%;
+    margin-left: 10%;
     text-align: center;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
     border-radius: 25px 25px 25px 25px;
-    font-size: 15px;
+    font-size: 1em;
 `;
 
 const profPicStyle = {
@@ -144,9 +147,9 @@ class Products extends Component {
                  <Col span={3}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
-                      <DesktopButton onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
-                        ADD
-                      </DesktopButton>
+                          <DesktopButton onClick={() => this.addItem(product.id, product.description, product.name, product.price, product.link, product.image, product.liked)}>
+                            ADD
+                          </DesktopButton>
                       </DesktopItemRemove>
                       </Item>
                 </Col>

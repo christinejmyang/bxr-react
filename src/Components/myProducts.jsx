@@ -8,7 +8,8 @@ import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
 const UnfilledHeart = styled.button`
-    font-size: 20px;
+    float: right;
+    font-size: 1.5em;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -16,7 +17,8 @@ const UnfilledHeart = styled.button`
 `;
 
 const FilledHeart = styled.button`
-    font-size: 20px;
+    float: left;
+    font-size: 1.5em;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -35,10 +37,9 @@ const DesktopProducts = styled.div`
 `;
 
 const Headis = styled.h1`
-    font-size: 50px;
+    font-size: 2em;
     text-align: center;
     font-family: 'Avenir Next', sans-serif;
-    margin-top: 5%;
 `;
 
 const DesktopItem = styled.div`
@@ -49,6 +50,8 @@ const DesktopItem = styled.div`
 const DesktopItemRemove = styled.button`
     border: none;
     background-color: transparent;
+    margin-top: 1%;
+    margin-left: -30%;
 `;
 
 const ProductsCollection = styled.div`
@@ -70,18 +73,13 @@ const Child = styled.div`
   text-transform: capitalize;
 `;
 
-const DesktopButton = styled.div`
-  padding-top: -20px;
-  display: inline-block;
+const DesktopButton = styled.a`
   cursor: pointer;
-  background-color: lightcoral;
-  width: 23px;
-  padding: 1%;
   text-align: center;
-  color: white;
+  color: black;
   font-weight: bold;
-  border-radius: 23px 23px 23px 23px;
-  font-size: 15px;
+  font-size: 2em;
+    float: left;
 `;
 
 
