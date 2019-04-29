@@ -42,13 +42,17 @@ const DesktopInput = styled.input`
 const DesktopButton = styled.button`
     display: inline-block;
     background-color: lightcoral;
-    width: 97%;
+    font-family: 'Avenir Next', sans-serif;
+    width: 102%;
     text-align: center;
+    cursor: pointer;
     padding: 3%;
+    font-size: 1em;
     margin-right: 2%;
     color: white;
     font-weight: bold;
     border-radius: 5px 5px 5px 5px;
+    border: 0px solid transparent;
 `;
 
 const DesktopLink = styled.a`
@@ -66,8 +70,11 @@ const DesktopFacebook = styled.button`
     background-color: #4567b2;
     width: 100%;
     text-align: center;
+    cursor: pointer;
     padding: 4%;
     margin-left: -10%;
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 1em;
     margin-top: 3%;
     color: white;
     font-weight: 600;
@@ -90,7 +97,10 @@ const DesktopGoogle = styled.button`
     display: inline-block;
     width: 100%;
     text-align: center;
+    cursor: pointer;
     padding: 4%;
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 1em;
     margin-left: -10%;
     margin-top: -8%;
     color: black;
@@ -105,6 +115,7 @@ const MobileGoogle = styled.button`
     padding: 3%;
     margin-top: 2%;
     color: black;
+    font-family: 'Avenir Next', sans-serif;
     font-weight: 500;
     border: 2px solid black;
     border-radius: 5px 5px 5px 5px;
@@ -146,6 +157,7 @@ const MobileFacebook = styled.button`
     text-align: center;
     padding: 3%;
     color: white;
+    font-family: 'Avenir Next', sans-serif;
     font-weight: 500;
     border: 2px solid #4567b2;
     border-radius: 5px 5px 5px 5px;
@@ -157,6 +169,7 @@ const MobileButton = styled.button`
     width: 100%;
     float: center;
     text-align: center;
+    font-family: 'Avenir Next', sans-serif;
     padding: 3%;
     margin-right: 2%;
     color: white;
@@ -197,8 +210,8 @@ class SignInFormBase extends Component {
           this.setState({
             user
           });
+          this.props.history.push("/profile");
         });
-        this.props.history.push("/profile");
     };
 
     onSubmit = event => {
@@ -244,7 +257,7 @@ class SignInFormBase extends Component {
               <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
               <DesktopInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/><br/>
               <DesktopButton type="submit">Log In</DesktopButton><br/><br/>
-              Don't have an account?<DesktopLink><Link to="/signup">Sign Up</Link></DesktopLink>
+              Don't have an account?<DesktopLink href="/signup">Sign Up</DesktopLink>
               <br/><br/>
             </form>
             <i>{error && <p>{error.message}</p>}</i>

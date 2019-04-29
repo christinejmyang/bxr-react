@@ -28,34 +28,45 @@ const PopInner = styled.div`
   top: 25%;
   bottom: 25%;
   margin: auto;
+    height: 400px;
   background: white;
 	text-align: center;
 `;
 
-const Title = styled.h1`
-  color: black;
-  position: relative;
-  text-transform: capitalize;
-`;
-
 const Description = styled.div`
-  position: absolute;
-  float: right;
-  padding-top: 5%;
-  top: 10%;
-  left: 60%;
-  font-size: 1.25em;
-  color: black;
-  font-family: 'Source Sans Pro', sans-serif;
-  text-align: left;
+    margin-left: 40.5%;
+    margin-top: -6%;
+    margin-bottom: -2%;
+    padding: 6%;
+    font-weight: 300;
+    font-size: 1.1em;
+    color: black;
+    font-family: 'Avenir Next', sans-serif;
+    text-align: left;
 `;
 
 const Picture = styled.img`
-  float: left;
+    float: left;
   position: absolute;
   width: 30%;
-  left: 2%;
-  top: 25%;
+  left: 5%;
+  top: 15%;
+`;
+
+
+const ItemName = styled.h2`
+    color: black;
+    margin-top: 6%;
+    margin-left: 5%;
+    text-transform: capitalize;
+`;
+
+const ItemPrice = styled.h3`
+    color: black;
+    font-weight: 400;
+    margin-top: -2%;
+    margin-left: 3%;
+    text-transform: capitalize;
 `;
 
 const LinkTo = styled.a`
@@ -63,35 +74,32 @@ const LinkTo = styled.a`
 `;
 
 const ButtonText = styled.a`
-  color: white;
+    color: white;
+    font-weight: 700;
 `;
 
-const Button = styled.div`
-  background-color: #fff;
-  border: 3px solid #999;
-  border-radius: 50px;
-  cursor: pointer;
-  display: inline-block;
-  font-family: arial;
-  font-weight: bold;
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  font-size: 25px;
-  width: 30px;
-  height: 30px;
-  text-align: center;
+const Button = styled.a`
+    cursor: pointer;
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 11%;
+    margin-left: 22%;
+    z-index: 2;
 `;
 
 const DesktopButton = styled.div`
     display: inline-block;
     cursor: pointer;
     background-color: lightcoral;
-    width: 100px;
-    padding: 1%;
+    font-family: 'Avenir Next', sans-serif;
+    margin-left: 22%;
+    width: 20%;
+    padding: 2%;
+    margin-right: -18%;
     text-align: center;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
     border-radius: 25px 25px 25px 25px;
     font-size: 15px;
 `;
@@ -104,14 +112,14 @@ class Popup extends Component {
   render() {
     const desktopPop = (
       <Pop>
+        <Button class="" onClick={this.props.closePopup}>X</Button>
         <PopInner>
-          <Title>{this.props.text}, ${this.props.price}</Title>
-          <Description>{this.props.description}
-            <Space><DesktopButton><LinkTo href={this.props.link} target="_blank">Buy Here</LinkTo></DesktopButton></Space>
-            <Space><DesktopButton><Link to={{pathname: "/survey", state: {productName: this.props.text}}}><ButtonText>Take a Survey</ButtonText></Link></DesktopButton></Space>
-          </Description>
-          <Picture src={this.props.image} alt=""></Picture>
-          <Button class="closePopButton" onClick={this.props.closePopup}>X</Button>
+            <Picture src={this.props.image} alt=""></Picture>
+                <ItemName>{this.props.text}</ItemName>
+                <ItemPrice>${this.props.price}</ItemPrice>
+                <Description>{this.props.description}</Description>
+                <DesktopButton><LinkTo href={this.props.link} target="_blank">Buy Here</LinkTo></DesktopButton>
+                <Link to={{pathname: "/survey", state: {productName: this.props.text}}}><DesktopButton>Take a Survey</DesktopButton></Link><br/><br/>
         </PopInner>
       </Pop>
     );
@@ -119,13 +127,14 @@ class Popup extends Component {
     const mobilePop = (
       <Pop>
         <PopInner>
-          <Title>{this.props.text}, ${this.props.price}</Title>
-          <Description>{this.props.description}
-            <Space><DesktopButton><LinkTo href={this.props.link} target="_blank">Buy Here</LinkTo></DesktopButton></Space>
-            <Space><DesktopButton><Link to={{pathname: "/survey", state: {productName: this.props.text}}}><ButtonText>Take a Survey</ButtonText></Link></DesktopButton></Space>
-          </Description>
-          <Picture src={this.props.image} alt=""></Picture>
-          <Button class="closePopButton" onClick={this.props.closePopup}>X</Button>
+            <Picture src={this.props.image} alt=""></Picture>
+                <ItemName>{this.props.text}</ItemName>
+                <ItemPrice>${this.props.price}</ItemPrice>
+                <Description>{this.props.description}</Description>
+                <DesktopButton><LinkTo href={this.props.link} target="_blank">Buy Here</LinkTo></DesktopButton>
+                <Link to={{pathname: "/survey", state: {productName: this.props.text}}}><DesktopButton>Take a Survey</DesktopButton></Link><br/><br/>
+        
+            <Button class="closePopButton" onClick={this.props.closePopup}>X</Button>
         </PopInner>
       </Pop>
     );
