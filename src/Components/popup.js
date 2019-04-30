@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom'
-import Item from './item.jsx'
+import Item from './item.js'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled'

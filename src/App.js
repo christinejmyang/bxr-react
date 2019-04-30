@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
-
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { withFirebase} from './Firebase'
-import MainPic from './Components/mainpic.js'
-import HowItWorks from './Components/hiw.js'
-import Footer from './Components/footer.jsx'
+
 import Nav from './Components/nav.js'
 import Homepage from './Components/homepage.js'
-import SignIn from './Components/signin.js'
-import SignUp from './Components/signup.js'
+import Footer from './Components/footer.js'
 
 import About from './Components/about.js'
-import Products from './Components/products.jsx'
-import MyProducts from './Components/myProducts.jsx'
-import Hosts from './Components/hosts.js'
 import Brands from './Components/brands.js'
+import Hosts from './Components/hosts.js'
 
-import Profile from './Components/profile.jsx'
+import Products from './Components/products.js'
+import MyProducts from './Components/myProducts.js'
 import Survey from './Components/survey.js'
+
+import SignIn from './Components/signin.js'
+import SignUp from './Components/signup.js'
+import Profile from './Components/profile.js'
 import Info from './Components/info.js'
 
 class App extends Component {

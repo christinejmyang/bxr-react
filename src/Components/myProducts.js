@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Item from './item'
+import Item from './item.js'
 import Media from 'react-media'
 import { Section, bodyTextStyle } from './Section.js'
 import styled from '@emotion/styled';
@@ -8,7 +8,8 @@ import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
 const UnfilledHeart = styled.button`
-    font-size: 40px;
+    float: right;
+    font-size: 1.5em;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -16,7 +17,8 @@ const UnfilledHeart = styled.button`
 `;
 
 const FilledHeart = styled.button`
-    font-size: 40px;
+    float: right;
+    font-size: 1.5em;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -31,13 +33,13 @@ const MobileProducts = styled.div`
 const DesktopProducts = styled.div`
     font-family: 'Source Sans Pro', sans-serif;
     margin-bottom: 100px;
+    text-align: center;
 `;
 
 const Headis = styled.h1`
-    font-size: 50px;
+    font-size: 2em;
     text-align: center;
     font-family: 'Avenir Next', sans-serif;
-    margin-top: 5%;
 `;
 
 const DesktopItem = styled.div`
@@ -48,11 +50,19 @@ const DesktopItem = styled.div`
 const DesktopItemRemove = styled.button`
     border: none;
     background-color: transparent;
+    margin-top: 1%;
+    margin-left: -35%;
 `;
 
 const ProductsCollection = styled.div`
   margin-top: -100px;
 `;
+
+const profPicStyle = {
+  width: '75px',
+  borderRadius: '15em',
+  float: 'center',
+};
 
 const Collection = styled.div`
   flex-direction: column;
@@ -60,17 +70,19 @@ const Collection = styled.div`
 `;
 
 const Child = styled.div`
-  flex-direction: column;
+  text-transform: capitalize;
+`;
+
+const DesktopButton = styled.a`
+  cursor: pointer;
   text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 2em;
+    float: left;
 `;
 
 
-
-const profPicStyle = {
-  width: '75px',
-  borderRadius: '15em',
-  float: 'center',
-};
 
 const MyProductsPage = () => (
   <MyProductsView />
@@ -136,12 +148,13 @@ class MyProducts extends Component {
     const bookshelfDesktop = (
       <DesktopProducts>
         <Headis> My Products </Headis>
+          <ProductsCollection>
              <Row gutter={0}>
                {this.state.products.map(product =>
-                 <Col span={0}>
+                 <Col span={3}>
                     <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
                       <DesktopItemRemove>
-                        <button onClick={() => this.removeItem(product.id)}>X</button>
+                        <DesktopButton onClick={() => this.removeItem(product.id)}>X</DesktopButton>
                       </DesktopItemRemove>
                       {product.liked === false ?
                           <UnfilledHeart
@@ -158,40 +171,41 @@ class MyProducts extends Component {
                 </Col>
              )}
              </Row>
+          </ProductsCollection>
       <br/><br/><br/></DesktopProducts>
     );
 
     const bookshelfMobile = (
-      <DesktopProducts>
-        <Headis> My Products </Headis>
-             <Row gutter={0}>
+       <MobileProducts>
+       <Headis> My Products </Headis>
+           <Collection>
                {this.state.products.map(product =>
-                 <Col span={0}>
-                    <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
-                      <DesktopItemRemove>
-                        <button onClick={() => this.removeItem(product.id)}>X</button>
-                      </DesktopItemRemove>
-                      {product.liked === false ?
-                          <UnfilledHeart
-                            onClick={() =>
-                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                            &hearts; </UnfilledHeart>
-                          :
-                          <FilledHeart
-                            onClick={() =>
-                              this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
-                            &hearts; </FilledHeart>
-                        }
-                    </Item>
-                </Col>
+                 <Child>
+                  <Item link={product.link} description={product.description} price={product.price} name={product.name} liked={product.liked} image={product.image}>
+                    <DesktopItemRemove>
+                        <DesktopButton onClick={() => this.removeItem(product.id)}>X</DesktopButton>
+                    </DesktopItemRemove>
+                    {product.liked === false ?
+                        <UnfilledHeart
+                          onClick={() =>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                          &hearts; </UnfilledHeart>
+                        :
+                        <FilledHeart
+                          onClick={() =>
+                            this.handleHeart(product.id, product.name, product.description, product.price, product.link, product.liked, product.image)}>
+                          &hearts; </FilledHeart>
+                      }
+                  </Item>
+                </Child>
              )}
-             </Row>
-      <br/><br/><br/></DesktopProducts>
+           </Collection>
+      </MobileProducts>
     );
 
     return(
       <Section title="">
-        <Media query={{ minWidth: 1000 }}>
+        <Media query={{ minWidth: 1020 }}>
           {matches => (matches ? bookshelfDesktop : bookshelfMobile)}
         </Media>
       </Section>
