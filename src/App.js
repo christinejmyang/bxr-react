@@ -48,19 +48,20 @@ class App extends Component {
         <div className="App">
           <Nav authUser={this.state.authUser}/>
           <Switch>
-            <Route exact path="/" component={MainPic} />
+            <Route exact path="/" component={Homepage} />
           </Switch>
           <Switch>
-            <Route exact path="/" component={HowItWorks} />
             <Route path="/about" component={About} />
+            <Route path="/brands" component={Brands} /> 
+            <Route path="/hosts" component={Hosts} />
+        
             <Route path="/products" component={Products} />
             <Route path="/myproducts" component={MyProducts} />
+            <Route path="/survey" component={Survey} />
+        
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
-            <Route path="/hosts" component={Hosts} />
-            <Route path="/brands" component={Brands} />
-            <Route path="/survey" component={Survey} />
             <Route path="/info" component={Info} />
           </Switch>
           <Switch>
