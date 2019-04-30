@@ -252,7 +252,7 @@ class SignInFormBase extends Component {
     const { isOpen } = this.state;
 
     const SignInPageDesktop = (
-        <DesktopSignIn onSubmit={this.onSubmit}><h2>Sign In</h2>
+        <DesktopSignIn><h2>Sign In</h2>
           <DesktopMain>
             <form onSubmit={this.onSubmit}>
               <DesktopInput name="email" value={email} onChange={this.onChange} type="email" placeholder="Email Address"/><br/>
@@ -261,7 +261,6 @@ class SignInFormBase extends Component {
               Don't have an account?<DesktopLink href="/signup">Sign Up</DesktopLink>
               <br/><br/>
             </form>
-            <i>{error && <p>{error.message}</p>}</i>
           </DesktopMain>
           <DesktopSidebar>
               <DesktopFacebook>Sign in with Facebook</DesktopFacebook><br/><br/>

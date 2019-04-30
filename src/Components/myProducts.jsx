@@ -17,7 +17,7 @@ const UnfilledHeart = styled.button`
 `;
 
 const FilledHeart = styled.button`
-    float: left;
+    float: right;
     font-size: 1.5em;
     border: none;
     background-color: transparent;
@@ -51,7 +51,7 @@ const DesktopItemRemove = styled.button`
     border: none;
     background-color: transparent;
     margin-top: 1%;
-    margin-left: -30%;
+    margin-left: -35%;
 `;
 
 const ProductsCollection = styled.div`
