@@ -116,7 +116,8 @@ const MobileGoogle = styled.button`
     margin-top: 2%;
     color: black;
     font-family: 'Avenir Next', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1em;
     border: 2px solid black;
     border-radius: 5px 5px 5px 5px;
 `;
@@ -158,7 +159,8 @@ const MobileFacebook = styled.button`
     padding: 3%;
     color: white;
     font-family: 'Avenir Next', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1em;
     border: 2px solid #4567b2;
     border-radius: 5px 5px 5px 5px;
 `;
@@ -174,6 +176,9 @@ const MobileButton = styled.button`
     margin-right: 2%;
     color: white;
     font-weight: bold;
+    font-weight: 600;
+    font-size: 1em;
+    border: 0px solid black;
     border-radius: 5px 5px 5px 5px;
 `;
 
@@ -278,9 +283,7 @@ class SignInFormBase extends Component {
             <MobileInput name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/><br/><br/>
             <MobileButton type="submit">Sign In</MobileButton><br/><br/>
           </form>
-          Don't have an account? <Link to="/signup">Sign Up</Link><br/><br/>
-
-          <i>{error && <p>{error.message}</p>}</i>
+          Don't have an account? <DesktopLink href="/signup">Sign Up</DesktopLink><br/><br/>
         </MobileSignIn>
     );
 

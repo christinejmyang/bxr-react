@@ -97,7 +97,10 @@ const MobileButton = styled.button`
     padding: 3%;
     margin-right: 2%;
     color: white;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1em;
+    font-family: 'Avenir Next', sans-serif;
+    cursor: pointer;
     border-radius: 5px 5px 5px 5px;
 `;
 
@@ -121,9 +124,12 @@ const MobileFacebook = styled.button`
     background-color: #4567b2;
     width: 100%;
     text-align: center;
+    cursor: pointer;
     padding: 3%;
     color: white;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1em;
+    font-family: 'Avenir Next', sans-serif;
     border: 2px solid #4567b2;
     border-radius: 5px 5px 5px 5px;
 `;
@@ -147,10 +153,13 @@ const DesktopGoogle = styled.button`
 const MobileGoogle = styled.button`
     width: 100%;
     text-align: center;
+    cursor: pointer;
     padding: 3%;
     margin-top: 2%;
     color: black;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1em;
+    font-family: 'Avenir Next', sans-serif;
     border: 2px solid black;
     border-radius: 5px 5px 5px 5px;
 `;
@@ -294,7 +303,6 @@ class SignUpFormBase extends Component {
               <DesktopFacebook>Sign up with Facebook</DesktopFacebook><br/><br/>
               <DesktopGoogle onClick={this.loginWithGoogle}>Sign up with Google</DesktopGoogle><br/><br/>
           </DesktopSidebar>
-          <i>{error && <p>{error.message}</p>}</i>
         </DesktopSignUp>
     );
 
@@ -317,9 +325,7 @@ class SignUpFormBase extends Component {
             We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.<br/><br/>
             <MobileButton type="submit">Sign Up</MobileButton><br/><br/>
           </form>
-          Already have an account? <Link to="/signin">Sign In</Link><br/><br/>
-
-          <i>{error && <p>{error.message}</p>}</i>
+          Already have an account? <DesktopLink href="/signin">Sign In</DesktopLink><br/><br/>
         </MobileSignUp>
     );
 
